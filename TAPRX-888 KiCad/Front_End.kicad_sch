@@ -1342,42 +1342,6 @@
 					)
 				)
 				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name "~"
@@ -1534,42 +1498,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1742,42 +1670,6 @@
 					)
 				)
 				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name "~"
@@ -1934,42 +1826,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2142,42 +1998,6 @@
 					)
 				)
 				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name "~"
@@ -2334,42 +2154,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2542,42 +2326,6 @@
 					)
 				)
 				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name "~"
@@ -2734,42 +2482,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2942,42 +2654,6 @@
 					)
 				)
 				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 0 -2.54 90)
 					(length 2.032)
 					(name "~"
@@ -3134,42 +2810,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4424,6 +4064,14 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fc54f5c7-e7eb-4128-8df2-f85e2973077a")
+	)
+	(no_connect
+		(at 238.76 113.03)
+		(uuid "26a0cb50-1f76-48ee-b217-0685eac04faa")
+	)
+	(no_connect
+		(at 257.81 113.03)
+		(uuid "39e50cd4-be85-4617-805b-00bb72c21a36")
 	)
 	(wire
 		(pts
@@ -5839,12 +5487,6 @@
 		(pin "2"
 			(uuid "40d9e4a1-c2da-4367-a66e-433e340a557e")
 		)
-		(pin "1"
-			(uuid "e868956d-d6c1-474d-800f-d2240cc26466")
-		)
-		(pin "2"
-			(uuid "a9ea2f87-07ec-4316-b729-38912f049dd2")
-		)
 		(instances
 			(project "x-888 v2"
 				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/c305c302-fda1-4d48-83db-fa96ec3fb1d0"
@@ -6079,13 +5721,7 @@
 			)
 		)
 		(pin "2"
-			(uuid "0747dd72-8769-4af3-9f33-4bcf6ecb50cf")
-		)
-		(pin "2"
 			(uuid "c3406c60-7f4f-4730-b691-61958dece29a")
-		)
-		(pin "1"
-			(uuid "5ee7e920-feb4-438a-af90-173c85f4ffdd")
 		)
 		(pin "1"
 			(uuid "c7a67fd8-f99a-42c0-acf9-57e183e7a024")
@@ -6395,14 +6031,8 @@
 		(pin "2"
 			(uuid "49722100-f3b5-4c88-b229-1404888b9dcc")
 		)
-		(pin "2"
-			(uuid "5b62b3ba-bbf6-4a7f-bd60-a180c9d89650")
-		)
 		(pin "1"
 			(uuid "f9839a8d-f78c-4e29-99e4-9f7175cc98a4")
-		)
-		(pin "1"
-			(uuid "c3b8ce50-92cc-4f67-b31d-dcaad403c69e")
 		)
 		(instances
 			(project "x-888 v2"
@@ -6477,14 +6107,8 @@
 				(hide yes)
 			)
 		)
-		(pin "2"
-			(uuid "13efdd40-f7bd-481c-873c-640034248948")
-		)
 		(pin "1"
 			(uuid "54407cfc-ee53-4424-8f5f-3b7600644479")
-		)
-		(pin "1"
-			(uuid "3e436e7d-4cb0-40ca-a908-dc77d8b2d6a3")
 		)
 		(pin "2"
 			(uuid "b067723e-67a5-41fd-b99d-a6b4d479afda")
@@ -6942,17 +6566,11 @@
 				(hide yes)
 			)
 		)
-		(pin "1"
-			(uuid "c1421a64-f80e-4d49-ad10-d20b47699a3c")
-		)
 		(pin "2"
 			(uuid "fc081294-cb40-4fc1-95bb-41c8b05c0ff3")
 		)
 		(pin "1"
 			(uuid "169431ab-4702-437e-b302-a9ea6ec072d4")
-		)
-		(pin "2"
-			(uuid "6802e77c-b5a5-470f-be4d-0f49521ddca2")
 		)
 		(instances
 			(project "x-888 v2"
@@ -7113,12 +6731,6 @@
 		(pin "1"
 			(uuid "f3342723-22dd-49ea-bc01-2bc20c949b87")
 		)
-		(pin "1"
-			(uuid "3e36aebf-6c5a-4730-b926-7a24f38650c7")
-		)
-		(pin "2"
-			(uuid "c9dab00b-1ac6-437c-86b2-d0ff11c47a53")
-		)
 		(instances
 			(project "x-888 v2"
 				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/c305c302-fda1-4d48-83db-fa96ec3fb1d0"
@@ -7196,13 +6808,7 @@
 			(uuid "5b68ece3-59f5-4134-bb81-0ae4b857fbe4")
 		)
 		(pin "1"
-			(uuid "367711ee-ba7e-45c9-93e0-9f19bd1cea39")
-		)
-		(pin "1"
 			(uuid "561ed673-6434-46b1-9285-d4a575199446")
-		)
-		(pin "2"
-			(uuid "f6d699c3-8a0b-42a6-b0fc-7c878c0f912f")
 		)
 		(instances
 			(project "x-888 v2"
@@ -7587,13 +7193,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "ef6b140b-5dea-4e5a-aae2-7b74e551e08c")
-		)
-		(pin "1"
 			(uuid "bfbd2362-8fad-42b4-b2ab-d0253302d968")
-		)
-		(pin "2"
-			(uuid "673fe716-8a30-488c-9cf3-a3893a2833d2")
 		)
 		(pin "2"
 			(uuid "b9b5769a-d07b-480f-bf86-f2bf6307ddd2")
@@ -7987,12 +7587,6 @@
 				(hide yes)
 			)
 		)
-		(pin "2"
-			(uuid "05d08293-3abe-4f11-b168-7246721a413e")
-		)
-		(pin "1"
-			(uuid "edc53ad2-7a2e-4878-9f53-5597950c1ef2")
-		)
 		(pin "1"
 			(uuid "874a98e3-fbbc-4b9b-ba84-afcbce5ded4f")
 		)
@@ -8072,14 +7666,8 @@
 		(pin "1"
 			(uuid "b97d4db8-53dd-4ae6-a5b9-b8e3c0af6f40")
 		)
-		(pin "1"
-			(uuid "10832bd7-2a1f-4e7b-98e8-184ba2d2d5d5")
-		)
 		(pin "2"
 			(uuid "3d7be05d-51e7-4963-9e1c-3c3d239c2ab8")
-		)
-		(pin "2"
-			(uuid "5e4f5269-fe5b-443a-aa6b-49ba9fa3dda8")
 		)
 		(instances
 			(project "x-888 v4"
@@ -8226,12 +7814,6 @@
 				)
 				(hide yes)
 			)
-		)
-		(pin "1"
-			(uuid "1dc1a379-fa39-4884-88e0-355e16b69d10")
-		)
-		(pin "2"
-			(uuid "7fe9f0d1-44f8-4941-886b-6bfc03fcd739")
 		)
 		(pin "2"
 			(uuid "ea5c203d-9fd0-4122-adc1-a0a9a1334ad6")
@@ -8772,14 +8354,8 @@
 				(hide yes)
 			)
 		)
-		(pin "2"
-			(uuid "9582b997-aaaa-436d-b86e-027cf304b2ed")
-		)
 		(pin "1"
 			(uuid "0e5da3d1-428e-45b4-8994-7318becc38ad")
-		)
-		(pin "1"
-			(uuid "a71ac69a-a30d-4b9d-bfb4-88d8953d0156")
 		)
 		(pin "2"
 			(uuid "f79066eb-f47c-4915-b5d7-d373e46c9532")
@@ -9475,12 +9051,6 @@
 		(pin "2"
 			(uuid "bded3449-a48e-486e-93df-306bcdfbb015")
 		)
-		(pin "2"
-			(uuid "163231bc-4b0d-40bc-bdbe-f21cf56d4790")
-		)
-		(pin "1"
-			(uuid "1647314b-0383-485a-a3fd-8df28833c13a")
-		)
 		(instances
 			(project "x-888 v2"
 				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/c305c302-fda1-4d48-83db-fa96ec3fb1d0"
@@ -9632,12 +9202,6 @@
 		)
 		(pin "1"
 			(uuid "69108f0e-4aea-46c4-a03d-6585f35b176c")
-		)
-		(pin "1"
-			(uuid "29367d12-0f24-4404-a5e3-9de81cc23a45")
-		)
-		(pin "2"
-			(uuid "471519fd-5f08-41c5-b4b3-2cb10ba638d0")
 		)
 		(instances
 			(project "x-888 v2"
