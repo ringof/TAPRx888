@@ -1,10 +1,12 @@
 {
   "board": {
-    "active_layer": 5,
+    "active_layer": 0,
     "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_netclasses": [],
-    "hidden_nets": [],
+    "hidden_nets": [
+      "GND"
+    ],
     "high_contrast_mode": 0,
     "net_color_mode": 1,
     "opacity": {
@@ -43,7 +45,7 @@
       "drc_warnings",
       "shapes"
     ],
-    "visible_layers": "00000000_00000000_0fffd575_d75755fd",
+    "visible_layers": "00000000_00000000_0fffd575_5f55557d",
     "zone_display_mode": 0
   },
   "git": {
@@ -52,7 +54,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "TAPRX-888 v0.3a.kicad_prl",
+    "filename": "TAPRX-888.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {

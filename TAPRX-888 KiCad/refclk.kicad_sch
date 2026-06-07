@@ -4565,12 +4565,6 @@
 		(uuid "03aa727b-c772-49d5-b76d-3341a3822647")
 	)
 	(junction
-		(at 210.82 109.22)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "069a41ea-d167-4d94-9685-9bd3ad82b754")
-	)
-	(junction
 		(at 81.28 101.6)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4883,6 +4877,12 @@
 		(uuid "e1408965-a5e5-469f-b3e1-ed2c2a236e06")
 	)
 	(junction
+		(at 63.5 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e96f0fa0-98aa-4f0c-929f-b51556f7bb29")
+	)
+	(junction
 		(at 191.77 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5125,6 +5125,16 @@
 			(type default)
 		)
 		(uuid "1757b82f-245b-4306-94f9-314c15fbd859")
+	)
+	(wire
+		(pts
+			(xy 34.29 21.59) (xy 57.15 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b3c5fc4-3090-4d75-a7ad-fc19179435dc")
 	)
 	(wire
 		(pts
@@ -5405,6 +5415,16 @@
 			(type default)
 		)
 		(uuid "3fa39bde-7ceb-44b6-9d84-a0a1f197c11b")
+	)
+	(wire
+		(pts
+			(xy 34.29 20.32) (xy 34.29 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "416eddb6-264b-43d9-bd72-7faefaede240")
 	)
 	(wire
 		(pts
@@ -5708,6 +5728,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 31.75) (xy 63.5 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ae0a48e-a485-43a2-969e-1e7619a51826")
+	)
+	(wire
+		(pts
 			(xy 78.74 68.58) (xy 78.74 72.39)
 		)
 		(stroke
@@ -5735,6 +5765,16 @@
 			(type default)
 		)
 		(uuid "6e571331-37d4-409b-99c9-becc93864c9f")
+	)
+	(wire
+		(pts
+			(xy 67.31 21.59) (xy 73.66 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ecd0984-e8db-4b41-afec-343080af6c18")
 	)
 	(wire
 		(pts
@@ -5778,7 +5818,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 107.95) (xy 204.47 109.22)
+			(xy 201.93 92.71) (xy 201.93 93.98)
 		)
 		(stroke
 			(width 0)
@@ -6158,7 +6198,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 109.22) (xy 210.82 109.22)
+			(xy 201.93 93.98) (xy 210.82 93.98)
 		)
 		(stroke
 			(width 0)
@@ -6708,16 +6748,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 93.98) (xy 210.82 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d392be6c-284a-4614-bb07-cac1a0fc94ed")
-	)
-	(wire
-		(pts
 			(xy 243.84 109.22) (xy 243.84 99.06)
 		)
 		(stroke
@@ -6828,6 +6858,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 30.48) (xy 63.5 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e34c4a25-08cf-4320-bc5a-bc3cdfbbf4ca")
+	)
+	(wire
+		(pts
 			(xy 68.58 123.19) (xy 81.28 123.19)
 		)
 		(stroke
@@ -6908,6 +6948,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 40.64) (xy 63.5 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef36cfef-d16e-40bc-a2d9-0ea00970ce8c")
+	)
+	(wire
+		(pts
 			(xy 78.74 55.88) (xy 109.22 55.88)
 		)
 		(stroke
@@ -6925,6 +6975,16 @@
 			(type default)
 		)
 		(uuid "f044aa7d-2454-4079-b0e5-8535ed3c9594")
+	)
+	(wire
+		(pts
+			(xy 30.48 31.75) (xy 63.5 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f10903bc-f66d-4e44-a3ce-180ed5b8c8a0")
 	)
 	(wire
 		(pts
@@ -7066,6 +7126,16 @@
 		)
 		(uuid "1372edc0-8349-4135-9f9e-e96574060045")
 	)
+	(label "Vdd5351"
+		(at 73.66 21.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2538d31d-884e-400b-81c4-6276c3f3d027")
+	)
 	(label "CLKGEN3.3V"
 		(at 243.84 106.68 0)
 		(effects
@@ -7075,6 +7145,16 @@
 			(justify left bottom)
 		)
 		(uuid "d66d8c07-a1bc-4857-b226-f5c0cfee35ba")
+	)
+	(label "Vdd5351"
+		(at 210.82 109.22 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ec1007d3-aabe-4162-b28b-386ae70cd42e")
 	)
 	(hierarchical_label "CLK2"
 		(shape output)
@@ -7097,6 +7177,17 @@
 			(justify left)
 		)
 		(uuid "2876acfe-7c71-48ed-811a-3d340d391ff6")
+	)
+	(hierarchical_label "DISABLE_5351"
+		(shape input)
+		(at 30.48 31.75 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5f163e25-816d-487c-8332-5af316efdb13")
 	)
 	(hierarchical_label "SCLKP"
 		(shape output)
@@ -10694,6 +10785,81 @@
 	)
 	(symbol
 		(lib_id "TIS:GND")
+		(at 63.5 41.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9727d13a-3057-4a9f-984f-5cf26aeaec1d")
+		(property "Reference" "#PWR0107"
+			(at 63.5 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 63.5 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a4a7ea0a-4da7-4124-b82f-7f1a6cbdeb8f")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#PWR0107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TIS:GND")
 		(at 33.02 180.34 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11627,7 +11793,7 @@
 	)
 	(symbol
 		(lib_id "TIS:+3V3")
-		(at 204.47 107.95 0)
+		(at 201.93 92.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11636,7 +11802,7 @@
 		(fields_autoplaced yes)
 		(uuid "ba86231f-82ef-429d-8c4d-308eb874d110")
 		(property "Reference" "#PWR091"
-			(at 204.47 111.76 0)
+			(at 201.93 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11645,7 +11811,7 @@
 			)
 		)
 		(property "Value" "3V3REF"
-			(at 204.47 102.87 0)
+			(at 201.93 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11653,7 +11819,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11662,7 +11828,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11671,7 +11837,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11680,7 +11846,7 @@
 			)
 		)
 		(property "LCSC Part #" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12243,6 +12409,81 @@
 		)
 	)
 	(symbol
+		(lib_id "TIS:+3V3")
+		(at 34.29 20.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d229e1df-5974-47bc-963b-272633a9cf1f")
+		(property "Reference" "#PWR0106"
+			(at 34.29 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "3V3REF"
+			(at 34.29 15.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dd4cff8b-1136-4604-92c4-35d5e1af644a")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#PWR0106")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "capacitors:C-0.1-0603")
 		(at 95.25 111.76 0)
 		(unit 1)
@@ -12315,6 +12556,167 @@
 			(project "x-888 v2"
 				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
 					(reference "C67")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "resistors:R-10K-0603")
+		(at 63.5 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d3d30bd0-b363-40f8-8130-e5efe2d251f3")
+		(property "Reference" "R60"
+			(at 65.2272 35.6616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R-10K-0603"
+			(at 65.2272 37.973 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TIS_Footprints:PAD_0603"
+			(at 64.516 37.084 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "C25804"
+			(at 63.5 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C25804"
+			(at 63.5 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5864d0bf-f2b2-40b5-957c-d9cf23bb8bff")
+		)
+		(pin "2"
+			(uuid "0d377d94-f08c-49e9-8be0-62017fbfe379")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "R60")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TIS:PMOS Si2343DS")
+		(at 62.23 24.13 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d489f58a-a4c9-4917-88fd-854e80dc569b")
+		(property "Reference" "Q3"
+			(at 62.23 15.24 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PMOS Si2343DS"
+			(at 62.23 17.78 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "TIS_Footprints:SOT-23"
+			(at 64.135 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 62.23 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 62.23 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C6903"
+			(at 58.42 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "c7afdb58-6df2-42df-ba07-f2524dc9cf03")
+		)
+		(pin "1"
+			(uuid "ed0ab24e-5fba-4201-aabe-bc1813442413")
+		)
+		(pin "2"
+			(uuid "82f80531-7385-435a-a55b-38d4c610c506")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "Q3")
 					(unit 1)
 				)
 			)
