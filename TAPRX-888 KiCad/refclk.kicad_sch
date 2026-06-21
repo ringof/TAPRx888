@@ -5,7 +5,7 @@
 	(uuid "44d29344-5322-4005-9e07-d90d69e33083")
 	(paper "A4")
 	(lib_symbols
-		(symbol "TIS:+3V3"
+		(symbol "Library:+3V3"
 			(power)
 			(pin_names
 				(offset 0)
@@ -127,7 +127,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:74LVC2G14-SC70"
+		(symbol "Library:74LVC2G14-SC70"
 			(pin_names
 				(offset 1.016)
 			)
@@ -453,7 +453,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:BAV99-Dual_Diode"
+		(symbol "Library:BAV99-Dual_Diode"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -685,7 +685,499 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:FBEAD0603-1u-190mA"
+		(symbol "Library:C-0.1-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.254 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C-0.1-0603"
+				(at 0.254 -2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:C_0603"
+				(at -2.286 -0.762 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C14663"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_* C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C-0.1-0603_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C-0.1-0603_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:C-10u-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.254 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C-10u-0603"
+				(at 0.254 -2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at -2.286 -0.762 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C96446"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_* C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C-10u-0603_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C-10u-0603_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:C-1u-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.254 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C-1u-0603"
+				(at 0.254 -2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 13.716 2.286 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "1uF 50V X5R 0603"
+				(at 11.176 0.254 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C15849"
+				(at 8.128 4.318 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_* C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C-1u-0603_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C-1u-0603_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:FBEAD0603-1u-190mA"
 			(pin_names
 				(offset 1.016)
 			)
@@ -858,7 +1350,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:GND"
+		(symbol "Library:GND"
 			(power)
 			(pin_names
 				(offset 0)
@@ -956,7 +1448,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:LP5907MFX-3.3"
+		(symbol "Library:LP5907MFX-3.3"
 			(pin_names
 				(offset 1.016)
 			)
@@ -1083,7 +1575,7 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin input line
 					(at 8.89 -1.27 180)
 					(length 2.54)
 					(name "GND"
@@ -1104,7 +1596,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:MMBT3904"
+		(symbol "Library:MMBT3904"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -1297,7 +1789,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:NC7SZ157"
+		(symbol "Library:NC7SZ157"
 			(pin_names
 				(offset 1.016)
 			)
@@ -1481,7 +1973,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:PMOS Si2343DS"
+		(symbol "Library:PMOS Si2343DS"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -1842,7 +2334,1146 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:SN65LVDS1-DIFF-DRIVER"
+		(symbol "Library:PWR_FLAG"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "power-flag"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "pwr"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:R-100-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R-100-0603"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C22775"
+				(at -7.62 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R-100-0603_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R-100-0603_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:R-10K-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R-10K-0603"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C25804"
+				(at -8.89 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R-10K-0603_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R-10K-0603_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:R-1M-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R-1M-0603"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C22935"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R-1M-0603_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R-1M-0603_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:R-2.2K-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R-2.2K-0603"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C4190"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R-2.2K-0603_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R-2.2K-0603_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:R-22Ω-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R-22Ω-0603"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C23345"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R-22Ω-0603_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R-22Ω-0603_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:R-330Ω-0603"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R-330Ω-0603"
+				(at -2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "TIS_Footprints:PAD_0603"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part #" "C23138"
+				(at -7.874 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R-330Ω-0603_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R-330Ω-0603_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Library:SN65LVDS1-DIFF-DRIVER"
 			(pin_names
 				(offset 1.016)
 			)
@@ -2067,7 +3698,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:Si5351A"
+		(symbol "Library:Si5351A"
 			(pin_names
 				(offset 1.016)
 			)
@@ -2323,7 +3954,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:TCXO-27M-3225"
+		(symbol "Library:TCXO-27M-3225"
 			(pin_names
 				(offset 1.016)
 			)
@@ -2480,7 +4111,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:TLV3501"
+		(symbol "Library:TLV3501"
 			(pin_names
 				(offset 1.016)
 			)
@@ -2664,7 +4295,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:TP"
+		(symbol "Library:TP"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -2756,7 +4387,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "TIS:U.FL-R"
+		(symbol "Library:U.FL-R"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -2926,1656 +4557,12 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "capacitors:C-0.1-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.254 1.778 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C-0.1-0603"
-				(at 0.254 -2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:C_0603"
-				(at -2.286 -0.762 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C14663"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_* C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C-0.1-0603_0_1"
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C-0.1-0603_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "capacitors:C-10u-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.254 1.778 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C-10u-0603"
-				(at 0.254 -2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at -2.286 -0.762 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C96446"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_* C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C-10u-0603_0_1"
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C-10u-0603_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "capacitors:C-1u-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.254 1.778 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C-1u-0603"
-				(at 0.254 -2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 13.716 2.286 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "1uF 50V X5R 0603"
-				(at 11.176 0.254 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C15849"
-				(at 8.128 4.318 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_* C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C-1u-0603_0_1"
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
-					)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
-					)
-					(stroke
-						(width 0.3302)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C-1u-0603_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "resistors:R-100-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R-100-0603"
-				(at -2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 1.016 -0.254 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C22775"
-				(at -7.62 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R-100-0603_0_1"
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R-100-0603_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "resistors:R-10K-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R-10K-0603"
-				(at -2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 1.016 -0.254 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C25804"
-				(at -8.89 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R-10K-0603_0_1"
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R-10K-0603_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "resistors:R-1M-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R-1M-0603"
-				(at -2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 1.016 -0.254 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C22935"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R-1M-0603_0_1"
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R-1M-0603_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "resistors:R-2.2K-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R-2.2K-0603"
-				(at -2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 1.016 -0.254 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C4190"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R-2.2K-0603_0_1"
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R-2.2K-0603_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "resistors:R-22Ω-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R-22Ω-0603"
-				(at -2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 1.016 -0.254 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C23345"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R-22Ω-0603_0_1"
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R-22Ω-0603_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "resistors:R-330Ω-0603"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R-330Ω-0603"
-				(at -2.54 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "TIS_Footprints:PAD_0603"
-				(at 1.016 -0.254 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC Part #" "C23138"
-				(at -7.874 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R-330Ω-0603_0_1"
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R-330Ω-0603_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(junction
 		(at 266.7 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "03aa727b-c772-49d5-b76d-3341a3822647")
-	)
-	(junction
-		(at 210.82 109.22)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "069a41ea-d167-4d94-9685-9bd3ad82b754")
 	)
 	(junction
 		(at 81.28 101.6)
@@ -4698,16 +4685,16 @@
 		(uuid "5859195f-f705-4bc7-9a4c-67e511ed3efd")
 	)
 	(junction
-		(at 26.67 106.68)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "59bb05b1-3901-4139-9584-845be9ede8c6")
-	)
-	(junction
 		(at 168.91 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5a7a11c6-9399-455c-9def-47bfc08f0c48")
+	)
+	(junction
+		(at 146.05 36.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5c6f4cd7-e577-454b-8a79-df379a9ca278")
 	)
 	(junction
 		(at 184.15 127)
@@ -4776,6 +4763,12 @@
 		(uuid "8d4de570-b11e-4991-bd61-04b87c712d5b")
 	)
 	(junction
+		(at 237.49 109.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8ef15666-6f1a-4c85-9700-f2b3ec0efcae")
+	)
+	(junction
 		(at 87.63 170.18)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4798,6 +4791,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9e1003e0-4cb7-4ba0-9f51-694bd3a16d17")
+	)
+	(junction
+		(at 66.04 55.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9f599458-8c9c-4630-9485-83318077b946")
 	)
 	(junction
 		(at 256.54 140.97)
@@ -4848,18 +4847,6 @@
 		(uuid "bf708073-1751-42d2-b5e3-99b4084ec59f")
 	)
 	(junction
-		(at 26.67 110.49)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c1c91513-d560-4486-b452-3b096fee4b86")
-	)
-	(junction
-		(at 125.73 110.49)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c3992c70-579b-4c2d-a0b2-05aae2e9b68c")
-	)
-	(junction
 		(at 71.12 170.18)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4870,12 +4857,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d2c20661-139f-486c-b9b7-3d076e71464f")
-	)
-	(junction
-		(at 125.73 106.68)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d8a719ea-435b-4bbc-8158-1b85f77dd563")
 	)
 	(junction
 		(at 172.72 127)
@@ -4896,6 +4877,12 @@
 		(uuid "e1408965-a5e5-469f-b3e1-ed2c2a236e06")
 	)
 	(junction
+		(at 63.5 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e96f0fa0-98aa-4f0c-929f-b51556f7bb29")
+	)
+	(junction
 		(at 191.77 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4912,6 +4899,22 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ff5a2624-4b19-4628-b973-814adc0eaa24")
+	)
+	(no_connect
+		(at 203.2 130.81)
+		(uuid "0ef9e457-08fa-4bba-ac0a-0b48d477b546")
+	)
+	(no_connect
+		(at 219.71 71.12)
+		(uuid "7db6ef87-6940-4a40-8678-4508b5dc3057")
+	)
+	(no_connect
+		(at 146.05 68.58)
+		(uuid "82244843-5578-41ad-a34b-f0462dd1c54f")
+	)
+	(no_connect
+		(at 137.16 146.05)
+		(uuid "d49e53f0-cd04-4056-b45f-b9036c13b860")
 	)
 	(wire
 		(pts
@@ -4995,7 +4998,7 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 55.88) (xy 78.74 55.88)
+			(xy 60.96 55.88) (xy 66.04 55.88)
 		)
 		(stroke
 			(width 0)
@@ -5122,6 +5125,16 @@
 			(type default)
 		)
 		(uuid "1757b82f-245b-4306-94f9-314c15fbd859")
+	)
+	(wire
+		(pts
+			(xy 34.29 21.59) (xy 57.15 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b3c5fc4-3090-4d75-a7ad-fc19179435dc")
 	)
 	(wire
 		(pts
@@ -5305,16 +5318,6 @@
 	)
 	(wire
 		(pts
-			(xy 26.67 110.49) (xy 29.21 110.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "33b24632-3242-484b-9501-fe237baf1d10")
-	)
-	(wire
-		(pts
 			(xy 210.82 109.22) (xy 217.17 109.22)
 		)
 		(stroke
@@ -5412,6 +5415,16 @@
 			(type default)
 		)
 		(uuid "3fa39bde-7ceb-44b6-9d84-a0a1f197c11b")
+	)
+	(wire
+		(pts
+			(xy 34.29 20.32) (xy 34.29 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "416eddb6-264b-43d9-bd72-7faefaede240")
 	)
 	(wire
 		(pts
@@ -5715,6 +5728,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 31.75) (xy 63.5 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ae0a48e-a485-43a2-969e-1e7619a51826")
+	)
+	(wire
+		(pts
 			(xy 78.74 68.58) (xy 78.74 72.39)
 		)
 		(stroke
@@ -5742,6 +5765,16 @@
 			(type default)
 		)
 		(uuid "6e571331-37d4-409b-99c9-becc93864c9f")
+	)
+	(wire
+		(pts
+			(xy 67.31 21.59) (xy 73.66 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ecd0984-e8db-4b41-afec-343080af6c18")
 	)
 	(wire
 		(pts
@@ -5785,7 +5818,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 107.95) (xy 204.47 109.22)
+			(xy 201.93 92.71) (xy 201.93 93.98)
 		)
 		(stroke
 			(width 0)
@@ -5902,6 +5935,16 @@
 			(type default)
 		)
 		(uuid "8052fe7d-c838-4a5a-85cd-985752d20f6d")
+	)
+	(wire
+		(pts
+			(xy 66.04 55.88) (xy 78.74 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80a76b23-6e28-465c-b71c-71fcfdf6e669")
 	)
 	(wire
 		(pts
@@ -6035,17 +6078,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 106.68) (xy 26.67 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "909f60ec-7347-4de5-a015-7fd716da5c0d")
-	)
-	(wire
-		(pts
-			(xy 229.87 109.22) (xy 243.84 109.22)
+			(xy 229.87 109.22) (xy 237.49 109.22)
 		)
 		(stroke
 			(width 0)
@@ -6165,7 +6198,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 109.22) (xy 210.82 109.22)
+			(xy 201.93 93.98) (xy 210.82 93.98)
 		)
 		(stroke
 			(width 0)
@@ -6715,16 +6748,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 93.98) (xy 210.82 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d392be6c-284a-4614-bb07-cac1a0fc94ed")
-	)
-	(wire
-		(pts
 			(xy 243.84 109.22) (xy 243.84 99.06)
 		)
 		(stroke
@@ -6835,6 +6858,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 30.48) (xy 63.5 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e34c4a25-08cf-4320-bc5a-bc3cdfbbf4ca")
+	)
+	(wire
+		(pts
 			(xy 68.58 123.19) (xy 81.28 123.19)
 		)
 		(stroke
@@ -6915,6 +6948,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 40.64) (xy 63.5 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef36cfef-d16e-40bc-a2d9-0ea00970ce8c")
+	)
+	(wire
+		(pts
 			(xy 78.74 55.88) (xy 109.22 55.88)
 		)
 		(stroke
@@ -6932,6 +6975,16 @@
 			(type default)
 		)
 		(uuid "f044aa7d-2454-4079-b0e5-8535ed3c9594")
+	)
+	(wire
+		(pts
+			(xy 30.48 31.75) (xy 63.5 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f10903bc-f66d-4e44-a3ce-180ed5b8c8a0")
 	)
 	(wire
 		(pts
@@ -6992,6 +7045,16 @@
 			(type default)
 		)
 		(uuid "f7cf8f9b-376e-4323-a6f4-7066d145a64b")
+	)
+	(wire
+		(pts
+			(xy 237.49 109.22) (xy 243.84 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8443fd2-e93e-437d-8944-726496e587ca")
 	)
 	(wire
 		(pts
@@ -7063,6 +7126,16 @@
 		)
 		(uuid "1372edc0-8349-4135-9f9e-e96574060045")
 	)
+	(label "Vdd5351"
+		(at 73.66 21.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2538d31d-884e-400b-81c4-6276c3f3d027")
+	)
 	(label "CLKGEN3.3V"
 		(at 243.84 106.68 0)
 		(effects
@@ -7072,6 +7145,16 @@
 			(justify left bottom)
 		)
 		(uuid "d66d8c07-a1bc-4857-b226-f5c0cfee35ba")
+	)
+	(label "Vdd5351"
+		(at 210.82 109.22 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ec1007d3-aabe-4162-b28b-386ae70cd42e")
 	)
 	(hierarchical_label "CLK2"
 		(shape output)
@@ -7094,6 +7177,17 @@
 			(justify left)
 		)
 		(uuid "2876acfe-7c71-48ed-811a-3d340d391ff6")
+	)
+	(hierarchical_label "DISABLE_5351"
+		(shape input)
+		(at 30.48 31.75 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5f163e25-816d-487c-8332-5af316efdb13")
 	)
 	(hierarchical_label "SCLKP"
 		(shape output)
@@ -7206,7 +7300,7 @@
 		(uuid "f247efc3-258e-498c-97b2-fbee14e67a7c")
 	)
 	(symbol
-		(lib_id "TIS:PMOS Si2343DS")
+		(lib_id "Library:PMOS Si2343DS")
 		(at 107.95 39.37 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7289,7 +7383,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TLV3501")
+		(lib_id "Library:TLV3501")
 		(at 109.22 100.33 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7378,7 +7472,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TP")
+		(lib_id "Library:TP")
 		(at 87.63 167.64 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7453,7 +7547,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 135.89 40.64 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7516,13 +7610,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "332f1ad7-b2f3-4ca0-882f-90865adf2416")
-		)
-		(pin "1"
 			(uuid "a4344c78-9416-4939-a709-f6881726247f")
-		)
-		(pin "2"
-			(uuid "337d109b-54b0-41f2-b9fb-dcb4ecbd6fda")
 		)
 		(pin "2"
 			(uuid "69debdb6-e307-48a2-a388-81820c0cfdde")
@@ -7537,7 +7625,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:+3V3")
+		(lib_id "Library:+3V3")
 		(at 208.28 134.62 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7611,7 +7699,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:SN65LVDS1-DIFF-DRIVER")
+		(lib_id "Library:SN65LVDS1-DIFF-DRIVER")
 		(at 257.81 44.45 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7697,7 +7785,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 231.14 161.29 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7771,7 +7859,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:U.FL-R")
+		(lib_id "Library:U.FL-R")
 		(at 241.3 24.13 0)
 		(mirror y)
 		(unit 1)
@@ -7850,7 +7938,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TCXO-27M-3225")
+		(lib_id "Library:TCXO-27M-3225")
 		(at 153.67 68.58 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7942,7 +8030,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:FBEAD0603-1u-190mA")
+		(lib_id "Library:FBEAD0603-1u-190mA")
 		(at 128.27 36.83 0)
 		(mirror y)
 		(unit 1)
@@ -8019,7 +8107,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 243.84 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8094,7 +8182,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-10K-0603")
+		(lib_id "Library:R-10K-0603")
 		(at 172.72 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8172,7 +8260,73 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:PWR_FLAG")
+		(at 237.49 109.22 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "26a5d78c-9bae-43c7-8c63-c06d35adc14e")
+		(property "Reference" "#FLG07"
+			(at 237.49 107.315 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 237.49 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 237.49 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 237.49 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 237.49 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e4bf3de4-db49-41c3-b579-814a086ee18c")
+		)
+		(instances
+			(project ""
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#FLG07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:C-0.1-0603")
 		(at 191.77 78.74 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8237,14 +8391,8 @@
 		(pin "1"
 			(uuid "64e68781-d4da-4b1b-82ea-279ff6c08e00")
 		)
-		(pin "1"
-			(uuid "b6b83c79-49dd-4040-8612-628880dc78d1")
-		)
 		(pin "2"
 			(uuid "52de6ecc-881c-490c-aa7a-280a68118327")
-		)
-		(pin "2"
-			(uuid "0ed46481-4d0b-4c4c-8578-b2ca59d527c5")
 		)
 		(instances
 			(project "x-888 v2"
@@ -8256,7 +8404,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 63.5 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8330,7 +8478,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 208.28 140.97 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8395,14 +8543,8 @@
 		(pin "1"
 			(uuid "4928e95d-a679-4d27-894a-1b5cb73538f1")
 		)
-		(pin "1"
-			(uuid "2a11fd42-71c8-45e5-b2eb-7fbcb80f3a9f")
-		)
 		(pin "2"
 			(uuid "c84c4b56-217c-4592-9b80-c66beb75e4d3")
-		)
-		(pin "2"
-			(uuid "1afa8a62-bab8-437d-ac7e-cd01d84d0d21")
 		)
 		(instances
 			(project "x-888 v2"
@@ -8414,7 +8556,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 229.87 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8489,7 +8631,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:BAV99-Dual_Diode")
+		(lib_id "Library:BAV99-Dual_Diode")
 		(at 63.5 123.19 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8570,7 +8712,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 229.87 113.03 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8635,14 +8777,8 @@
 		(pin "1"
 			(uuid "bb80d9d5-e50c-49c1-a58e-9fd043887004")
 		)
-		(pin "1"
-			(uuid "332380fa-c2c4-42c0-9498-4ba92276441b")
-		)
 		(pin "2"
 			(uuid "9d40db72-77ec-48d0-8cda-327e8ece4cb4")
-		)
-		(pin "2"
-			(uuid "caa92ce8-f369-49aa-ad0b-dc9c96f69454")
 		)
 		(instances
 			(project "x-888"
@@ -8654,7 +8790,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 107.95 116.84 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8728,7 +8864,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 146.05 76.2 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8802,7 +8938,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 266.7 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8867,12 +9003,6 @@
 		(pin "1"
 			(uuid "66b40f1d-0c73-444e-adf4-f34a0d36db9a")
 		)
-		(pin "1"
-			(uuid "681cc384-28ab-48b5-ba6f-0dd3eb51d5fb")
-		)
-		(pin "2"
-			(uuid "5a275695-3ba9-4a04-97f4-a19f2a97a2f4")
-		)
 		(pin "2"
 			(uuid "e4fed869-f314-4a9f-ae9f-257c354e62f6")
 		)
@@ -8886,7 +9016,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:BAV99-Dual_Diode")
+		(lib_id "Library:BAV99-Dual_Diode")
 		(at 137.16 140.97 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8967,7 +9097,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-2.2K-0603")
+		(lib_id "Library:R-2.2K-0603")
 		(at 217.17 90.17 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9045,7 +9175,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-10K-0603")
+		(lib_id "Library:R-10K-0603")
 		(at 231.14 156.21 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9123,7 +9253,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 256.54 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9188,14 +9318,8 @@
 		(pin "1"
 			(uuid "4ad2e680-1894-46e2-8452-dcd7c59787f7")
 		)
-		(pin "1"
-			(uuid "48652a2a-d8e0-44f2-adc2-e6086c264c14")
-		)
 		(pin "2"
 			(uuid "20d0c5ea-7cf6-4677-ab12-fb3fff4e5487")
-		)
-		(pin "2"
-			(uuid "dad27099-7ab5-4499-951a-53321893af69")
 		)
 		(instances
 			(project "x-888 v8"
@@ -9207,7 +9331,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TP")
+		(lib_id "Library:TP")
 		(at 29.21 106.68 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9282,7 +9406,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 256.54 147.32 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9356,7 +9480,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:+3V3")
+		(lib_id "Library:+3V3")
 		(at 96.52 170.18 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9432,7 +9556,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:FBEAD0603-1u-190mA")
+		(lib_id "Library:FBEAD0603-1u-190mA")
 		(at 222.25 109.22 0)
 		(mirror y)
 		(unit 1)
@@ -9509,7 +9633,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 191.77 82.55 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9583,7 +9707,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 44.45 113.03 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9657,7 +9781,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 184.15 148.59 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9731,7 +9855,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 132.08 133.35 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9792,16 +9916,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "05807079-03d9-4355-8737-abab875c5bea")
-		)
-		(pin "1"
 			(uuid "ca90cd1b-9933-494c-8545-f5f10090bc77")
 		)
 		(pin "2"
 			(uuid "9cb22c87-297f-40e6-b7bb-ec9c05d7c7a8")
-		)
-		(pin "2"
-			(uuid "19e6259c-b301-4335-8397-4646c89021ab")
 		)
 		(instances
 			(project "x-888 v2"
@@ -9813,7 +9931,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:FBEAD0603-1u-190mA")
+		(lib_id "Library:FBEAD0603-1u-190mA")
 		(at 44.45 55.88 0)
 		(mirror y)
 		(unit 1)
@@ -9890,7 +10008,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 208.28 144.78 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9964,7 +10082,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:+3V3")
+		(lib_id "Library:+3V3")
 		(at 172.72 114.3 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10038,7 +10156,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TP")
+		(lib_id "Library:TP")
 		(at 29.21 110.49 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10113,7 +10231,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:NC7SZ157")
+		(lib_id "Library:NC7SZ157")
 		(at 240.03 142.24 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10202,7 +10320,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-10K-0603")
+		(lib_id "Library:R-10K-0603")
 		(at 78.74 76.2 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10280,7 +10398,73 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-1M-0603")
+		(lib_id "Library:PWR_FLAG")
+		(at 66.04 55.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "89fc047f-bd50-4294-99c1-a1e6b607d2f6")
+		(property "Reference" "#FLG08"
+			(at 66.04 53.975 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 66.04 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 66.04 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 66.04 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 66.04 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2c303f11-ac5b-4304-adac-613246d8c414")
+		)
+		(instances
+			(project ""
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#FLG08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:R-1M-0603")
 		(at 151.13 139.7 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10358,7 +10542,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:NC7SZ157")
+		(lib_id "Library:NC7SZ157")
 		(at 177.8 72.39 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10447,7 +10631,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 52.07 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10522,7 +10706,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-10K-0603")
+		(lib_id "Library:R-10K-0603")
 		(at 78.74 60.96 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10600,7 +10784,82 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
+		(at 63.5 41.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9727d13a-3057-4a9f-984f-5cf26aeaec1d")
+		(property "Reference" "#PWR0107"
+			(at 63.5 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 63.5 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" ""
+			(at 63.5 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a4a7ea0a-4da7-4124-b82f-7f1a6cbdeb8f")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#PWR0107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:GND")
 		(at 33.02 180.34 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10675,7 +10934,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:+3V3")
+		(lib_id "Library:+3V3")
 		(at 80.01 35.56 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10750,7 +11009,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 71.12 180.34 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10825,7 +11084,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-22Ω-0603")
+		(lib_id "Library:R-22Ω-0603")
 		(at 250.19 60.96 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10904,7 +11163,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-100-0603")
+		(lib_id "Library:R-100-0603")
 		(at 38.1 156.21 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10980,7 +11239,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 238.76 86.36 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11055,8 +11314,8 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TP")
-		(at 128.27 110.49 0)
+		(lib_id "Library:TP")
+		(at 130.81 110.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -11064,7 +11323,7 @@
 		(dnp no)
 		(uuid "aa9a5dad-f135-4aa6-addc-63af34ffde84")
 		(property "Reference" "TP19"
-			(at 131.0132 110.998 0)
+			(at 133.5532 110.998 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11073,7 +11332,7 @@
 			)
 		)
 		(property "Value" "TP"
-			(at 129.54 111.76 0)
+			(at 132.08 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11082,7 +11341,7 @@
 			)
 		)
 		(property "Footprint" "TIS_Footprints:TP"
-			(at 125.73 104.14 0)
+			(at 128.27 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11091,7 +11350,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 128.27 110.49 0)
+			(at 130.81 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11100,7 +11359,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 128.27 110.49 0)
+			(at 130.81 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11109,7 +11368,7 @@
 			)
 		)
 		(property "LCSC Part #" ""
-			(at 128.27 110.49 0)
+			(at 130.81 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11130,7 +11389,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:LP5907MFX-3.3")
+		(lib_id "Library:LP5907MFX-3.3")
 		(at 54.61 171.45 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11213,7 +11472,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-100-0603")
+		(lib_id "Library:R-100-0603")
 		(at 44.45 106.68 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11292,7 +11551,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-10K-0603")
+		(lib_id "Library:R-10K-0603")
 		(at 158.75 133.35 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11370,7 +11629,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:74LVC2G14-SC70")
+		(lib_id "Library:74LVC2G14-SC70")
 		(at 198.12 127 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11459,7 +11718,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 78.74 82.55 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11533,8 +11792,8 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:+3V3")
-		(at 204.47 107.95 0)
+		(lib_id "Library:+3V3")
+		(at 201.93 92.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11543,7 +11802,7 @@
 		(fields_autoplaced yes)
 		(uuid "ba86231f-82ef-429d-8c4d-308eb874d110")
 		(property "Reference" "#PWR091"
-			(at 204.47 111.76 0)
+			(at 201.93 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11552,7 +11811,7 @@
 			)
 		)
 		(property "Value" "3V3REF"
-			(at 204.47 102.87 0)
+			(at 201.93 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11560,7 +11819,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11569,7 +11828,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11578,7 +11837,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11587,7 +11846,7 @@
 			)
 		)
 		(property "LCSC Part #" ""
-			(at 204.47 107.95 0)
+			(at 201.93 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11608,7 +11867,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 266.7 58.42 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11682,7 +11941,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-1M-0603")
+		(lib_id "Library:R-1M-0603")
 		(at 63.5 80.01 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11760,7 +12019,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-22Ω-0603")
+		(lib_id "Library:R-22Ω-0603")
 		(at 250.19 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11839,7 +12098,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 52.07 59.69 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11904,12 +12163,6 @@
 		(pin "1"
 			(uuid "412ac640-871f-4602-9387-b3ddc8316e08")
 		)
-		(pin "1"
-			(uuid "047f1258-72e0-44f4-914c-03cd525b1af1")
-		)
-		(pin "2"
-			(uuid "c0115bb4-e51f-4057-8155-a8b4c037e994")
-		)
 		(pin "2"
 			(uuid "3dcc9274-f5ee-4182-8fd8-8014ebd74bbd")
 		)
@@ -11923,7 +12176,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-10u-0603")
+		(lib_id "Library:C-10u-0603")
 		(at 71.12 173.99 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11992,12 +12245,6 @@
 		(pin "1"
 			(uuid "610424a2-3de1-44cf-9776-bc48d32ff739")
 		)
-		(pin "2"
-			(uuid "6e57b99d-bf74-49b1-9241-d1c43648aa89")
-		)
-		(pin "1"
-			(uuid "e2a75144-ef14-4d8d-827e-7a22b50d10e4")
-		)
 		(instances
 			(project ""
 				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
@@ -12008,7 +12255,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 87.63 72.39 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12071,16 +12318,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "983fd8da-0d36-432d-8311-2a54a6e68bec")
-		)
-		(pin "1"
 			(uuid "06c97714-49a4-4eb5-b521-c0f8393e0d00")
 		)
 		(pin "2"
 			(uuid "b263dd4b-354c-4c38-8122-71ca7924f052")
-		)
-		(pin "2"
-			(uuid "2a0f6d40-083d-42ce-92af-7eb6d5695366")
 		)
 		(instances
 			(project "x-888 v2"
@@ -12092,7 +12333,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-330Ω-0603")
+		(lib_id "Library:R-330Ω-0603")
 		(at 88.9 101.6 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12168,7 +12409,82 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:+3V3")
+		(at 34.29 20.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d229e1df-5974-47bc-963b-272633a9cf1f")
+		(property "Reference" "#PWR0106"
+			(at 34.29 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "3V3REF"
+			(at 34.29 15.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" ""
+			(at 34.29 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dd4cff8b-1136-4604-92c4-35d5e1af644a")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#PWR0106")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:C-0.1-0603")
 		(at 95.25 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12233,14 +12549,8 @@
 		(pin "1"
 			(uuid "61d0c201-bde4-4c14-bc19-c5f582933f2f")
 		)
-		(pin "1"
-			(uuid "015c149e-8f74-4842-a067-d56aca2f1bfe")
-		)
 		(pin "2"
 			(uuid "f40ebaa4-642b-4d1d-9d14-c0e90534949d")
-		)
-		(pin "2"
-			(uuid "d4954c29-ada6-49fa-bed5-b93edfcb1c06")
 		)
 		(instances
 			(project "x-888 v2"
@@ -12252,7 +12562,168 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-100-0603")
+		(lib_id "Library:R-10K-0603")
+		(at 63.5 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d3d30bd0-b363-40f8-8130-e5efe2d251f3")
+		(property "Reference" "R60"
+			(at 65.2272 35.6616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R-10K-0603"
+			(at 65.2272 37.973 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TIS_Footprints:PAD_0603"
+			(at 64.516 37.084 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "C25804"
+			(at 63.5 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C25804"
+			(at 63.5 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5864d0bf-f2b2-40b5-957c-d9cf23bb8bff")
+		)
+		(pin "2"
+			(uuid "0d377d94-f08c-49e9-8be0-62017fbfe379")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "R60")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:PMOS Si2343DS")
+		(at 62.23 24.13 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d489f58a-a4c9-4917-88fd-854e80dc569b")
+		(property "Reference" "Q3"
+			(at 62.23 15.24 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PMOS Si2343DS"
+			(at 62.23 17.78 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "TIS_Footprints:SOT-23"
+			(at 64.135 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 62.23 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 62.23 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C6903"
+			(at 58.42 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "c7afdb58-6df2-42df-ba07-f2524dc9cf03")
+		)
+		(pin "1"
+			(uuid "ed0ab24e-5fba-4201-aabe-bc1813442413")
+		)
+		(pin "2"
+			(uuid "82f80531-7385-435a-a55b-38d4c610c506")
+		)
+		(instances
+			(project "TAPRX-888"
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "Q3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:R-100-0603")
 		(at 39.37 106.68 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12330,7 +12801,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 54.61 101.6 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12391,16 +12862,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "9532b392-4135-42a4-beb9-dcf74871bc7f")
-		)
-		(pin "1"
 			(uuid "1a0a11a4-43aa-4b66-895b-5eaa7d76df8e")
 		)
 		(pin "2"
 			(uuid "11110446-23ea-4b37-997f-5e4fe8ce74f3")
-		)
-		(pin "2"
-			(uuid "74afb008-f3c3-441b-89f5-4d589d64b9e4")
 		)
 		(instances
 			(project "x-888 v2"
@@ -12412,7 +12877,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 26.67 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12486,7 +12951,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-330Ω-0603")
+		(lib_id "Library:R-330Ω-0603")
 		(at 73.66 101.6 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12562,7 +13027,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:MMBT3904")
+		(lib_id "Library:MMBT3904")
 		(at 170.18 133.35 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12647,7 +13112,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:+3V3")
+		(lib_id "Library:+3V3")
 		(at 26.67 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12722,7 +13187,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 172.72 148.59 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12796,7 +13261,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 241.3 29.21 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12871,8 +13336,8 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:TP")
-		(at 128.27 106.68 0)
+		(lib_id "Library:TP")
+		(at 130.81 106.68 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -12880,7 +13345,7 @@
 		(dnp no)
 		(uuid "e2ceb34c-5248-41ef-ac58-009d7f4a6b07")
 		(property "Reference" "TP18"
-			(at 131.0132 107.188 0)
+			(at 133.5532 107.188 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12889,7 +13354,7 @@
 			)
 		)
 		(property "Value" "TP"
-			(at 129.54 107.95 0)
+			(at 132.08 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12898,7 +13363,7 @@
 			)
 		)
 		(property "Footprint" "TIS_Footprints:TP"
-			(at 125.73 100.33 0)
+			(at 128.27 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12907,7 +13372,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 128.27 106.68 0)
+			(at 130.81 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12916,7 +13381,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 128.27 106.68 0)
+			(at 130.81 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12925,7 +13390,7 @@
 			)
 		)
 		(property "LCSC Part #" ""
-			(at 128.27 106.68 0)
+			(at 130.81 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12946,7 +13411,73 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-1M-0603")
+		(lib_id "Library:PWR_FLAG")
+		(at 146.05 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e46aefbd-3f11-4c75-9e21-dcb6ec73d923")
+		(property "Reference" "#FLG06"
+			(at 146.05 34.925 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 146.05 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 146.05 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 146.05 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "72f8e563-e50e-4df0-9d5c-3a6bf3e7bcb1")
+		)
+		(instances
+			(project ""
+				(path "/eb8944cd-94ec-4b09-b419-3508e0096041/5b925e9b-242c-4f7b-a311-47f6108c506e"
+					(reference "#FLG06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Library:R-1M-0603")
 		(at 95.25 86.36 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13024,7 +13555,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 184.15 144.78 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13089,12 +13620,6 @@
 		(pin "1"
 			(uuid "2b9c846b-1116-4e6c-8bcc-487e2e80790b")
 		)
-		(pin "1"
-			(uuid "4024718b-8077-4d61-af8a-6abee271f1dc")
-		)
-		(pin "2"
-			(uuid "19e93d01-a488-44df-9bbe-302a4b23bce9")
-		)
 		(pin "2"
 			(uuid "be5fab2f-d8f1-4851-b3c1-3016711354f1")
 		)
@@ -13108,7 +13633,7 @@
 		)
 	)
 	(symbol
-		(lib_id "resistors:R-2.2K-0603")
+		(lib_id "Library:R-2.2K-0603")
 		(at 210.82 90.17 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13186,7 +13711,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 135.89 46.99 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13261,7 +13786,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:Si5351A")
+		(lib_id "Library:Si5351A")
 		(at 228.6 69.85 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13362,7 +13887,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-1u-0603")
+		(lib_id "Library:C-1u-0603")
 		(at 33.02 173.99 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13425,17 +13950,11 @@
 				(hide yes)
 			)
 		)
-		(pin "1"
-			(uuid "e8c2e06b-4cbe-43de-a2f2-8c0517808090")
-		)
 		(pin "2"
 			(uuid "a893ff2c-9d3a-4220-9e04-130193bf7963")
 		)
 		(pin "1"
 			(uuid "d093a986-e1ab-4438-919f-9b08a07df87f")
-		)
-		(pin "2"
-			(uuid "6b92eb14-54c4-4bdf-b1f6-234609cd8f87")
 		)
 		(instances
 			(project ""
@@ -13447,7 +13966,7 @@
 		)
 	)
 	(symbol
-		(lib_id "capacitors:C-0.1-0603")
+		(lib_id "Library:C-0.1-0603")
 		(at 243.84 113.03 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13512,12 +14031,6 @@
 		(pin "1"
 			(uuid "6140f079-da37-4863-a82b-dd9b0df7fee9")
 		)
-		(pin "1"
-			(uuid "41136eaf-1c94-4da7-b999-7f2a08c10378")
-		)
-		(pin "2"
-			(uuid "6b291283-975f-4cdc-b0b6-6a3a8f038687")
-		)
 		(pin "2"
 			(uuid "9d44a727-8d74-4a56-a489-2ed82a68e173")
 		)
@@ -13531,7 +14044,7 @@
 		)
 	)
 	(symbol
-		(lib_id "TIS:GND")
+		(lib_id "Library:GND")
 		(at 125.73 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)

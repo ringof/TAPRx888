@@ -1,6 +1,6 @@
 # TAPRX-888
 A simplified SDR, based on the RX-888:
-Please see the files named "TAPRX-888....."
+Please see the files in the folder named "TAPRX-888 KiCad ..."
 
 Proof-of-concept design
 
@@ -14,10 +14,12 @@ No bottom-side components
 
 Improved thermal layout
 
-Improved RF input filter (bypassable)
+Improved RF input filter(s) (bypassable)
 
 External reference clock input, auto-switching
 
 Attenuated filter-bypass injector port (used for timesync)
+
+SPI boot prom. configurable as USB boot, SPI boot, SPI boot with USB fallback.
 
 Please see schematic and layout documents.
