@@ -21478,8 +21478,7 @@
 		)
 		(uuid "fa12935c-e4cb-4598-bf44-5075f98729bf")
 	)
-	(hierarchical_label "VGA_D"
-		(shape input)
+	(label "VGA_D"
 		(at 88.9 66.04 180)
 		(effects
 			(font
@@ -21489,8 +21488,7 @@
 		)
 		(uuid "16d8a36e-7b2f-44b9-97be-65756c87e7aa")
 	)
-	(hierarchical_label "VGA_LE"
-		(shape input)
+	(label "VGA_LE"
 		(at 88.9 71.12 180)
 		(effects
 			(font
@@ -21500,8 +21498,7 @@
 		)
 		(uuid "7298bbe4-f0df-456f-bc41-9b3643508c9c")
 	)
-	(hierarchical_label "VGA_CLK"
-		(shape input)
+	(label "VGA_CLK"
 		(at 88.9 68.58 180)
 		(effects
 			(font
