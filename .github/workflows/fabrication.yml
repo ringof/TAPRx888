@@ -5,8 +5,12 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  KICAD_DIR: TAPRX-888 KiCad   # folder holding the .kicad_pcb / .kicad_sch / .kicad_pro
+  PROJ: TAPRX-888              # base file name (no extension)
+
 jobs:
-  gerbers:
+  fabrication:
     runs-on: ubuntu-latest
     container:
       image: kicad/kicad:10.0         # must match the KiCad version the board was saved with
@@ -17,26 +21,77 @@ jobs:
       - name: Inject short commit hash into project text variable
         run: |
           HASH=$(echo "$GITHUB_SHA" | cut -c1-7)
-          echo "Stamping board with $HASH"
+          echo "Stamping build with $HASH"
           python3 - "$HASH" <<'PY'
-          import json, sys
+          import json, sys, os
           hash_ = sys.argv[1]
-          path = "TAPRX-888 KiCad/TAPRX-888.kicad_pro"
+          path = os.path.join(os.environ["KICAD_DIR"], os.environ["PROJ"] + ".kicad_pro")
           with open(path) as f:
               proj = json.load(f)
+          # Project text variables are shared by the schematic AND the board,
+          # so a single ${GIT_HASH} resolves on silk, fab layers and title blocks.
           proj.setdefault("text_variables", {})["GIT_HASH"] = hash_
           with open(path, "w") as f:
               json.dump(proj, f, indent=2)
           PY
 
+      # ---- Board: gerbers + drill (zipped for JLCPCB) --------------------------
       - name: Export gerbers + drill
         run: |
-          cd "TAPRX-888 KiCad"
-          mkdir -p ../fab
-          kicad-cli pcb export gerbers --output ../fab TAPRX-888.kicad_pcb
-          kicad-cli pcb export drill   --output ../fab/ TAPRX-888.kicad_pcb
+          cd "$KICAD_DIR"
+          OUT="$GITHUB_WORKSPACE/out/gerbers"
+          mkdir -p "$OUT"
+          kicad-cli pcb export gerbers --output "$OUT" "$PROJ.kicad_pcb"
+          kicad-cli pcb export drill   --output "$OUT/" "$PROJ.kicad_pcb"
+          # JLCPCB expects a single zip of the gerber + drill set
+          python3 -c "import shutil; shutil.make_archive('$GITHUB_WORKSPACE/out/${PROJ}-gerbers', 'zip', '$OUT')"
+
+      # ---- Schematic PDF (all sheets) ----------------------------------------
+      - name: Export schematic PDF
+        run: |
+          cd "$KICAD_DIR"
+          mkdir -p "$GITHUB_WORKSPACE/out"
+          kicad-cli sch export pdf \
+            --output "$GITHUB_WORKSPACE/out/${PROJ}-schematic.pdf" \
+            "$PROJ.kicad_sch"
+
+      # ---- Assembly drawings (front + back fab layers) -----------------------
+      - name: Export assembly drawings
+        run: |
+          cd "$KICAD_DIR"
+          OUT="$GITHUB_WORKSPACE/out/assembly"
+          mkdir -p "$OUT"
+          kicad-cli pcb export pdf \
+            --output "$OUT/${PROJ}-assembly-front.pdf" \
+            --layers "F.Fab,F.Silkscreen,Edge.Cuts" \
+            --include-border-title \
+            "$PROJ.kicad_pcb"
+          kicad-cli pcb export pdf \
+            --output "$OUT/${PROJ}-assembly-back.pdf" \
+            --layers "B.Fab,B.Silkscreen,Edge.Cuts" \
+            --include-border-title --mirror \
+            "$PROJ.kicad_pcb"
+
+      # ---- JLCPCB BOM + CPL (placement) --------------------------------------
+      - name: Export JLCPCB BOM and CPL
+        run: |
+          cd "$KICAD_DIR"
+          OUT="$GITHUB_WORKSPACE/out/jlcpcb"
+          mkdir -p "$OUT"
+          kicad-cli sch export bom \
+            --output "$OUT/${PROJ}-bom.csv" \
+            --fields 'Value,Reference,Footprint,LCSC Part #' \
+            --labels 'Comment,Designator,Footprint,LCSC Part #' \
+            --group-by 'Value,Footprint,LCSC Part #' \
+            --exclude-dnp \
+            "$PROJ.kicad_sch"
+          kicad-cli pcb export pos \
+            --output "$OUT/${PROJ}-cpl.csv" \
+            --side both --format csv --units mm \
+            --use-drill-file-origin --exclude-dnp \
+            "$PROJ.kicad_pcb"
 
       - uses: actions/upload-artifact@v4
         with:
           name: fabrication-${{ github.sha }}
-          path: fab/
+          path: out/
