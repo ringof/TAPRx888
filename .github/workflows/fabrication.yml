@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # needed to publish the rolling "latest" Release
+  contents: write   # needed to publish the release and commit the README back
 
 env:
   KICAD_DIR: TAPRX-888 KiCad   # folder holding the .kicad_pcb / .kicad_sch / .kicad_pro
@@ -25,6 +25,8 @@ jobs:
         run: |
           HASH=$(echo "$GITHUB_SHA" | cut -c1-7)
           echo "Stamping build with $HASH"
+          # Expose to later steps (shell $HASH) and to action inputs (${{ env.HASH }})
+          echo "HASH=$HASH" >> "$GITHUB_ENV"
           python3 - "$HASH" <<'PY'
           import json, sys, os
           hash_ = sys.argv[1]
@@ -47,7 +49,7 @@ jobs:
           kicad-cli pcb export gerbers --output "$OUT" "$PROJ.kicad_pcb"
           kicad-cli pcb export drill   --output "$OUT/" "$PROJ.kicad_pcb"
           # JLCPCB expects a single zip of the gerber + drill set
-          python3 -c "import shutil; shutil.make_archive('$GITHUB_WORKSPACE/out/${PROJ}-gerbers', 'zip', '$OUT')"
+          python3 -c "import shutil; shutil.make_archive('$GITHUB_WORKSPACE/out/${PROJ}-gerbers-${HASH}', 'zip', '$OUT')"
 
       # ---- Schematic PDF (all sheets) ----------------------------------------
       - name: Export schematic PDF
@@ -55,7 +57,7 @@ jobs:
           cd "$KICAD_DIR"
           mkdir -p "$GITHUB_WORKSPACE/out"
           kicad-cli sch export pdf \
-            --output "$GITHUB_WORKSPACE/out/${PROJ}-schematic.pdf" \
+            --output "$GITHUB_WORKSPACE/out/${PROJ}-schematic-${HASH}.pdf" \
             "$PROJ.kicad_sch"
 
       # ---- Assembly drawings (front + back fab layers) -----------------------
@@ -65,12 +67,12 @@ jobs:
           OUT="$GITHUB_WORKSPACE/out/assembly"
           mkdir -p "$OUT"
           kicad-cli pcb export pdf \
-            --output "$OUT/${PROJ}-assembly-front.pdf" \
+            --output "$OUT/${PROJ}-assembly-front-${HASH}.pdf" \
             --layers "F.Fab,F.Silkscreen,Edge.Cuts" \
             --include-border-title \
             "$PROJ.kicad_pcb"
           kicad-cli pcb export pdf \
-            --output "$OUT/${PROJ}-assembly-back.pdf" \
+            --output "$OUT/${PROJ}-assembly-back-${HASH}.pdf" \
             --layers "B.Fab,B.Silkscreen,Edge.Cuts" \
             --include-border-title --mirror \
             "$PROJ.kicad_pcb"
@@ -82,14 +84,14 @@ jobs:
           OUT="$GITHUB_WORKSPACE/out/jlcpcb"
           mkdir -p "$OUT"
           kicad-cli sch export bom \
-            --output "$OUT/${PROJ}-bom.csv" \
+            --output "$OUT/${PROJ}-bom-${HASH}.csv" \
             --fields 'Value,Reference,Footprint,LCSC Part #' \
             --labels 'Comment,Designator,Footprint,LCSC Part #' \
             --group-by 'Value,Footprint,LCSC Part #' \
             --exclude-dnp \
             "$PROJ.kicad_sch"
           kicad-cli pcb export pos \
-            --output "$OUT/${PROJ}-cpl.csv" \
+            --output "$OUT/${PROJ}-cpl-${HASH}.csv" \
             --side both --format csv --units mm \
             --use-drill-file-origin --exclude-dnp \
             "$PROJ.kicad_pcb"
@@ -97,7 +99,7 @@ jobs:
       # ---- Bundle everything into one easy download ---------------------------
       - name: Package fabrication bundle
         run: |
-          python3 -c "import shutil; shutil.make_archive('$GITHUB_WORKSPACE/${PROJ}-fabrication', 'zip', '$GITHUB_WORKSPACE/out')"
+          python3 -c "import shutil; shutil.make_archive('$GITHUB_WORKSPACE/${PROJ}-fabrication-${HASH}', 'zip', '$GITHUB_WORKSPACE/out')"
 
       # Per-run artifact (handy for PRs / manual runs; expires after 90 days)
       - uses: actions/upload-artifact@v4
@@ -105,9 +107,36 @@ jobs:
           name: fabrication-${{ github.sha }}
           path: out/
 
+      # ---- Clear stale assets off the rolling "latest" release (main only) -----
+      # Filenames carry the commit hash, so without this the old build's assets
+      # would pile up on the same release.
+      - name: Remove previous assets from latest release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PY'
+          import os, json, urllib.request, urllib.error
+          token, repo = os.environ["GH_TOKEN"], os.environ["REPO"]
+          def call(url, method="GET"):
+              r = urllib.request.Request(url, method=method)
+              r.add_header("Authorization", f"Bearer {token}")
+              r.add_header("Accept", "application/vnd.github+json")
+              try:
+                  return urllib.request.urlopen(r)
+              except urllib.error.HTTPError as e:
+                  return e
+          resp = call(f"https://api.github.com/repos/{repo}/releases/tags/latest")
+          if resp.status == 200:
+              for a in json.load(resp).get("assets", []):
+                  print("deleting old asset:", a["name"])
+                  call(f"https://api.github.com/repos/{repo}/releases/assets/{a['id']}", "DELETE")
+          else:
+              print("no existing 'latest' release yet; nothing to clean")
+          PY
+
       # ---- Publish a rolling "latest" Release (main only) ----------------------
-      # Gives non-technical colleagues a permanent, prominent download on the
-      # repo front page (Releases) instead of digging through the Actions tab.
       - name: Publish latest fabrication release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
@@ -119,11 +148,39 @@ jobs:
             Auto-generated fabrication package — rebuilt on every change to `main`.
             Built from commit ${{ github.sha }}.
 
-            **Download `TAPRX-888-fabrication.zip`** for the full set: schematic PDF,
-            gerbers (plus a JLCPCB-ready zip), front/back assembly drawings, and the
-            JLCPCB BOM + CPL placement files. The schematic PDF and gerber zip are
-            also attached individually below for one-click access.
+            Every file name ends with the short commit hash (`${{ env.HASH }}`) so a
+            downloaded copy stays identifiable when it's passed around. Grab the
+            `…-fabrication-<hash>.zip` for the full set, or the schematic PDF / gerber
+            zip individually below.
           files: |
-            TAPRX-888-fabrication.zip
-            out/TAPRX-888-schematic.pdf
-            out/TAPRX-888-gerbers.zip
+            TAPRX-888-fabrication-${{ env.HASH }}.zip
+            out/TAPRX-888-schematic-${{ env.HASH }}.pdf
+            out/TAPRX-888-gerbers-${{ env.HASH }}.zip
+
+      # ---- Repoint the README's direct links at this build (main only) ---------
+      - name: Update README download links
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          python3 - "$HASH" <<'PY'
+          import re, sys
+          h = sys.argv[1]
+          with open("README.md") as f:
+              s = f.read()
+          for base, ext in [("TAPRX-888-schematic", "pdf"),
+                            ("TAPRX-888-gerbers", "zip"),
+                            ("TAPRX-888-fabrication", "zip")]:
+              s = re.sub(rf"{base}(?:-[0-9a-f]{{7}})?\.{ext}", f"{base}-{h}.{ext}", s)
+          with open("README.md", "w") as f:
+              f.write(s)
+          PY
+          if git diff --quiet README.md; then
+            echo "README already points at $HASH"
+          else
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "docs: point README downloads at ${HASH} build [skip ci]"
+            # GITHUB_TOKEN pushes do not retrigger workflows, so this won't loop.
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
