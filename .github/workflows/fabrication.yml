@@ -1,0 +1,44 @@
+# .github/workflows/fabrication.yml
+name: Fabrication outputs
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  gerbers:
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:9.0          # ships kicad-cli + python
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0              # needed so git rev-parse works
+
+      - name: Inject short commit hash into project text variable
+        run: |
+          HASH=$(git rev-parse --short HEAD)
+          echo "Stamping board with $HASH"
+          python3 - "$HASH" <<'PY'
+          import json, sys
+          hash_ = sys.argv[1]
+          path = "TAPRX-888 KiCad/TAPRX-888.kicad_pro"
+          with open(path) as f:
+              proj = json.load(f)
+          proj.setdefault("text_variables", {})["GIT_HASH"] = hash_
+          with open(path, "w") as f:
+              json.dump(proj, f, indent=2)
+          PY
+
+      - name: Export gerbers + drill
+        run: |
+          cd "TAPRX-888 KiCad"
+          mkdir -p ../fab
+          kicad-cli pcb export gerbers --output ../fab TAPRX-888.kicad_pcb
+          kicad-cli pcb export drill   --output ../fab/ TAPRX-888.kicad_pcb
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fabrication-${{ github.sha }}
+          path: fab/
