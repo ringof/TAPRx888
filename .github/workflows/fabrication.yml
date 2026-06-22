@@ -9,12 +9,10 @@ jobs:
   gerbers:
     runs-on: ubuntu-latest
     container:
-      image: kicad/kicad:9.0          # ships kicad-cli + python
+      image: kicad/kicad:10.0         # must match the KiCad version the board was saved with
       options: --user root
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0              # needed so git rev-parse works
 
       - name: Inject short commit hash into project text variable
         run: |
