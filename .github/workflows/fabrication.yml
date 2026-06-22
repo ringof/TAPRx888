@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write   # needed to publish the rolling "latest" Release
+
 env:
   KICAD_DIR: TAPRX-888 KiCad   # folder holding the .kicad_pcb / .kicad_sch / .kicad_pro
   PROJ: TAPRX-888              # base file name (no extension)
@@ -91,7 +94,36 @@ jobs:
             --use-drill-file-origin --exclude-dnp \
             "$PROJ.kicad_pcb"
 
+      # ---- Bundle everything into one easy download ---------------------------
+      - name: Package fabrication bundle
+        run: |
+          python3 -c "import shutil; shutil.make_archive('$GITHUB_WORKSPACE/${PROJ}-fabrication', 'zip', '$GITHUB_WORKSPACE/out')"
+
+      # Per-run artifact (handy for PRs / manual runs; expires after 90 days)
       - uses: actions/upload-artifact@v4
         with:
           name: fabrication-${{ github.sha }}
           path: out/
+
+      # ---- Publish a rolling "latest" Release (main only) ----------------------
+      # Gives non-technical colleagues a permanent, prominent download on the
+      # repo front page (Releases) instead of digging through the Actions tab.
+      - name: Publish latest fabrication release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest fabrication outputs
+          make_latest: true
+          body: |
+            Auto-generated fabrication package — rebuilt on every change to `main`.
+            Built from commit ${{ github.sha }}.
+
+            **Download `TAPRX-888-fabrication.zip`** for the full set: schematic PDF,
+            gerbers (plus a JLCPCB-ready zip), front/back assembly drawings, and the
+            JLCPCB BOM + CPL placement files. The schematic PDF and gerber zip are
+            also attached individually below for one-click access.
+          files: |
+            TAPRX-888-fabrication.zip
+            out/TAPRX-888-schematic.pdf
+            out/TAPRX-888-gerbers.zip
