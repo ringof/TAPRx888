@@ -4,10 +4,14 @@
 
 **[Download the latest gerbers, schematic PDF, assembly drawings & JLCPCB BOM →](https://github.com/ringof/TAPRx888/releases/latest)**
 
-No GitHub account needed. Grab **`TAPRX-888-fabrication.zip`** for everything, or
-the individual schematic PDF / gerber zip attached to the same release. These are
-rebuilt automatically from the latest design on every update to `main`, and each
-file is stamped with the build's commit hash.
+Quick links (always the newest build, no GitHub account needed):
+
+- 📄 **[Schematic PDF](https://github.com/ringof/TAPRx888/releases/download/latest/TAPRX-888-schematic.pdf)**
+- 🛠 **[Gerbers (JLCPCB-ready zip)](https://github.com/ringof/TAPRx888/releases/download/latest/TAPRX-888-gerbers.zip)**
+- 📦 **[Everything in one zip](https://github.com/ringof/TAPRx888/releases/download/latest/TAPRX-888-fabrication.zip)** (schematic, gerbers, assembly drawings, JLCPCB BOM + CPL)
+
+These are rebuilt automatically from the latest design on every update to `main`,
+and each file is stamped with the build's commit hash.
 
 ---
 
