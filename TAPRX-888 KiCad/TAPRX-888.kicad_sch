@@ -6309,7 +6309,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "Value" "LTC2208CUP_PBF"
+			(property "Value" "LTC2208CUP#PBF"
 				(at -10.668 56.388 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6414,7 +6414,7 @@
 					(justify bottom)
 				)
 			)
-			(property "LCSC Part #" "C679544"
+			(property "LCSC Part #" "C7458386"
 				(at -2.286 80.01 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -21847,6 +21847,16 @@
 		)
 		(uuid "a6967dfe-bf61-4a0d-b472-42b1c5aedd3c")
 	)
+	(label "VGA_D"
+		(at 88.9 66.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a6a81bc4-4bea-45f7-a2ca-c282daca02cd")
+	)
 	(label "D7"
 		(at 252.73 139.7 0)
 		(effects
@@ -21856,6 +21866,16 @@
 			(justify left bottom)
 		)
 		(uuid "a6fc2461-1631-43dd-a30e-d0c190118248")
+	)
+	(label "VGA_CLK"
+		(at 88.9 68.58 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "aa7a77f2-f13d-4af7-a054-8e84698d1b77")
 	)
 	(label "PCLK"
 		(at 274.32 109.22 180)
@@ -21886,6 +21906,16 @@
 			(justify left bottom)
 		)
 		(uuid "ae52258b-09e6-4309-b161-a84a43f38456")
+	)
+	(label "VGA_LE"
+		(at 88.9 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b0228396-a315-4d3a-9c53-a95f3fcf0fed")
 	)
 	(label "SSTX-"
 		(at 210.82 213.36 0)
@@ -31898,7 +31928,7 @@
 				)
 			)
 		)
-		(property "Value" "LTC2208CUP_PBF"
+		(property "Value" "LTC2208CUP#PBF"
 			(at 215.9 71.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -32002,7 +32032,7 @@
 				(justify bottom)
 			)
 		)
-		(property "LCSC Part #" "C679544"
+		(property "LCSC Part #" "C7458386"
 			(at 213.614 44.45 0)
 			(hide yes)
 			(show_name no)
