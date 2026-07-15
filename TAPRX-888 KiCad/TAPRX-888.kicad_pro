@@ -685,7 +685,9 @@
       "Clock"
     ]
   ],
-  "text_variables": {},
+  "text_variables": {
+    "GIT_HASH": "dev"
+  },
   "tuning_profiles": {
     "meta": {
       "version": 0
