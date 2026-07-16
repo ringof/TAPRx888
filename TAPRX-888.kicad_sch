@@ -4,6 +4,11 @@
 	(generator_version "10.0")
 	(uuid "eb8944cd-94ec-4b09-b419-3508e0096041")
 	(paper "A3")
+	(title_block
+		(title "TAPRX-888 HF SDR Receiver")
+		(date "2026-07-16")
+		(rev "DEV")
+	)
 	(lib_symbols
 		(symbol "Library:+3V3"
 			(power global)

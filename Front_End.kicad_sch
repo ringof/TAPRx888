@@ -4,6 +4,11 @@
 	(generator_version "10.0")
 	(uuid "a50f049a-8330-44a6-9f69-3dcb0aba17b3")
 	(paper "A4")
+	(title_block
+		(title "TAPRX-888 HF SDR Receiver")
+		(date "2026-07-16")
+		(rev "DEV")
+	)
 	(lib_symbols
 		(symbol "Library:BAV99-Dual_Diode"
 			(exclude_from_sim no)
