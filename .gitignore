@@ -19,3 +19,14 @@ _autosave-*
 # Caches
 fp-info-cache
 .history/
+
+# Generated fabrication / documentation outputs (produced by kicad-cli / CI,
+# published as artifacts — not committed)
+/production/
+/gerbers/
+/fab/
+*.rpt
+erc.rpt
+drc.rpt
+*.step
+*.stp

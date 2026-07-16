@@ -33,12 +33,14 @@ The KiCad project lives at the **repo root** (flattened from the former
   `${KIPRJMOD}`; keep paths relative).
 - `Library.kicad_sym` + `Library.pretty/` — the project-local symbol library and
   footprints.
-- `production/` — generated BOMs (`bom.csv`, JLC BOM). Treat these as build
-  outputs regenerated from the schematic (`kicad-cli sch export bom`), not as a
-  hand-maintained source of part numbers — the schematic `LCSC Part #` fields are
-  authoritative.
 - `fabrication-toolkit-options.json` — JLCPCB Fabrication Toolkit export config
   (`EXCLUDE DNP: true`, so DNP parts are omitted from fab outputs).
+
+BOM, Gerbers, and other fabrication outputs are **build products regenerated
+from the schematic/PCB** (`kicad-cli sch export bom`, etc.) and are **not
+committed** — CI produces them as artifacts. The schematic `LCSC Part #` fields
+are the authoritative source of part numbers; `MFG`/`MPN` are derivable from the
+LCSC number via the JLC/LCSC catalog.
 
 Device datasheets and RX888 reference material live on the
 [project wiki](https://github.com/ringof/TAPRx888/wiki/Reference-Documents), not
