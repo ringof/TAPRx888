@@ -22,18 +22,18 @@ SPI flash. Datasheets for all of these live in `Reference manuals/`.
 
 ## Repository layout
 
-The active KiCad project lives in the **`TAPRX-888 KiCad/`** subdirectory (note
-the space in the path — quote it in every shell/`kicad-cli` command).
+The KiCad project lives at the **repo root** (flattened from the former
+`TAPRX-888 KiCad/` subdirectory).
 
-- `TAPRX-888 KiCad/TAPRX-888.kicad_pro / .kicad_sch / .kicad_pcb / .kicad_prl` —
-  the design. The schematic is **hierarchical**: `TAPRX-888.kicad_sch` is the
-  root sheet and pulls in `Front_End.kicad_sch` and `refclk.kicad_sch`. Run ERC
-  against the root sheet.
-- `TAPRX-888 KiCad/fp-lib-table` / `sym-lib-table` — project-local library
-  tables (they use `${KIPRJMOD}`; keep paths relative).
-- `TAPRX-888 KiCad/Library.kicad_sym` + `Library.pretty/` — the project-local
-  symbol library and footprints.
-- `TAPRX-888 KiCad/production/` — generated BOMs (`bom.csv`, JLC BOM).
+- `TAPRX-888.kicad_pro / .kicad_sch / .kicad_pcb` — the design. The schematic is
+  **hierarchical**: `TAPRX-888.kicad_sch` is the root sheet and pulls in
+  `Front_End.kicad_sch` and `refclk.kicad_sch`. Run ERC against the root sheet.
+- `fp-lib-table` / `sym-lib-table` — project-local library tables (they use
+  `${KIPRJMOD}`; keep paths relative).
+- `Library.kicad_sym` + `Library.pretty/` — the project-local symbol library and
+  footprints.
+- `production/` — generated BOMs (`bom.csv`, JLC BOM).
+- `fabrication-toolkit-options.json` — JLCPCB Fabrication Toolkit export config.
 - `Reference manuals/` — device datasheets and reference schematics.
 - `JLC Parts Details including MFG and MPN.txt` — MFG/MPN mapping for assembly.
 
@@ -95,10 +95,9 @@ Being implemented in this branch. CI runs `kicad-cli` inside the official
 
 ## Useful `kicad-cli` commands (KiCad 10)
 
-Paths contain a space, so quote them.
+Run from the repo root.
 
 ```sh
-cd "TAPRX-888 KiCad"
 kicad-cli sch erc          TAPRX-888.kicad_sch --output erc.rpt --exit-code-violations
 kicad-cli pcb drc          TAPRX-888.kicad_pcb --output drc.rpt --exit-code-violations
 kicad-cli sch export pdf   TAPRX-888.kicad_sch --output TAPRX-888-schematic.pdf
