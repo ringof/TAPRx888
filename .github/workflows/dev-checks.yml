@@ -1,0 +1,60 @@
+name: dev-checks
+
+# Dev CI (Phase 1): ERC, DRC, and a BOM completeness check via kicad-cli, plus
+# the schematic PDF and gerbers/drill as artifacts. Runs on dev-* pushes and on
+# PRs into dev and main (feature -> dev -> main flow; see CONTRIBUTING.md).
+#
+# Gating is off during bring-up (ENFORCE=false): checks run and upload their
+# reports, but do not fail the job. The current design has known ERC/DRC
+# violations tracked as issues (#10, #17, ...); this run captures the baseline.
+# Flip ENFORCE to "true" (and add these as required status checks on the dev/main
+# rulesets) once the baseline is triaged.
+#
+# The KiBot outputs (interactive BOM, STEP, CPL, 3D renders) and the
+# main/release pipeline are Phase 2.
+
+on:
+  push:
+    branches: ['dev-*']
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+# Cancel superseded runs of the same event on the same ref. Push and
+# pull_request stay in separate groups so a PR check is never cancelled by its
+# branch's push run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dev-checks:
+    runs-on: ubuntu-latest
+    container:
+      # In-house CI image: INTI-CMNB kicad10_auto + KiBot. Phase 1 uses only
+      # kicad-cli from it; Phase 2 will add the KiBot outputs. Pinned tag (not
+      # :latest) keeps CI output reproducible.
+      image: ghcr.io/ringof/kicad-ci:10-20260704
+      options: --user root
+    env:
+      HOME: /root
+      ENFORCE: "false"   # bring-up mode; set "true" to gate on ERC/DRC/BOM
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run ERC / DRC / BOM checks + export artifacts
+        run: |
+          chmod +x scripts/run_checks.sh scripts/bom_check.py
+          scripts/run_checks.sh
+
+      - name: Upload reports and fab artifacts
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: dev-checks-reports
+          path: reports/
+          if-no-files-found: warn
