@@ -32,10 +32,13 @@ The KiCad project lives at the **repo root** (flattened from the former
   `${KIPRJMOD}`; keep paths relative).
 - `Library.kicad_sym` + `Library.pretty/` — the project-local symbol library and
   footprints.
-- `production/` — generated BOMs (`bom.csv`, JLC BOM).
-- `fabrication-toolkit-options.json` — JLCPCB Fabrication Toolkit export config.
+- `production/` — generated BOMs (`bom.csv`, JLC BOM). Treat these as build
+  outputs regenerated from the schematic (`kicad-cli sch export bom`), not as a
+  hand-maintained source of part numbers — the schematic `LCSC Part #` fields are
+  authoritative.
+- `fabrication-toolkit-options.json` — JLCPCB Fabrication Toolkit export config
+  (`EXCLUDE DNP: true`, so DNP parts are omitted from fab outputs).
 - `Reference manuals/` — device datasheets and reference schematics.
-- `JLC Parts Details including MFG and MPN.txt` — MFG/MPN mapping for assembly.
 
 **KiCad 10.0** is the project baseline (latest stable 10.0.4). The committed
 files are already in the v10 format (`version 20260206`) — no format migration
@@ -112,4 +115,3 @@ kicad-cli pcb export step    TAPRX-888.kicad_pcb --output TAPRX-888.step
 
 - `Reference manuals/` — LTC2208, Si5351, EZ-USB FX3, MX25L3233F datasheets and
   RX888 reference material.
-- `JLC Parts Details including MFG and MPN.txt` — MFG/MPN mapping for assembly.
