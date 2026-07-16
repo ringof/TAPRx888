@@ -37,9 +37,8 @@ the space in the path — quote it in every shell/`kicad-cli` command).
 - `Reference manuals/` — device datasheets and reference schematics.
 - `JLC Parts Details including MFG and MPN.txt` — MFG/MPN mapping for assembly.
 
-Historical/reference material — do **not** edit these as the live design:
-`TAPRX-888 v0.1/` (an earlier snapshot) and `WB6CXC previous work/` (prior
-review archives).
+Historical/reference material — do **not** edit this as the live design:
+`TAPRX-888 v0.1/` (an earlier snapshot).
 
 **KiCad 10.0** is the project baseline (latest stable 10.0.4). The committed
 files are already in the v10 format (`version 20260206`) — no format migration
