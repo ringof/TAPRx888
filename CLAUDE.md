@@ -56,11 +56,13 @@ is pending. Author changes with KiCad 10.
   get approval before implementing.
 - **Commit & push only with explicit approval.** Never commit or push without
   being asked to.
-- **Branch discipline.** `main` is the default branch. Do work on feature
-  branches and open a PR into `main`. **Authorization to do work is NOT
-  authorization to create a branch** — do not create a branch unless the user
-  names it. Unrelated fixes go on the current branch as separate commits unless
-  directed otherwise.
+- **Branch discipline.** Flow is **feature → `dev` → `main`**. `dev` is the
+  default branch; both `dev` and `main` are protected. Do work on `dev-*` feature
+  branches, which merge (squash) into the permanent **`dev`** integration branch;
+  `dev` merges (squash) into **`main`** only when cutting a release.
+  **Authorization to do work is NOT authorization to create a branch** — do not
+  create a branch unless the user names it. Unrelated fixes go on the current
+  branch as separate commits unless directed otherwise.
 - **Evidence before claims.** Do not assert a design problem or file an issue on
   untested theory. Back every finding with concrete evidence: a `grep`/file
   read, a datasheet reference, or `kicad-cli` ERC/DRC/BOM output. (Example: the
@@ -84,23 +86,26 @@ is pending. Author changes with KiCad 10.
 - There is currently no separate `.kicad_dru`; custom rules, if added, live
   there and must be understood before being changed.
 
-## CI, provenance & releases
+## CI, provenance & releases (planned)
 
-Being implemented in this branch. CI runs `kicad-cli` inside the official
+Not yet implemented. CI will run `kicad-cli` inside the official
 `kicad/kicad:10.0` Docker image (the toolchain that matches the file format).
+Target model, mirroring the feature → dev → main flow:
 
-- **PR / branch CI** (gate): **ERC** on the root schematic and **DRC** on the
-  PCB. Also generates the schematic PDF, Gerbers/drill, and BOM as downloadable
-  artifacts.
-- **Release CI** (planned): produces the full fab/design package (Gerbers,
-  drill, BOM, pick-and-place, schematic PDF, STEP) and publishes a GitHub
-  Release.
+- **`dev` CI** (gate): **ERC** on the root schematic and **DRC** on the PCB. Also
+  generates the schematic PDF, Gerbers/drill, and BOM as downloadable artifacts.
+- **`main` / release CI**: produces the full fab/design package (Gerbers, drill,
+  BOM, pick-and-place, schematic PDF, STEP) and publishes a GitHub Release.
+- **Revision & provenance**: `${GIT_HASH}` (and a release `${REVISION}`) are
+  **injected at build time** into the title block / silkscreen — never committed
+  back to the design files. **GitHub Releases are the source of truth** for the
+  current revision. (See issues #27, #32, #33.)
 
-| Check | PR / branch | release |
+| Check | dev | main / release |
 |---|---|---|
 | ERC | gate | gate |
 | DRC | gate | gate |
-| Fab artifacts (PDF / Gerbers / BOM) | artifact | artifact |
+| Fab artifacts (PDF / Gerbers / BOM) | artifact | artifact (full package) |
 
 ## Useful `kicad-cli` commands (KiCad 10)
 
