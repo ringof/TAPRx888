@@ -18,9 +18,7 @@ fallback.
 
 Core devices: **LTC2208** 16-bit ADC, **Si5351** clock generator, Infineon
 **EZ-USB FX3 (CYUSB301x)** SuperSpeed USB3 controller, and an **MX25L3233F**
-SPI flash. Datasheets for all of these live in `Reference manuals/`. Design
-review notes and open issues are captured in the two `TAPRX-888_*review*.md`
-documents at the repo root — read them before making design-touching changes.
+SPI flash. Datasheets for all of these live in `Reference manuals/`.
 
 ## Repository layout
 
@@ -117,7 +115,6 @@ kicad-cli pcb export step    TAPRX-888.kicad_pcb --output TAPRX-888.step
 
 ## Reference docs
 
-- `TAPRX-888_consolidated_review_rev3.md` — consolidated design-review findings.
-- `TAPRX-888_schematic_Claude_review_rev2.md` — schematic review notes.
 - `Reference manuals/` — LTC2208, Si5351, EZ-USB FX3, MX25L3233F datasheets and
   RX888 reference material.
+- `JLC Parts Details including MFG and MPN.txt` — MFG/MPN mapping for assembly.
