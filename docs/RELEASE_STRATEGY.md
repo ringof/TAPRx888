@@ -21,8 +21,10 @@ CI:
 
 - **`dev-checks`** runs on `dev-*` pushes and on **PRs into `dev` and `main`**:
   ERC, DRC, BOM completeness, plus schematic PDF and gerbers/drill as artifacts.
+- **`dev-release`** runs on every merge to `dev` and publishes/refreshes the
+  `v0.x` **pre-release** (see *Pre-releases* below).
 - **`main-release`** runs on every merge to `main` (and can be dispatched
-  manually) and is responsible for versions and published packages.
+  manually) and is responsible for `v1.0+` releases and published packages.
 
 ## Versioning
 
@@ -39,9 +41,28 @@ line:
   manual override (below). After `v2.0` is cut, auto-increment resumes at `v2.1`.
 
 **GitHub Releases are the source of truth.** The next version is computed by
-reading the latest non-prerelease release tag and bumping the minor; no version
-number is stored in the design files. Tags are `v<MAJOR>.<MINOR>`; the release
-title matches the tag.
+reading the latest release tag and bumping the minor; no version number is
+stored in the design files. Tags are `v<MAJOR>.<MINOR>`; the release title
+matches the tag (pre-releases add a `(pre-release)` suffix).
+
+### Pre-releases (dev lane)
+
+`dev-release` mirrors `main-release` on the `dev` lane and produces the `v0.x`
+**pre-releases**, fully automatically:
+
+- Runs on every merge to `dev`. Reads the latest `v0.x` **pre-release** tag and
+  bumps the minor (`v0.5 → v0.6`) when a design file changed; docs/CI/script-only
+  merges are a no-op.
+- **First run seeds `v0.5`** (the current phase) from the design at `dev` HEAD —
+  this is the one-time capture, automated. No manual tag needed.
+- Publishes with `--prerelease`, so `main-release` (which reads only
+  non-prerelease tags) ignores it and the first `main` cut still lands on `v1.0`.
+- **Self-retiring:** once a stable `v1.0+` release exists, the `0.x` lane
+  no-ops. The post-`1.0` dev pre-release scheme (e.g. release-candidates) is left
+  to revisit at that point.
+
+Both lanes accept the same manual override / dry-run inputs; `dev-release`'s
+`version` input forces a specific pre-release number (e.g. `0.7`).
 
 ## When is a new revision cut?
 
