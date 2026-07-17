@@ -27,6 +27,10 @@ WKS="TAPR.kicad_wks"
 OUT="out"
 mkdir -p "$OUT/docs"
 
+# Version-stamped filename stem, so every emailed/exported document names its
+# own version (not just the content). e.g. TAPRX-888-v0.5-schematic.pdf.
+STEM="TAPRX-888-v${REVISION}"
+
 # --- Inject provenance (build-time only; never committed back) ----------------
 python3 scripts/inject_provenance.py --revision "$REVISION" --git-hash "$GIT_HASH"
 
@@ -35,7 +39,7 @@ python3 scripts/inject_provenance.py --revision "$REVISION" --git-hash "$GIT_HAS
 # page_layout_descr_file (which KiCad can blank locally). rev/date/title come
 # from the title blocks stamped above; GIT_HASH is threaded through; the other
 # frame variables (DESIGNER/LICENSE/REPO) come from the project text_variables.
-kicad-cli sch export pdf "$SCH" -o "$OUT/docs/TAPRX-888-schematic.pdf" \
+kicad-cli sch export pdf "$SCH" -o "$OUT/docs/${STEM}-schematic.pdf" \
   --drawing-sheet "$WKS" \
   --define-var "GIT_HASH=$GIT_HASH"
 
@@ -53,10 +57,10 @@ kicad-cli pcb export pdf "$PCB" -o "$ASM/bot.pdf" --mode-single --mirror \
   --include-border-title --drawing-sheet "$WKS" --define-var "GIT_HASH=$GIT_HASH" \
   --layers "B.Fab,B.Silkscreen,Edge.Cuts"
 if command -v pdfunite >/dev/null 2>&1; then
-  pdfunite "$ASM/top.pdf" "$ASM/bot.pdf" "$OUT/docs/TAPRX-888-assembly.pdf"
+  pdfunite "$ASM/top.pdf" "$ASM/bot.pdf" "$OUT/docs/${STEM}-assembly.pdf"
 elif command -v gs >/dev/null 2>&1; then
   gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite \
-     -sOutputFile="$OUT/docs/TAPRX-888-assembly.pdf" "$ASM/top.pdf" "$ASM/bot.pdf"
+     -sOutputFile="$OUT/docs/${STEM}-assembly.pdf" "$ASM/top.pdf" "$ASM/bot.pdf"
 else
   echo "ERROR: no PDF merge tool (pdfunite/gs) available" >&2; exit 1
 fi
