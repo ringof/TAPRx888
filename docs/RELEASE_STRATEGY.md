@@ -154,15 +154,18 @@ Each release attaches **stable-named** assets (no rev/hash in the filename), so
 | Asset | Contents |
 |---|---|
 | `TAPRX-888-schematic.pdf` | Schematic (direct download, no unzip) |
+| `TAPRX-888-assembly.pdf` | Assembly drawing — top + bottom placement (F/B.Fab + silk + edge), framed |
 | `TAPRX-888-gerbers.zip` | Gerbers + drill (JLCPCB-ready) |
-| `TAPRX-888-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic PDF |
+| `TAPRX-888-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs |
 
 The version and git hash live inside the files and in the release title/tag,
 not in the filenames.
 
 > **Scope notes (Phase A):**
-> - The composited, framed **assembly** and **fabrication-drawing** PDFs
->   (`scripts/gen_docs.sh` in usb3-fiber) are a planned Phase B follow-up.
+> - A **basic** assembly drawing (top/bottom placement, framed) is included. The
+>   fully composited, board-normalized **assembly** and multipage
+>   **fabrication-drawing** PDFs (`scripts/gen_docs.sh` in usb3-fiber) are a
+>   planned Phase B follow-up.
 > - **STEP (3D model) and 3D renders** are not yet in the package. The
 >   footprints reference custom 3D models via `${TIS}`/`${KISYS3DMOD}`, which
 >   aren't in the CI image, so KiBot can't resolve them. Restoring them needs

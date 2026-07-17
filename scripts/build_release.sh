@@ -39,6 +39,29 @@ kicad-cli sch export pdf "$SCH" -o "$OUT/docs/TAPRX-888-schematic.pdf" \
   --drawing-sheet "$WKS" \
   --define-var "GIT_HASH=$GIT_HASH"
 
+# --- Assembly drawing: top + bottom, framed -----------------------------------
+# Component-placement drawing for the fab house: F/B.Fab + silkscreen + edge,
+# with the title-block frame (--include-border-title). The bottom view is
+# mirrored. Two single-page plots merged into one 2-page PDF. Needs no 3D models
+# and no compositor -- the fully framed, board-normalized fabrication drawing is
+# a Phase B (gen_docs.sh) follow-up.
+ASM="$(mktemp -d)"
+kicad-cli pcb export pdf "$PCB" -o "$ASM/top.pdf" --mode-single \
+  --include-border-title --drawing-sheet "$WKS" --define-var "GIT_HASH=$GIT_HASH" \
+  --layers "F.Fab,F.Silkscreen,Edge.Cuts"
+kicad-cli pcb export pdf "$PCB" -o "$ASM/bot.pdf" --mode-single --mirror \
+  --include-border-title --drawing-sheet "$WKS" --define-var "GIT_HASH=$GIT_HASH" \
+  --layers "B.Fab,B.Silkscreen,Edge.Cuts"
+if command -v pdfunite >/dev/null 2>&1; then
+  pdfunite "$ASM/top.pdf" "$ASM/bot.pdf" "$OUT/docs/TAPRX-888-assembly.pdf"
+elif command -v gs >/dev/null 2>&1; then
+  gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite \
+     -sOutputFile="$OUT/docs/TAPRX-888-assembly.pdf" "$ASM/top.pdf" "$ASM/bot.pdf"
+else
+  echo "ERROR: no PDF merge tool (pdfunite/gs) available" >&2; exit 1
+fi
+rm -rf "$ASM"
+
 # --- Turnkey data via KiBot ---------------------------------------------------
 # Essential JLCPCB outputs -- a failure here fails the release. These are all 2D
 # (gerbers/drill/placement/BOM), so they need neither 3D models nor a netlist;
