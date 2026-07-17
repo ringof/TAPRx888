@@ -169,18 +169,26 @@ design never ends up stamped with two different hashes.
 
 ## Release assets
 
-Each release attaches **stable-named** assets (no rev/hash in the filename), so
-`…/releases/latest/download/<name>` links stay valid across revisions:
+Each release attaches **version-stamped** assets, so a file that is downloaded
+and emailed around names its own version in the filename — not only in the
+content (the recurring "which version is this PDF?" problem). The schematic and
+assembly PDFs *inside* `…-fabrication.zip` are stamped too, so a document pulled
+out of the unzipped folder is just as obvious.
 
-| Asset | Contents |
+| Asset (`v<REV>` = e.g. `v0.5`) | Contents |
 |---|---|
-| `TAPRX-888-schematic.pdf` | Schematic (direct download, no unzip) |
-| `TAPRX-888-assembly.pdf` | Assembly drawing — top + bottom placement (F/B.Fab + silk + edge), framed |
-| `TAPRX-888-gerbers.zip` | Gerbers + drill (JLCPCB-ready) |
-| `TAPRX-888-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs |
+| `TAPRX-888-v<REV>-schematic.pdf` | Schematic (direct download, no unzip) |
+| `TAPRX-888-v<REV>-assembly.pdf` | Assembly drawing — top + bottom placement (F/B.Fab + silk + edge), framed |
+| `TAPRX-888-v<REV>-gerbers.zip` | Gerbers + drill (JLCPCB-ready) |
+| `TAPRX-888-v<REV>-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs |
 
-The version and git hash live inside the files and in the release title/tag,
-not in the filenames.
+The git hash also lives inside the files and in the release title/tag.
+
+> **Permalink note:** because the version is in the filename, there is no fixed
+> `…/releases/latest/download/<name>` path. Link people to the **release page**
+> (or `…/releases/latest`), which shows the version prominently — that is the
+> stable entry point. Gerber files *inside* the zips keep their standard
+> KiCad/JLCPCB names (consumed as a set; the containing zip carries the version).
 
 > **Scope notes (Phase A):**
 > - A **basic** assembly drawing (top/bottom placement, framed) is included. The
