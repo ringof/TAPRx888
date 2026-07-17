@@ -155,14 +155,20 @@ Each release attaches **stable-named** assets (no rev/hash in the filename), so
 |---|---|
 | `TAPRX-888-schematic.pdf` | Schematic (direct download, no unzip) |
 | `TAPRX-888-gerbers.zip` | Gerbers + drill (JLCPCB-ready) |
-| `TAPRX-888-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, STEP, interactive BOM, schematic PDF |
+| `TAPRX-888-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic PDF |
 
 The version and git hash live inside the files and in the release title/tag,
 not in the filenames.
 
-> **Scope note (Phase A):** the composited, framed **assembly** and
-> **fabrication-drawing** PDFs (`scripts/gen_docs.sh` in usb3-fiber) are a
-> planned Phase B follow-up and are not yet part of the package.
+> **Scope notes (Phase A):**
+> - The composited, framed **assembly** and **fabrication-drawing** PDFs
+>   (`scripts/gen_docs.sh` in usb3-fiber) are a planned Phase B follow-up.
+> - **STEP (3D model) and 3D renders** are not yet in the package. The
+>   footprints reference custom 3D models via `${TIS}`/`${KISYS3DMOD}`, which
+>   aren't in the CI image, so KiBot can't resolve them. Restoring them needs
+>   that model library provisioned in `ghcr.io/ringof/kicad-ci` (or the 3D paths
+>   remapped to KiCad's standard packages). The KiBot `step`/`render_*` outputs
+>   remain defined for then.
 
 ## Edge cases
 

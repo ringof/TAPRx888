@@ -60,6 +60,10 @@ outputs:
       extra_fields: 'LCSC Part #,MFG,MPN'
 
   # ---- fab (release) ----
+  # NOTE: these 3D outputs are DEFINED but not yet invoked by build_release.sh:
+  # the footprints reference custom 3D models via ${TIS}/${KISYS3DMOD}, absent
+  # from the CI image, so KiBot cannot resolve them. Re-enable once the model
+  # library is provisioned (or the 3D paths are remapped to KiCad standards).
   - name: step
     comment: '3D model (STEP)'
     type: step

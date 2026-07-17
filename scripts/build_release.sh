@@ -39,21 +39,26 @@ kicad-cli sch export pdf "$SCH" -o "$OUT/docs/TAPRX-888-schematic.pdf" \
   --drawing-sheet "$WKS" \
   --define-var "GIT_HASH=$GIT_HASH"
 
-# --- Turnkey data + iBOM + STEP via KiBot -------------------------------------
-# KiBot starts its own virtual display (xvfbwrapper) for outputs that need one
-# (render_3d), so we call it directly -- no xvfb-run wrapper (the image ships no
-# xauth).
-#
-# Essential outputs -- a failure here fails the release.
+# --- Turnkey data via KiBot ---------------------------------------------------
+# Essential JLCPCB outputs -- a failure here fails the release. These are all 2D
+# (gerbers/drill/placement/BOM), so they need neither 3D models nor a netlist;
+# --skip-pre all is safe (ERC/DRC already gated on the PR into main).
 kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre all \
-  ibom step \
   JLCPCB_gerbers JLCPCB_drill JLCPCB_position JLCPCB_bom
 
-# 3D renders are best-effort -- raytrace/3D can be flaky in headless CI and must
-# not sink an otherwise-complete release.
-kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre all \
-  render_top render_bottom \
-  || echo "WARN: 3D render step failed; release continues without renders."
+# Interactive HTML BOM -- best-effort. Skip only erc/drc (not update_xml): iBOM
+# needs the XML netlist to populate its user-defined fields (LCSC/MFG/MPN).
+kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
+  ibom \
+  || echo "WARN: iBOM generation failed; release continues without it."
+
+# NOTE: STEP (3D model) and 3D renders are intentionally NOT built here. The
+# board's footprints reference custom 3D models via ${TIS} (Turn Island Systems'
+# model library) and the deprecated ${KISYS3DMOD}, neither of which exists in the
+# CI image -- KiBot cannot resolve them and aborts. Restoring STEP/renders needs
+# either that model library provisioned in ghcr.io/ringof/kicad-ci, or the
+# footprints' 3D paths remapped to KiCad's standard packages. Tracked as a
+# follow-up; the outputs remain defined in TAPRX-888.kibot.yaml for then.
 
 echo "Built package for rev${REVISION} (git ${GIT_HASH}):"
 find "$OUT" -type f | sort
