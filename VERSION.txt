@@ -1,0 +1,14 @@
+TAPRX-888  —  HF-only SDR receiver (RX-888 derivative)
+
+Version:  v0.5-dev   (development snapshot, based on pre-release v0.5)
+
+This file names the version of the SOURCE PROJECT in this folder, so a copy
+passed around as a .zip is never anonymous. It is a development snapshot.
+
+The authoritative, fabricated revisions — each stamped with its commit hash on
+the bottom silkscreen and in every exported PDF — are published here:
+
+    https://github.com/ringof/TAPRx888/releases
+
+Versioning: pre-releases are v0.x; the first production release will be v1.0,
+then v1.1, v1.2, ...  See docs/RELEASE_STRATEGY.md.

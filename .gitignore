@@ -30,3 +30,7 @@ erc.rpt
 drc.rpt
 *.step
 *.stp
+
+# Python bytecode
+__pycache__/
+*.pyc

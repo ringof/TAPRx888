@@ -1,0 +1,188 @@
+name: dev-release
+
+# Pre-release (0.x) pipeline for the dev lane -- the sibling of main-release.
+#
+# Runs on every merge to dev. Publishes/refreshes a GitHub *pre-release* only
+# when a design file changed since the last pre-release; docs/CI/script-only
+# merges are a no-op. Mirrors main-release, with three differences:
+#   - reads/bumps the latest v0.x PRE-release (0.5 -> 0.6), first run seeds v0.5
+#   - publishes with --prerelease
+#   - RETIRES itself: once a stable v1.0+ release exists, the 0.x phase is over
+#     and this lane no-ops. (Revisit the post-1.0 dev pre-release scheme then.)
+#
+# GIT_HASH is stamped from the last commit that touched a design file. Provenance
+# is injected at build time only. See docs/RELEASE_STRATEGY.md.
+#
+# Dispatch with dry_run=true to build the package as run artifacts without
+# publishing; with version=0.7 to force a specific pre-release number.
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Force this pre-release, e.g. 0.7 (blank = automatic minor bump)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Build the package + upload as run artifacts, but do NOT publish"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: dev-release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      revision: ${{ steps.rev.outputs.revision }}
+      githash: ${{ steps.rev.outputs.githash }}
+      publish: ${{ steps.rev.outputs.publish }}
+      build: ${{ steps.rev.outputs.build }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      - name: Determine pre-release version & whether to publish
+        id: rev
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OVERRIDE: ${{ github.event.inputs.version }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          DESIGN=('*.kicad_sch' '*.kicad_pcb' '*.kicad_pro' '*.kicad_dru'
+                  '*.kicad_sym' 'Library.pretty/' 'fp-lib-table' 'sym-lib-table')
+          githash=$(git log -1 --format=%h -- "${DESIGN[@]}")
+
+          # Stable (v1.0+) release => the 0.x pre-release phase is over.
+          stable=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
+                     --json tagName,isPrerelease \
+                     --jq 'map(select(.isPrerelease==false))|.[0].tagName' \
+                     2>/dev/null || echo "")
+          # Latest v0.x pre-release (source of truth for the next 0.minor).
+          latestpre=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
+                     --json tagName,isPrerelease \
+                     --jq 'map(select(.isPrerelease==true))|.[0].tagName' \
+                     2>/dev/null || echo "")
+
+          changed=""
+          if [ -n "${OVERRIDE:-}" ]; then
+            revision="$OVERRIDE"; publish=true
+            reason="Manual override -> v$revision (pre-release)"
+          elif [ -n "$stable" ]; then
+            revision="${latestpre#v}"; [ -n "$revision" ] || revision="0.x"; publish=false
+            reason="Stable v$stable already released -> 0.x pre-release lane retired (no-op)"
+          elif [ -z "$latestpre" ]; then
+            # Seed the pre-release line at the current phase (5th pre-release).
+            revision="0.5"; publish=true
+            reason="No prior pre-release -> seed v0.5"
+          else
+            base=$(git rev-list -1 "$latestpre")
+            changed=$(git diff --name-only "$base"..HEAD -- "${DESIGN[@]}" || true)
+            if [ -n "$changed" ]; then
+              revision=$(python3 -c "maj,mn='${latestpre#v}'.split('.'); print(f'{maj}.{int(mn)+1}')")
+              publish=true
+              reason="Design changed since $latestpre -> v$revision (pre-release)"
+            else
+              revision="${latestpre#v}"; publish=false
+              reason="No design changes since $latestpre -> no new pre-release (docs / CI-only merge)"
+            fi
+          fi
+
+          build="$publish"
+          if [ "${DRY_RUN:-false}" = "true" ]; then
+            publish=false; build=true
+            [ -n "$revision" ] || revision="DRYRUN"
+            reason="DRY RUN -> build pre-release package for v${revision}, skip publish"
+          fi
+
+          {
+            echo "revision=$revision"
+            echo "githash=$githash"
+            echo "publish=$publish"
+            echo "build=$build"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "$reason (design commit $githash)." >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$changed" ]; then
+            { echo '```'; echo "$changed"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  build:
+    needs: prepare
+    if: needs.prepare.outputs.build == 'true'
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/ringof/kicad-ci:10-20260704
+      options: --user root
+    env:
+      HOME: /root
+      REVISION: ${{ needs.prepare.outputs.revision }}
+      GIT_HASH: ${{ needs.prepare.outputs.githash }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build fab/design package
+        run: |
+          chmod +x scripts/build_release.sh
+          scripts/build_release.sh
+      - uses: actions/upload-artifact@v6
+        with:
+          name: release-package
+          path: out/
+
+  release:
+    needs: [prepare, build]
+    if: needs.prepare.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: release-package
+          path: out
+      - name: Package release assets
+        run: |
+          set -euo pipefail
+          cp out/docs/TAPRX-888-schematic.pdf TAPRX-888-schematic.pdf
+          cp out/docs/TAPRX-888-assembly.pdf  TAPRX-888-assembly.pdf
+          ( cd out/JLCPCB/gerbers && zip -qr ../../../TAPRX-888-gerbers.zip . )
+          ( cd out && zip -qr ../TAPRX-888-fabrication.zip . )
+          ls -la
+      - name: Publish GitHub pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REV: ${{ needs.prepare.outputs.revision }}
+          SHA: ${{ needs.prepare.outputs.githash }}
+        run: |
+          set -euo pipefail
+          FILES=(TAPRX-888-fabrication.zip TAPRX-888-gerbers.zip TAPRX-888-schematic.pdf TAPRX-888-assembly.pdf)
+          NOTES="Pre-release fabrication and design package for v${REV} (design commit ${SHA}). Auto-generated by dev-release CI."
+          if gh release view "v${REV}" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "v${REV}" "${FILES[@]}" --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit   "v${REV}" --repo "$GITHUB_REPOSITORY" --prerelease \
+              --title "v${REV} (pre-release)" --notes "$NOTES"
+          else
+            gh release create "v${REV}" "${FILES[@]}" \
+              --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease \
+              --title "v${REV} (pre-release)" --notes "$NOTES"
+          fi
+
+          # Self-cleaning: drop any assets not in the current stable set.
+          keep=" ${FILES[*]} "
+          gh release view "v${REV}" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' \
+            | while read -r a; do
+                [ -n "$a" ] || continue
+                case "$keep" in
+                  *" $a "*) ;;
+                  *) echo "Removing stale asset: $a"
+                     gh release delete-asset "v${REV}" "$a" --yes --repo "$GITHUB_REPOSITORY" ;;
+                esac
+              done
