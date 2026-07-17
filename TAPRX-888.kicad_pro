@@ -668,7 +668,7 @@
         "uuid": "eb8944cd-94ec-4b09-b419-3508e0096041"
       }
     ],
-    "used_designators": "",
+    "used_designators": "J1-4,R61,C78",
     "variants": []
   },
   "sheets": [
@@ -686,10 +686,7 @@
     ]
   ],
   "text_variables": {
-    "DESIGNER": "Paul Elliott (WB6CXC)",
-    "GIT_HASH": "dev",
-    "LICENSE": "MIT",
-    "REPO": "github.com/ringof/TAPRx888"
+    "GIT_HASH": "dev"
   },
   "tuning_profiles": {
     "meta": {
