@@ -81,6 +81,10 @@ CI, `.kicad_dru`, net classes, BOM scripting, README/CLAUDE.md, and similar:
 
 ## Integration & releases (maintainers)
 
+> Step-by-step for the occasional infra (`dev-*`) merge — including the
+> **sync-`design`-down** that keeps the designer safe — is in
+> **`docs/INTEGRATION_RUNBOOK.md`**. The summary below is the shape of it.
+
 - A **standing pull request, `design` → `dev`**, stays open. Each push to
   `design` re-runs CI (ERC/DRC/BOM) and publishes the reports to the **`ci-docs`**
   branch — a review surface readable straight from `raw.githubusercontent.com`,
@@ -143,6 +147,9 @@ mirrors the `design` results to the `ci-docs` branch for easy review.
 - **Validate findings before acting on them** — especially automated/AI review
   output. Check every claim against the current design *and* the closed issues
   before treating it as real; a confident-sounding finding can still be wrong.
+  If you're pointing an AI at the design, read **`docs/AI_REVIEW.md`** first — it
+  is the same rule in full, with how to ground the model so it helps instead of
+  misleads.
 
 ## One shared file to watch
 
