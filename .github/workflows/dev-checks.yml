@@ -1,8 +1,10 @@
 name: dev-checks
 
 # Dev CI (Phase 1): ERC, DRC, and a BOM completeness check via kicad-cli, plus
-# the schematic PDF and gerbers/drill as artifacts. Runs on dev-* pushes and on
-# PRs into dev and main (feature -> dev -> main flow; see CONTRIBUTING.md).
+# the schematic PDF and gerbers/drill as artifacts. Runs on pushes to `design`
+# (the designer's working branch) and `dev-*` feature branches, and on PRs into
+# `dev` and `main` (design -> ci-docs -> dev -> main flow; see
+# docs/RELEASE_STRATEGY.md).
 #
 # Gating is off during bring-up (ENFORCE=false): checks run and upload their
 # reports, but do not fail the job. The current design has known ERC/DRC
@@ -15,7 +17,9 @@ name: dev-checks
 
 on:
   push:
-    branches: ['dev-*']
+    # `design` = the designer's push branch (TAPR flow); `dev-*` = feature
+    # branches. PRs into dev/main are covered by the pull_request trigger below.
+    branches: ['design', 'dev-*']
   pull_request:
     branches: [dev, main]
   workflow_dispatch:
@@ -61,10 +65,13 @@ jobs:
 
       # Publish the built reports to a throwaway `ci-docs` branch so they can be
       # read via raw.githubusercontent.com without downloading the artifact zip.
-      # Push-event runs only (dev-* pushes); continue-on-error so this convenience
-      # step can never gate CI.
+      # `design` pushes ONLY: ci-docs is the reviewer's (George's) single review
+      # surface, so it must track what's pending in `design` -- letting `dev-*`
+      # pushes clobber it would muddy the review. `dev-*` pushes still run the
+      # checks and upload the artifact above; they just don't overwrite ci-docs.
+      # continue-on-error so this convenience step can never gate CI.
       - name: Publish docs to ci-docs branch
-        if: always() && github.event_name == 'push'
+        if: always() && github.event_name == 'push' && github.ref_name == 'design'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
