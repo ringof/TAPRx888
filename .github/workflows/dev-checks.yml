@@ -38,10 +38,12 @@ jobs:
   dev-checks:
     runs-on: ubuntu-latest
     container:
-      # In-house CI image: INTI-CMNB kicad10_auto + KiBot. Phase 1 uses only
-      # kicad-cli from it; Phase 2 will add the KiBot outputs. Pinned tag (not
-      # :latest) keeps CI output reproducible.
-      image: ghcr.io/ringof/kicad-ci:10-20260704
+      # Public INTI-CMNB KiBot image (kicad10_auto): ships kicad-cli, KiBot,
+      # python3, git, ghostscript and poppler-utils. Phase 1 uses only kicad-cli
+      # + python3 here; the release lanes use the rest. Pinned to a fully-
+      # qualified tag (KiBot 1.9.0 / KiCad 10.0.4 / Debian 13.2) -- not :latest --
+      # so CI output stays reproducible and matches the KiCad 10.0.4 baseline.
+      image: ghcr.io/inti-cmnb/kicad10_auto:1.9.0-6_k10.0.4_d13.2
       options: --user root
     env:
       HOME: /root
