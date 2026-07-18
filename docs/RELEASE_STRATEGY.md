@@ -202,7 +202,7 @@ out of the unzipped folder is just as obvious.
 | `TAPRX-888-v<REV>-schematic.pdf` | Schematic (direct download, no unzip) |
 | `TAPRX-888-v<REV>-assembly.pdf` | Assembly drawing — top + bottom placement (F/B.Fab + silk + edge), framed |
 | `TAPRX-888-v<REV>-gerbers.zip` | Gerbers + drill (JLCPCB-ready) |
-| `TAPRX-888-v<REV>-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs |
+| `TAPRX-888-v<REV>-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs, and a `VERSION.txt` stamped with the exact version + commit |
 
 The git hash also lives inside the files and in the release title/tag.
 
