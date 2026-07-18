@@ -36,17 +36,18 @@ Cross-refs: `docs/TAPR_rollback.md` (undo), `docs/TAPR_manual_mode.md`
 
 ---
 
-## Decisions to settle before you start
+## Settled decisions
 
-1. **First `v1.0` timing.** GitHub Releases are per-repo, so TAPR starts with
-   **zero** releases. If Actions are enabled while you seed, the first `dev` push
-   auto-cuts a `v0.6` pre-release and the first `main` push auto-cuts `v1.0`
-   production. **Recommended:** seed with **Actions disabled** (below), so the
-   migration is quiet and the team cuts the first real `v1.0` deliberately when
-   ready. (Alternative: leave Actions on and accept the auto `v0.6` + `v1.0`.)
-2. **Open PRs #4 and #30.** They target the pre-flatten `main` and will not apply
-   to the flattened tree. Review and most likely **close** them before migrating
-   (reopen/recreate against `dev` if still wanted).
+1. **First `v1.0` is deferred — the migration is quiet.** GitHub Releases are
+   per-repo, so TAPR starts with **zero** releases, and leaving Actions on while
+   seeding would auto-cut a `v0.6` pre-release (first `dev` push) and a `v1.0`
+   production release (first `main` push). To avoid that, **seed with Actions
+   disabled** (step 1); the team cuts the first real `v1.0` deliberately later
+   (step 8).
+2. **Legacy PRs #4 and #30 are already closed.** Their `refs/pull/4/head` and
+   `refs/pull/30/head` refs linger (GitHub keeps them after a PR closes) but are
+   harmless and need no action — they target the pre-flatten `main` and stay
+   closed.
 
 ---
 
