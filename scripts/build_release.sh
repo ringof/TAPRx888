@@ -34,6 +34,14 @@ STEM="TAPRX-888-v${REVISION}"
 # --- Inject provenance (build-time only; never committed back) ----------------
 python3 scripts/inject_provenance.py --revision "$REVISION" --git-hash "$GIT_HASH"
 
+# --- Version marker stamped into the package ----------------------------------
+# The committed VERSION.txt is a de-numbered "development snapshot" so a zip of
+# the source tree is never anonymous yet never goes stale. The released package
+# carries the exact version on the Version: line, so an unzipped copy names its
+# own version too. Build-time only -- the committed file is untouched.
+sed "s#^Version:.*#Version:  v${REVISION}   (commit ${GIT_HASH})#" \
+  VERSION.txt > "$OUT/VERSION.txt"
+
 # --- Schematic PDF (kicad-cli renders the title-block frame natively) ---------
 # Pass the worksheet explicitly so the frame never depends on the project's
 # page_layout_descr_file (which KiCad can blank locally). rev/date/title come
