@@ -83,7 +83,7 @@ kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
 # board's footprints reference custom 3D models via ${TIS} (Turn Island Systems'
 # model library) and the deprecated ${KISYS3DMOD}, neither of which exists in the
 # CI image -- KiBot cannot resolve them and aborts. Restoring STEP/renders needs
-# either that model library provisioned in ghcr.io/ringof/kicad-ci, or the
+# either that model library provisioned in the CI image, or the
 # footprints' 3D paths remapped to KiCad's standard packages. Tracked as a
 # follow-up; the outputs remain defined in scripts/TAPRX-888.kibot.yaml for then.
 
