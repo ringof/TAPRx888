@@ -19,7 +19,7 @@ fallback.
 Core devices: **LTC2208** 16-bit ADC, **Si5351** clock generator, Infineon
 **EZ-USB FX3 (CYUSB301x)** SuperSpeed USB3 controller, and an **MX25L3233F**
 SPI flash. Datasheets for all of these live on the
-[project wiki](https://github.com/ringof/TAPRx888/wiki/Reference-Documents).
+[project wiki](https://github.com/TAPR/TAPRx888/wiki/Reference-Documents).
 
 ## Repository layout
 
@@ -43,7 +43,7 @@ are the authoritative source of part numbers; `MFG`/`MPN` are derivable from the
 LCSC number via the JLC/LCSC catalog.
 
 Device datasheets and RX888 reference material live on the
-[project wiki](https://github.com/ringof/TAPRx888/wiki/Reference-Documents), not
+[project wiki](https://github.com/TAPR/TAPRx888/wiki/Reference-Documents), not
 in the repository.
 
 **KiCad 10.0** is the project baseline (latest stable 10.0.4). The committed
@@ -124,6 +124,6 @@ kicad-cli pcb export step    TAPRX-888.kicad_pcb --output TAPRX-888.step
 
 ## Reference docs
 
-- [Project wiki → Reference Documents](https://github.com/ringof/TAPRx888/wiki/Reference-Documents)
+- [Project wiki → Reference Documents](https://github.com/TAPR/TAPRx888/wiki/Reference-Documents)
   — LTC2208, Si5351, EZ-USB FX3, MX25L3233F datasheets and RX888 reference
   material (moved out of the repo to keep it lean).

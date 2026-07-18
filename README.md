@@ -52,4 +52,4 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full workflow. In short:
 ## Reference documents
 
 Device datasheets (LTC2208, Si5351, EZ-USB FX3, MX25L3233F) and RX888 reference
-material are on the [project wiki → Reference Documents](https://github.com/ringof/TAPRx888/wiki/Reference-Documents).
+material are on the [project wiki → Reference Documents](https://github.com/TAPR/TAPRx888/wiki/Reference-Documents).
