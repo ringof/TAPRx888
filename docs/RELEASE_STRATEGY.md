@@ -28,41 +28,51 @@ CI:
 
 ## Versioning
 
-TAPRX-888 uses a **`MAJOR.MINOR`** scheme, distinct from the pre-release `0.x`
-line:
+Think of it as **`main` = production board spins; `dev` = the iterations toward
+the next spin.**
 
-- **`0.x`** — pre-release / bring-up, lives on the **dev lane**. Published only
-  as GitHub **pre-releases** (or plain tags); `main-release` ignores them.
-- **`1.0`** — the first `main` release.
-- **`1.x`** — every subsequent `main` release **auto-increments the minor**
-  (`v1.3 → v1.4`). The minor **never rolls over**: `v1.9 → v1.10 → v1.11 …`.
-- **`MAJOR` bumps (`2.0`, `3.0`, …)** are **not automated** — there is no rule a
-  script can apply to decide "this is a new major." A maintainer forces it with a
-  manual override (below). After `v2.0` is cut, auto-increment resumes at `v2.1`.
+**`main` advances to the next whole `.0`; `dev` does the minor increments** in
+between. `dev`'s major line simply follows whatever `main` last shipped.
 
-**GitHub Releases are the source of truth.** The next version is computed by
-reading the latest release tag and bumping the minor; no version number is
-stored in the design files. Tags are `v<MAJOR>.<MINOR>`; the release title
-matches the tag (pre-releases add a `(pre-release)` suffix).
+| Event | Version |
+|---|---|
+| `dev` merge, pre-1.0 | `0.6 → 0.7 → 0.8 …` (minor++) |
+| **first `dev → main`** | **`1.0`** |
+| `dev` merge, post-1.0 | `1.1 → 1.2 → 1.3 …` (minor++ in the 1.x line) |
+| **next `dev → main`** | **`2.0`** |
+| `dev` merge, post-2.0 | `2.1 → 2.2 …` |
+| **next `dev → main`** | **`3.0`** |
+
+- **`main` release** = `<latest main major + 1>.0`; first-ever → `1.0`. Every
+  production release is a major — no auto-minor, and **no manual major decision
+  needed**. Published as a normal (non-prerelease) Release so it lands as
+  "Latest".
+- **`dev` pre-release** = minor increment within the **current major line**, whose
+  major follows the latest `main` release (`0` while pre-1.0). The first `dev`
+  pre-release after a `main` `X.0` starts at `X.1`; the very first pre-release
+  while pre-1.0 uses the seed (`0.6`). Published with `--prerelease` so it never
+  claims "Latest".
+
+**GitHub Releases are the source of truth** for the version — no number lives in
+the design files. Tags are `v<MAJOR>.<MINOR>`; the title matches (pre-releases add
+a `(pre-release)` suffix). The policy is implemented **once** in
+`scripts/next_version.sh` (unit-tested offline by `scripts/test_next_version.sh`)
+and called by both lanes, so `dev` and `main` can't drift apart.
 
 ### Pre-releases (dev lane)
 
-`dev-release` mirrors `main-release` on the `dev` lane and produces the `v0.x`
-**pre-releases**, fully automatically:
+`dev-release` runs on every merge to `dev` and publishes a `--prerelease`:
 
-- Runs on every merge to `dev`. Reads the latest `v0.x` **pre-release** tag and
-  bumps the minor (`v0.6 → v0.7`) when a design file changed; docs/CI/script-only
-  merges are a no-op.
-- **First run seeds `v0.6`** (the current phase — the designer's board-silk
-  number) from the design at `dev` HEAD — the one-time capture, automated.
-- Publishes with `--prerelease`, so `main-release` (which reads only
-  non-prerelease tags) ignores it and the first `main` cut still lands on `v1.0`.
-- **Self-retiring:** once a stable `v1.0+` release exists, the `0.x` lane
-  no-ops. The post-`1.0` dev pre-release scheme (e.g. release-candidates) is left
-  to revisit at that point.
+- Computes the next `dev` version via `scripts/next_version.sh dev` and publishes
+  when a design file changed since the last release (of any kind); docs/CI/
+  script-only merges are a no-op.
+- **First run seeds the line** from the design at `dev` HEAD — automated, no
+  manual tag.
+- **Does not retire at 1.0.** After `main` ships `1.0`, `dev` continues in the
+  `1.x` line (`1.1`, `1.2`, …) building toward the next `main` (`2.0`); after
+  `2.0` it runs `2.x`; and so on.
 
-Both lanes accept the same manual override / dry-run inputs; `dev-release`'s
-`version` input forces a specific pre-release number (e.g. `0.7`).
+Both lanes accept the same manual `version` override / `dry_run` inputs.
 
 ## When is a new revision cut?
 
@@ -94,16 +104,17 @@ no YAML editing.
 2. **Run workflow ▾** (top-right).
 3. Fill the form:
    - **Use workflow from** — for a real release pick **`main`**.
-   - **version** — e.g. `2.0` to force a version; **blank** = automatic minor bump.
+   - **version** — force a specific number; **blank** = automatic (`main` → the
+     next whole `.0`).
    - **dry_run** — tick to build + upload artifacts but publish nothing.
 4. **Run workflow**.
 
 **gh CLI:**
 
 ```sh
-gh workflow run main-release.yml --ref main -f version=2.0       # force a major
-gh workflow run main-release.yml --ref main -f dry_run=true      # validate only
-gh workflow run main-release.yml --ref main -f version=2.0 -f dry_run=true
+gh workflow run main-release.yml --ref main -f version=2.5      # force a specific number
+gh workflow run main-release.yml --ref main -f dry_run=true     # validate only
+gh workflow run main-release.yml --ref main -f version=1.4 -f dry_run=true
 ```
 
 `version` sets the published version and skips auto-detection. Re-running with an
@@ -113,9 +124,9 @@ existing version is **idempotent**: the job refreshes that release's assets
 
 | Goal | Inputs |
 |---|---|
-| Cut major **2.0** | `version: 2.0` (auto resumes at 2.1) |
-| Deliberately cut **1.0** | `version: 1.0` (else the first `main` merge does it) |
-| Re-publish/fix **v1.4** | `version: 1.4` |
+| Normal production release | *(none — merging `dev → main` auto-cuts the next `.0`)* |
+| Re-publish / fix a release | `version: <existing>` (e.g. `1.4`) |
+| Force a specific number | `version: 2.5` (rare) |
 | Validate the pipeline | `dry_run: true` |
 
 > The **Run workflow** button only appears once `main-release.yml` is on the
@@ -204,8 +215,12 @@ The git hash also lives inside the files and in the release title/tag.
 
 ## Edge cases
 
-- **First release:** no prior non-prerelease → `v1.0`.
-- **`v0.x` pre-releases:** excluded from version detection (marked prerelease),
-  so they never cause `main` to bump `0.5 → 0.6` instead of cutting `1.0`.
-- **Doc-only merge after a design change is already released:** no-op, as
-  intended — the released design is unchanged.
+- **First production release:** no prior non-prerelease → `v1.0` (always
+  publishes — it's the promotion of the current design to production).
+- **`dev` after a `main` release:** `dev`'s major follows the latest `main`, so
+  the first pre-release after `1.0` is `1.1` (not `0.x`, not `2.0`); pre-releases
+  are `--prerelease` so they never advance the `main` number.
+- **Doc-only merge after a design change is already released:** no-op on either
+  lane — the released design is unchanged.
+- **`main` merge with no design change since the last production release:** no-op
+  — a production major is never spent on nothing.
