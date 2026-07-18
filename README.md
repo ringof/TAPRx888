@@ -49,6 +49,27 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full workflow. In short:
 - **`dev` → `main`** (tagged) is a release, cut by consensus.
 - ERC and DRC run in CI as the shared source of truth.
 
+## Releases
+
+Fabrication and design packages are built by CI and published as **versioned
+GitHub Releases** — gerbers, drill, LCSC BOM, pick-and-place, interactive BOM,
+and the schematic + assembly PDFs, each stamped with its version and commit hash.
+Grab the latest from the
+**[Releases page](https://github.com/TAPR/TAPRx888/releases)** (pre-releases are
+`v0.x`; production spins are `v1.0`, `v2.0`, …). See
+[docs/RELEASE_STRATEGY.md](docs/RELEASE_STRATEGY.md) for how versioning works.
+
+## Documentation
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — how we collaborate (the two-lane
+  `design` / infra flow, the design baton)
+- **[docs/RELEASE_STRATEGY.md](docs/RELEASE_STRATEGY.md)** — versioning, CI, and
+  how releases are cut
+- **[docs/AI_REVIEW.md](docs/AI_REVIEW.md)** — using AI review responsibly; read
+  this before pointing an AI tool at the design
+- **[docs/EMERGENCY_ROLLBACK.md](docs/EMERGENCY_ROLLBACK.md)** — the parachute:
+  how to turn the CI/branch machinery off if it's ever too much
+
 ## Reference documents
 
 Device datasheets (LTC2208, Si5351, EZ-USB FX3, MX25L3233F) and RX888 reference

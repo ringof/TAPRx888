@@ -56,9 +56,11 @@ is pending. Author changes with KiCad 10.
   get approval before implementing.
 - **Commit & push only with explicit approval.** Never commit or push without
   being asked to.
-- **Branch discipline.** Flow is **feature → `dev` → `main`**. `dev` is the
-  default branch; both `dev` and `main` are protected. Do work on `dev-*` feature
-  branches, which merge (squash) into the permanent **`dev`** integration branch;
+- **Branch discipline.** The canonical flow is **`design` → `ci-docs` → `dev` →
+  `main`** (see `docs/RELEASE_STRATEGY.md` and `CONTRIBUTING.md`). `dev` is the
+  default branch; both `dev` and `main` are protected, `design` is not. Agent /
+  infrastructure work (CI, docs, scripts, `.kicad_dru`) happens on `dev-*` feature
+  branches that merge (squash) into **`dev`**; the designer works on **`design`**.
   `dev` merges (squash) into **`main`** only when cutting a release.
   **Authorization to do work is NOT authorization to create a branch** — do not
   create a branch unless the user names it. Unrelated fixes go on the current
@@ -87,29 +89,44 @@ is pending. Author changes with KiCad 10.
   BOM targets JLC part numbers, and `fabrication-toolkit-options.json` drives
   the JLCPCB Fabrication Toolkit export). Set and validate DRC rules against it,
   and keep the board settings (`.kicad_pro` `board_design_settings`) in sync.
-- There is currently no separate `.kicad_dru`; custom rules, if added, live
-  there and must be understood before being changed.
+- Custom DRC rules live in **`TAPRX-888.kicad_dru`** — understand them before
+  changing them, and keep them consistent with the `.kicad_pro`
+  `board_design_settings`.
 
-## CI, provenance & releases (planned)
+## CI, provenance & releases
 
-Not yet implemented. CI will run `kicad-cli` inside the official
-`kicad/kicad:10.0` Docker image (the toolchain that matches the file format).
-Target model, mirroring the feature → dev → main flow:
+**Implemented** — the full policy is in `docs/RELEASE_STRATEGY.md`; the workflows
+are in `.github/workflows/`. CI runs `kicad-cli` + **KiBot** inside the public
+**`ghcr.io/inti-cmnb/kicad10_auto`** image (pinned to KiCad 10.0.4), across three
+workflows mirroring the `design → ci-docs → dev → main` flow:
 
-- **`dev` CI** (gate): **ERC** on the root schematic and **DRC** on the PCB. Also
-  generates the schematic PDF, Gerbers/drill, and BOM as downloadable artifacts.
-- **`main` / release CI**: produces the full fab/design package (Gerbers, drill,
-  BOM, pick-and-place, schematic PDF, STEP) and publishes a GitHub Release.
-- **Revision & provenance**: `${GIT_HASH}` (and a release `${REVISION}`) are
-  **injected at build time** into the title block / silkscreen — never committed
-  back to the design files. **GitHub Releases are the source of truth** for the
-  current revision. (See issues #27, #32, #33.)
+- **`dev-checks`** — on `design`/`dev-*` pushes and PRs into `dev`/`main`: ERC
+  (root schematic), DRC (PCB), and a BOM completeness check, plus schematic PDF
+  and gerbers/drill as artifacts. On a `design` push it also publishes the reports
+  to the `ci-docs` branch (the reviewer's surface). **Currently non-gating**
+  (`ENFORCE=false`) during bring-up — the design has known ERC/DRC violations
+  tracked as issues; flip `ENFORCE=true` and add required checks once the baseline
+  is triaged.
+- **`dev-release`** — on merge to `dev`: publishes/refreshes a **pre-release**
+  (minor increment) when a design file changed.
+- **`main-release`** — on merge to `main`: builds the full fabrication package
+  (gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs) via
+  KiBot and publishes a production **GitHub Release** (next whole `.0`). **STEP /
+  3D renders are not yet included** — the footprints reference custom 3D models
+  absent from the CI image (issue #45); the KiBot outputs remain defined for when
+  they are.
 
-| Check | dev | main / release |
+- **Revision & provenance**: `${REVISION}` and `${GIT_HASH}` are **injected at
+  build time** (`scripts/inject_provenance.py`) into the title block and bottom
+  silkscreen — never committed back to the design files. **GitHub Releases are the
+  source of truth** for the version; no number lives in the design. `VERSION.txt`
+  in the tree is a de-numbered "development snapshot," stamped with the exact
+  version only inside the released package.
+
+| Check | dev-checks | main-release |
 |---|---|---|
-| ERC | gate | gate |
-| DRC | gate | gate |
-| Fab artifacts (PDF / Gerbers / BOM) | artifact | artifact (full package) |
+| ERC / DRC | run (non-gating in bring-up) | gated earlier, on the PR into `main` |
+| Fab artifacts (PDF / Gerbers / BOM) | artifact | full package on the Release |
 
 ## Useful `kicad-cli` commands (KiCad 10)
 
