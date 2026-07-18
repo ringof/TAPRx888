@@ -82,13 +82,16 @@ CI, `.kicad_dru`, net classes, BOM scripting, README/CLAUDE.md, and similar:
 ## Integration & releases (maintainers)
 
 - A **standing pull request, `design` → `dev`**, stays open. Each push to
-  `design` refreshes it and re-runs CI (ERC/DRC). David or George reviews and
+  `design` re-runs CI (ERC/DRC/BOM) and publishes the reports to the **`ci-docs`**
+  branch — a review surface readable straight from `raw.githubusercontent.com`,
+  no artifact download needed. David or George reviews those results and
   squash-merges into `dev` when a change is good.
 - After a design change merges into `dev`, sync `design` back up to `dev` at a
   moment when the baton is free, so the branch doesn't drift.
-- **`dev` → `main`** is a release: merged by consensus between David and George,
-  then **tagged** (e.g. `v0.5`). Tagged `main` builds are what George procures
-  and fabricates from.
+- **`dev` → `main`** is a release: merged by consensus between David and George.
+  The `main-release` CI then builds the fabrication package and publishes a
+  GitHub **Release** (`v1.0`, `v2.0`, … — see `docs/RELEASE_STRATEGY.md`); that
+  published package is what George procures and fabricates from.
 - Either David or George may merge into `dev`; release merges to `main` are by
   consensus.
 
@@ -119,11 +122,12 @@ the same result.
 
 ## CI is the shared referee
 
-ERC (root schematic) and DRC (PCB) run in the official `kicad/kicad:10.0`
-container on every pull request. The CI report — not any one person's local
-run — is the shared source of truth, so there's never a question of "whose ERC
-do we trust." CI also publishes the schematic PDF, Gerbers, and BOM as
-downloadable artifacts.
+ERC (root schematic), DRC (PCB), and a BOM completeness check run in a pinned
+KiCad 10 CI container on every push to `design` and every pull request into
+`dev`/`main`. The CI report — not any one person's local run — is the shared
+source of truth, so there's never a question of "whose ERC do we trust." CI also
+publishes the schematic PDF, Gerbers, and BOM as downloadable artifacts, and
+mirrors the `design` results to the `ci-docs` branch for easy review.
 
 ## Issues
 
