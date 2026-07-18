@@ -209,7 +209,7 @@ The git hash also lives inside the files and in the release title/tag.
 > - **STEP (3D model) and 3D renders** are not yet in the package. The
 >   footprints reference custom 3D models via `${TIS}`/`${KISYS3DMOD}`, which
 >   aren't in the CI image, so KiBot can't resolve them. Restoring them needs
->   that model library provisioned in `ghcr.io/ringof/kicad-ci` (or the 3D paths
+>   that model library provisioned in the CI image (or the 3D paths
 >   remapped to KiCad's standard packages). The KiBot `step`/`render_*` outputs
 >   remain defined for then.
 
