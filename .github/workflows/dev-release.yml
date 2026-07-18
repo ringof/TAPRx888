@@ -5,7 +5,7 @@ name: dev-release
 # Runs on every merge to dev. Publishes/refreshes a GitHub *pre-release* only
 # when a design file changed since the last pre-release; docs/CI/script-only
 # merges are a no-op. Mirrors main-release, with three differences:
-#   - reads/bumps the latest v0.x PRE-release (0.5 -> 0.6), first run seeds v0.5
+#   - reads/bumps the latest v0.x PRE-release (0.6 -> 0.7), first run seeds v0.6
 #   - publishes with --prerelease
 #   - RETIRES itself: once a stable v1.0+ release exists, the 0.x phase is over
 #     and this lane no-ops. (Revisit the post-1.0 dev pre-release scheme then.)
@@ -82,9 +82,10 @@ jobs:
             revision="${latestpre#v}"; [ -n "$revision" ] || revision="0.x"; publish=false
             reason="Stable v$stable already released -> 0.x pre-release lane retired (no-op)"
           elif [ -z "$latestpre" ]; then
-            # Seed the pre-release line at the current phase (5th pre-release).
-            revision="0.5"; publish=true
-            reason="No prior pre-release -> seed v0.5"
+            # Seed the pre-release line at the current phase. The designer's
+            # board silkscreen calls this design v0.6, so that is the baseline.
+            revision="0.6"; publish=true
+            reason="No prior pre-release -> seed v0.6"
           else
             base=$(git rev-list -1 "$latestpre")
             changed=$(git diff --name-only "$base"..HEAD -- "${DESIGN[@]}" || true)

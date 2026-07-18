@@ -51,10 +51,10 @@ matches the tag (pre-releases add a `(pre-release)` suffix).
 **pre-releases**, fully automatically:
 
 - Runs on every merge to `dev`. Reads the latest `v0.x` **pre-release** tag and
-  bumps the minor (`v0.5 → v0.6`) when a design file changed; docs/CI/script-only
+  bumps the minor (`v0.6 → v0.7`) when a design file changed; docs/CI/script-only
   merges are a no-op.
-- **First run seeds `v0.5`** (the current phase) from the design at `dev` HEAD —
-  this is the one-time capture, automated. No manual tag needed.
+- **First run seeds `v0.6`** (the current phase — the designer's board-silk
+  number) from the design at `dev` HEAD — the one-time capture, automated.
 - Publishes with `--prerelease`, so `main-release` (which reads only
   non-prerelease tags) ignores it and the first `main` cut still lands on `v1.0`.
 - **Self-retiring:** once a stable `v1.0+` release exists, the `0.x` lane
