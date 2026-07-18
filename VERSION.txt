@@ -1,9 +1,11 @@
 TAPRX-888  —  HF-only SDR receiver (RX-888 derivative)
 
-Version:  v0.6-dev   (development snapshot, based on pre-release v0.6)
+Version:  development snapshot
 
 This file names the version of the SOURCE PROJECT in this folder, so a copy
-passed around as a .zip is never anonymous. It is a development snapshot.
+passed around as a .zip is never anonymous. The working tree is always a
+development snapshot — released fabrication packages carry their exact version
+on this line instead (stamped at build time).
 
 The authoritative, fabricated revisions — each stamped with its commit hash on
 the bottom silkscreen and in every exported PDF — are published here:
