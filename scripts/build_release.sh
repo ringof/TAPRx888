@@ -17,7 +17,7 @@
 # Requires env: REVISION, GIT_HASH. Produces everything under out/.
 set -euo pipefail
 
-CFG="TAPRX-888.kibot.yaml"
+CFG="scripts/TAPRX-888.kibot.yaml"
 SCH="TAPRX-888.kicad_sch"
 PCB="TAPRX-888.kicad_pcb"
 WKS="TAPR.kicad_wks"
@@ -85,7 +85,7 @@ kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
 # CI image -- KiBot cannot resolve them and aborts. Restoring STEP/renders needs
 # either that model library provisioned in ghcr.io/ringof/kicad-ci, or the
 # footprints' 3D paths remapped to KiCad's standard packages. Tracked as a
-# follow-up; the outputs remain defined in TAPRX-888.kibot.yaml for then.
+# follow-up; the outputs remain defined in scripts/TAPRX-888.kibot.yaml for then.
 
 echo "Built package for rev${REVISION} (git ${GIT_HASH}):"
 find "$OUT" -type f | sort

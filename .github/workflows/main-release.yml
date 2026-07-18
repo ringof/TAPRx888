@@ -38,7 +38,7 @@ on:
       - 'fp-lib-table'
       - 'sym-lib-table'
       - 'TAPR.kicad_wks'
-      - 'TAPRX-888.kibot.yaml'
+      - 'scripts/TAPRX-888.kibot.yaml'
       - 'scripts/build_release.sh'
       - 'scripts/inject_provenance.py'
       - '.github/workflows/main-release.yml'
