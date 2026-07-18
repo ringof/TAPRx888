@@ -70,7 +70,11 @@ is pending. Author changes with KiCad 10.
   read, a datasheet reference, or `kicad-cli` ERC/DRC/BOM output. (Example: the
   6-layer stackup lists `In1..In4.Cu` as **signal** layers — confirm claims like
   that by reading the PCB `(layers …)` stanza, not by assumption.) Existing
-  observations override untested theory.
+  observations override untested theory. For design-level review specifically,
+  `docs/AI_REVIEW.md` is the project's rule for AI reviewers: **a finding is a
+  lead, never a verdict** — ground yourself in the datasheets, firmware, current
+  design, and closed issues before making a claim, and never report an unverified
+  finding as fact.
 - **Change documentation.** Before committing a design-touching change, give the
   user a copy-pastable block with: (1) what changed and why, (2) how to
   regenerate outputs (`kicad-cli` commands), (3) how to validate (which
