@@ -63,39 +63,33 @@ jobs:
                   '*.kicad_sym' 'Library.pretty/' 'fp-lib-table' 'sym-lib-table')
           githash=$(git log -1 --format=%h -- "${DESIGN[@]}")
 
-          # Stable (v1.0+) release => the 0.x pre-release phase is over.
-          stable=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
-                     --json tagName,isPrerelease \
-                     --jq 'map(select(.isPrerelease==false))|.[0].tagName' \
-                     2>/dev/null || echo "")
-          # Latest v0.x pre-release (source of truth for the next 0.minor).
-          latestpre=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
-                     --json tagName,isPrerelease \
-                     --jq 'map(select(.isPrerelease==true))|.[0].tagName' \
-                     2>/dev/null || echo "")
+          # All releases, newest-first: "<tag> <isPrerelease>". Feeds the shared
+          # version policy in scripts/next_version.sh (docs/RELEASE_STRATEGY.md).
+          releases=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
+                       --json tagName,isPrerelease \
+                       --jq '.[] | "\(.tagName) \(.isPrerelease)"' 2>/dev/null || echo "")
+          # Most recent release of any kind = the base for "did the design change".
+          latest_tag=$(printf '%s\n' "$releases" | awk 'NF{print $1; exit}')
 
           changed=""
           if [ -n "${OVERRIDE:-}" ]; then
             revision="$OVERRIDE"; publish=true
             reason="Manual override -> v$revision (pre-release)"
-          elif [ -n "$stable" ]; then
-            revision="${latestpre#v}"; [ -n "$revision" ] || revision="0.x"; publish=false
-            reason="Stable v$stable already released -> 0.x pre-release lane retired (no-op)"
-          elif [ -z "$latestpre" ]; then
-            # Seed the pre-release line at the current phase. The designer's
-            # board silkscreen calls this design v0.6, so that is the baseline.
-            revision="0.6"; publish=true
-            reason="No prior pre-release -> seed v0.6"
+          elif [ -z "$latest_tag" ]; then
+            # First release anywhere: seed the pre-release line (dev lane -> 0.6).
+            revision=$(printf '%s' "$releases" | bash scripts/next_version.sh dev)
+            publish=true
+            reason="No prior release -> seed v$revision (pre-release)"
           else
-            base=$(git rev-list -1 "$latestpre")
+            base=$(git rev-list -1 "$latest_tag")
             changed=$(git diff --name-only "$base"..HEAD -- "${DESIGN[@]}" || true)
             if [ -n "$changed" ]; then
-              revision=$(python3 -c "maj,mn='${latestpre#v}'.split('.'); print(f'{maj}.{int(mn)+1}')")
+              revision=$(printf '%s' "$releases" | bash scripts/next_version.sh dev)
               publish=true
-              reason="Design changed since $latestpre -> v$revision (pre-release)"
+              reason="Design changed since $latest_tag -> v$revision (pre-release)"
             else
-              revision="${latestpre#v}"; publish=false
-              reason="No design changes since $latestpre -> no new pre-release (docs / CI-only merge)"
+              revision="${latest_tag#v}"; publish=false
+              reason="No design change since $latest_tag -> no new pre-release (docs / CI-only merge)"
             fi
           fi
 

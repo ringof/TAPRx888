@@ -41,6 +41,7 @@ on:
       - 'scripts/TAPRX-888.kibot.yaml'
       - 'scripts/build_release.sh'
       - 'scripts/inject_provenance.py'
+      - 'scripts/next_version.sh'
       - '.github/workflows/main-release.yml'
   workflow_dispatch:
     inputs:
@@ -95,13 +96,15 @@ jobs:
           # not drift on doc-only commits.
           githash=$(git log -1 --format=%h -- "${DESIGN[@]}")
 
-          # Latest NON-prerelease release tag. The v0.x pre-releases on the dev
-          # lane are marked prerelease and are excluded, so the first main cut
-          # lands on v1.0 rather than bumping 0.5 -> 0.6.
-          latest=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
-                     --json tagName,isPrerelease \
-                     --jq 'map(select(.isPrerelease==false))|.[0].tagName' \
-                     2>/dev/null || echo "")
+          # All releases, newest-first: "<tag> <isPrerelease>". Feeds the shared
+          # version policy in scripts/next_version.sh (docs/RELEASE_STRATEGY.md).
+          # main advances to the next whole major .0; dev pre-releases (marked
+          # prerelease) never affect the main number.
+          releases=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 \
+                       --json tagName,isPrerelease \
+                       --jq '.[] | "\(.tagName) \(.isPrerelease)"' 2>/dev/null || echo "")
+          # Latest production (non-prerelease) release = base for change detection.
+          latest_main=$(printf '%s\n' "$releases" | awk '$2=="false"{print $1; exit}')
 
           # Compute version + publish once (no early exits), so the dry-run
           # override below can adjust the decision uniformly.
@@ -109,20 +112,22 @@ jobs:
           if [ -n "${OVERRIDE:-}" ]; then
             revision="$OVERRIDE"; publish=true
             reason="Manual override -> v$revision"
-          elif [ -z "$latest" ]; then
-            revision="1.0"; publish=true
-            reason="No prior release -> v1.0"
+          elif [ -z "$latest_main" ]; then
+            # First production release -> v1.0 (promotion; always publish).
+            revision=$(printf '%s' "$releases" | bash scripts/next_version.sh main)
+            publish=true
+            reason="No prior production release -> v$revision"
           else
-            base=$(git rev-list -1 "$latest")
+            base=$(git rev-list -1 "$latest_main")
             changed=$(git diff --name-only "$base"..HEAD -- "${DESIGN[@]}" || true)
             if [ -n "$changed" ]; then
-              # Bump the minor; major carries forward. Never rolls over.
-              revision=$(python3 -c "maj,mn='${latest#v}'.split('.'); print(f'{maj}.{int(mn)+1}')")
+              # Next whole major .0 (2.0, 3.0, ...). Every production release is a major.
+              revision=$(printf '%s' "$releases" | bash scripts/next_version.sh main)
               publish=true
-              reason="Design changed since $latest -> v$revision"
+              reason="Design changed since $latest_main -> v$revision"
             else
-              revision="${latest#v}"; publish=false
-              reason="No design changes since $latest -> no new release (docs / CI-only merge)"
+              revision="${latest_main#v}"; publish=false
+              reason="No design change since $latest_main -> no new release (docs / CI-only merge)"
             fi
           fi
 
