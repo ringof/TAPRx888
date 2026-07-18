@@ -40,7 +40,7 @@ filters:
     comment: 'Only parts with an LCSC number (orderable turnkey)'
     type: generic
     include_only:
-      - column: LCSC Part #
+      - column: 'LCSC Part #'
         regex: '^C\d+'
 
 # --- Outputs ------------------------------------------------------------------
@@ -176,7 +176,7 @@ outputs:
         - field: References
           name: Designator
         - Footprint
-        - field: LCSC Part #
+        - field: 'LCSC Part #'
           name: 'LCSC Part #'
       csv:
         hide_pcb_info: true
