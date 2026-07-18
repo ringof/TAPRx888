@@ -6,25 +6,36 @@ releases. Implemented by `.github/workflows/main-release.yml` (and
 
 ## Branches & CI
 
-Two-tier flow: **feature → `dev` → `main`**.
+Flow: **`design` → `dev` → `main`**, with a `ci-docs` review surface.
 
-- **`dev-*`** feature branches are where work happens. They merge (squash) into
-  **`dev`**, the permanent integration branch (and default branch).
-- **`dev`** collects vetted work. When a release is wanted, `dev` merges (squash)
-  into **`main`**.
-- **`main`** is the release branch. A merge here builds and (if the design
-  changed) publishes a revision.
+- **`design`** is the designer's working branch (unprotected): the designer
+  pulls down, edits, and pushes here — and nothing more. Every push runs
+  `dev-checks` and publishes the results to `ci-docs`.
+- **`ci-docs`** is a throwaway branch holding the latest `design` check results
+  (ERC/DRC/BOM + schematic PDF), readable directly via
+  `raw.githubusercontent.com` without downloading an artifact zip. It is the
+  **reviewer's surface**: the reviewer reads it and decides whether to merge
+  `design → dev`.
+- **`dev`** is the permanent integration branch (and default branch). A merge
+  here cuts a **pre-release** (see *Pre-releases*). `dev-*` feature branches may
+  also be used — they get `dev-checks` on push — and merge into `dev`.
+- **`main`** is the release branch. Merging `dev → main` builds and (if the
+  design changed) publishes a production revision.
 - Both `dev` and `main` are protected (PR required); `main` is the stricter
-  release gate.
+  release gate. `design` is intentionally **unprotected** so the designer can
+  push freely.
 
 CI:
 
-- **`dev-checks`** runs on `dev-*` pushes and on **PRs into `dev` and `main`**:
-  ERC, DRC, BOM completeness, plus schematic PDF and gerbers/drill as artifacts.
+- **`dev-checks`** runs on `design` and `dev-*` pushes and on **PRs into `dev`
+  and `main`**: ERC, DRC, BOM completeness, plus schematic PDF and gerbers/drill
+  as artifacts. On a **`design`** push it additionally publishes the reports to
+  `ci-docs`.
 - **`dev-release`** runs on every merge to `dev` and publishes/refreshes the
-  `v0.x` **pre-release** (see *Pre-releases* below).
+  **pre-release** (see *Pre-releases* below).
 - **`main-release`** runs on every merge to `main` (and can be dispatched
-  manually) and is responsible for `v1.0+` releases and published packages.
+  manually) and is responsible for `v1.0+` production releases and published
+  packages.
 
 ## Versioning
 
