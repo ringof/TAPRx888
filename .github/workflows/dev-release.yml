@@ -59,8 +59,14 @@ jobs:
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
           set -euo pipefail
-          DESIGN=('*.kicad_sch' '*.kicad_pcb' '*.kicad_pro' '*.kicad_dru'
-                  '*.kicad_sym' 'Library.pretty/' 'fp-lib-table' 'sym-lib-table')
+          # Root board files ONLY -- scoped to the main TAPRX-888 board so that
+          # sibling KiCad projects (e.g. mechanical/ end plates) can't false-
+          # trigger a board release. A bare glob like '*.kicad_pcb' is a git
+          # pathspec that matches at ANY depth (mechanical/**/x.kicad_pcb), so we
+          # list the root files explicitly instead.
+          DESIGN=('TAPRX-888.kicad_sch' 'Front_End.kicad_sch' 'refclk.kicad_sch'
+                  'TAPRX-888.kicad_pcb' 'TAPRX-888.kicad_pro' 'TAPRX-888.kicad_dru'
+                  'Library.kicad_sym' 'Library.pretty/' 'fp-lib-table' 'sym-lib-table')
           githash=$(git log -1 --format=%h -- "${DESIGN[@]}")
 
           # All releases, newest-first: "<tag> <isPrerelease>". Feeds the shared
