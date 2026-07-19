@@ -11,7 +11,7 @@
 		(title "TAPRX-888 End Plate - Rear (USB)")
 		(company "TAPR")
 		(comment 1 "Non-functional enclosure end plate")
-		(comment 2 "Starter geometry -- verify against enclosure STEP")
+		(comment 2 "Outline+holes from enclosure DXF; connector Y placeholder")
 	)
 	(layers
 		(0 "F.Cu" signal)
@@ -38,89 +38,177 @@
 	)
 	(net 0 "")
 	(gr_line
-		(start 0 0)
-		(end 88.0 0)
+		(start 4.5 0)
+		(end 83.5 0)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000016")
+		(uuid "00000000-0000-0000-0000-000000000024")
 	)
 	(gr_line
-		(start 88.0 0)
-		(end 88.0 38.0)
+		(start 88.0 4.5)
+		(end 88.0 33.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000017")
+		(uuid "00000000-0000-0000-0000-000000000025")
 	)
 	(gr_line
-		(start 88.0 38.0)
-		(end 0 38.0)
+		(start 83.5 38.0)
+		(end 4.5 38.0)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000018")
+		(uuid "00000000-0000-0000-0000-000000000026")
 	)
 	(gr_line
-		(start 0 38.0)
-		(end 0 0)
+		(start 0 33.5)
+		(end 0 4.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000019")
+		(uuid "00000000-0000-0000-0000-000000000027")
+	)
+	(gr_arc
+		(start 0 4.5)
+		(mid 1.318 1.318)
+		(end 4.5 0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000028")
+	)
+	(gr_arc
+		(start 83.5 0)
+		(mid 86.682 1.318)
+		(end 88.0 4.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000029")
+	)
+	(gr_arc
+		(start 88.0 33.5)
+		(mid 86.682 36.682)
+		(end 83.5 38.0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000030")
+	)
+	(gr_arc
+		(start 4.5 38.0)
+		(mid 1.318 36.682)
+		(end 0 33.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000031")
+	)
+	(gr_circle
+		(center 3.0 4.79)
+		(end 4.7 4.79)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000032")
+	)
+	(gr_circle
+		(center 85.0 4.79)
+		(end 86.7 4.79)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000033")
+	)
+	(gr_circle
+		(center 3.0 33.21)
+		(end 4.7 33.21)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000034")
+	)
+	(gr_circle
+		(center 85.0 33.21)
+		(end 86.7 33.21)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000035")
 	)
 	(gr_line
-		(start 57.5 13.5)
-		(end 70.5 13.5)
+		(start 56.462 13.5)
+		(end 69.462 13.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000020")
+		(uuid "00000000-0000-0000-0000-000000000036")
 	)
 	(gr_line
-		(start 70.5 13.5)
-		(end 70.5 24.5)
+		(start 69.462 13.5)
+		(end 69.462 24.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000021")
+		(uuid "00000000-0000-0000-0000-000000000037")
 	)
 	(gr_line
-		(start 70.5 24.5)
-		(end 57.5 24.5)
+		(start 69.462 24.5)
+		(end 56.462 24.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000022")
+		(uuid "00000000-0000-0000-0000-000000000038")
 	)
 	(gr_line
-		(start 57.5 24.5)
-		(end 57.5 13.5)
+		(start 56.462 24.5)
+		(end 56.462 13.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000023")
+		(uuid "00000000-0000-0000-0000-000000000039")
 	)
 	(gr_text "J5"
-		(at 73.5 19.0)
+		(at 72.462 19.0)
 		(layer "F.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000024")
+		(uuid "00000000-0000-0000-0000-000000000040")
 		(effects
 			(font
 				(size 1.2 1.2)
@@ -129,9 +217,9 @@
 		)
 	)
 	(gr_text "TAPRX-888"
-		(at 44.0 4)
+		(at 44.0 6.0)
 		(layer "F.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000025")
+		(uuid "00000000-0000-0000-0000-000000000041")
 		(effects
 			(font
 				(size 2.0 2.0)
@@ -140,9 +228,9 @@
 		)
 	)
 	(gr_text "USB 3.0"
-		(at 44.0 34.5)
+		(at 44.0 32.0)
 		(layer "F.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000026")
+		(uuid "00000000-0000-0000-0000-000000000042")
 		(effects
 			(font
 				(size 1.2 1.2)
@@ -150,10 +238,10 @@
 			)
 		)
 	)
-	(gr_text "REAR PLATE: confirm X-mirror vs assembly orientation. PLACEHOLDER GEOMETRY - verify vs enclosure STEP: plate 88x38 nominal (check groove fit); connector Y at plate centre (needs board height in rail + connector centre height); SMA D6.5 / USB 13x11 (verify vs parts)."
+	(gr_text "REAR PLATE: confirm X-mirror vs assembly orientation. Outline+M3 corner holes from enclosure DXF (88x38 R4.5, holes Ø3.4 @ +/-41,+/-14.21). CONNECTOR Y IS PLACEHOLDER at plate centre -- set from PCB rail height + connector centre heights (3D models). SMA Ø6.5 / USB 13x11 verify vs parts. Open in KiCad 10 to confirm parse."
 		(at 44.0 42.0)
 		(layer "Cmts.User")
-		(uuid "00000000-0000-0000-0000-000000000027")
+		(uuid "00000000-0000-0000-0000-000000000043")
 		(effects
 			(font
 				(size 1.0 1.0)

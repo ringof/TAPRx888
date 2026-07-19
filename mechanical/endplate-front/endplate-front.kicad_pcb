@@ -11,7 +11,7 @@
 		(title "TAPRX-888 End Plate - Front (SMA)")
 		(company "TAPR")
 		(comment 1 "Non-functional enclosure end plate")
-		(comment 2 "Starter geometry -- verify against enclosure STEP")
+		(comment 2 "Outline+holes from enclosure DXF; connector Y placeholder")
 	)
 	(layers
 		(0 "F.Cu" signal)
@@ -38,8 +38,8 @@
 	)
 	(net 0 "")
 	(gr_line
-		(start 0 0)
-		(end 88.0 0)
+		(start 4.5 0)
+		(end 83.5 0)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -48,8 +48,8 @@
 		(uuid "00000000-0000-0000-0000-000000000001")
 	)
 	(gr_line
-		(start 88.0 0)
-		(end 88.0 38.0)
+		(start 88.0 4.5)
+		(end 88.0 33.5)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -58,8 +58,8 @@
 		(uuid "00000000-0000-0000-0000-000000000002")
 	)
 	(gr_line
-		(start 88.0 38.0)
-		(end 0 38.0)
+		(start 83.5 38.0)
+		(end 4.5 38.0)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -68,8 +68,8 @@
 		(uuid "00000000-0000-0000-0000-000000000003")
 	)
 	(gr_line
-		(start 0 38.0)
-		(end 0 0)
+		(start 0 33.5)
+		(end 0 4.5)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -77,53 +77,53 @@
 		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000004")
 	)
-	(gr_circle
-		(center 18.0 19.0)
-		(end 21.25 19.0)
+	(gr_arc
+		(start 0 4.5)
+		(mid 1.318 1.318)
+		(end 4.5 0)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
-		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000005")
 	)
-	(gr_text "J1"
-		(at 18.0 25.0)
-		(layer "F.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000006")
-		(effects
-			(font
-				(size 1.2 1.2)
-				(thickness 0.2)
-			)
-		)
-	)
-	(gr_circle
-		(center 36.0 19.0)
-		(end 39.25 19.0)
+	(gr_arc
+		(start 83.5 0)
+		(mid 86.682 1.318)
+		(end 88.0 4.5)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
-		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000006")
+	)
+	(gr_arc
+		(start 88.0 33.5)
+		(mid 86.682 36.682)
+		(end 83.5 38.0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
 		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000007")
 	)
-	(gr_text "J3"
-		(at 36.0 25.0)
-		(layer "F.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000008")
-		(effects
-			(font
-				(size 1.2 1.2)
-				(thickness 0.2)
-			)
+	(gr_arc
+		(start 4.5 38.0)
+		(mid 1.318 36.682)
+		(end 0 33.5)
+		(stroke
+			(width 0.1)
+			(type default)
 		)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000008")
 	)
 	(gr_circle
-		(center 54.0 19.0)
-		(end 57.25 19.0)
+		(center 3.0 4.79)
+		(end 4.7 4.79)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -132,20 +132,20 @@
 		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000009")
 	)
-	(gr_text "J2"
-		(at 54.0 25.0)
-		(layer "F.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000010")
-		(effects
-			(font
-				(size 1.2 1.2)
-				(thickness 0.2)
-			)
+	(gr_circle
+		(center 85.0 4.79)
+		(end 86.7 4.79)
+		(stroke
+			(width 0.1)
+			(type default)
 		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000010")
 	)
 	(gr_circle
-		(center 71.8 19.0)
-		(end 75.05 19.0)
+		(center 3.0 33.21)
+		(end 4.7 33.21)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -154,30 +154,30 @@
 		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000011")
 	)
-	(gr_text "J4"
-		(at 71.8 25.0)
-		(layer "F.SilkS")
+	(gr_circle
+		(center 85.0 33.21)
+		(end 86.7 33.21)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000012")
-		(effects
-			(font
-				(size 1.2 1.2)
-				(thickness 0.2)
-			)
-		)
 	)
-	(gr_text "TAPRX-888"
-		(at 44.0 4)
-		(layer "F.SilkS")
+	(gr_circle
+		(center 17.0 19.0)
+		(end 20.25 19.0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
 		(uuid "00000000-0000-0000-0000-000000000013")
-		(effects
-			(font
-				(size 2.0 2.0)
-				(thickness 0.3)
-			)
-		)
 	)
-	(gr_text "SMA / ANTENNA + REF"
-		(at 44.0 34.5)
+	(gr_text "J1"
+		(at 17.0 25.0)
 		(layer "F.SilkS")
 		(uuid "00000000-0000-0000-0000-000000000014")
 		(effects
@@ -187,10 +187,98 @@
 			)
 		)
 	)
-	(gr_text "PLACEHOLDER GEOMETRY - verify vs enclosure STEP: plate 88x38 nominal (check groove fit); connector Y at plate centre (needs board height in rail + connector centre height); SMA D6.5 / USB 13x11 (verify vs parts)."
+	(gr_circle
+		(center 35.0 19.0)
+		(end 38.25 19.0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000015")
+	)
+	(gr_text "J3"
+		(at 35.0 25.0)
+		(layer "F.SilkS")
+		(uuid "00000000-0000-0000-0000-000000000016")
+		(effects
+			(font
+				(size 1.2 1.2)
+				(thickness 0.2)
+			)
+		)
+	)
+	(gr_circle
+		(center 52.986 19.0)
+		(end 56.236 19.0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000017")
+	)
+	(gr_text "J2"
+		(at 52.986 25.0)
+		(layer "F.SilkS")
+		(uuid "00000000-0000-0000-0000-000000000018")
+		(effects
+			(font
+				(size 1.2 1.2)
+				(thickness 0.2)
+			)
+		)
+	)
+	(gr_circle
+		(center 70.8 19.0)
+		(end 74.05 19.0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000019")
+	)
+	(gr_text "J4"
+		(at 70.8 25.0)
+		(layer "F.SilkS")
+		(uuid "00000000-0000-0000-0000-000000000020")
+		(effects
+			(font
+				(size 1.2 1.2)
+				(thickness 0.2)
+			)
+		)
+	)
+	(gr_text "TAPRX-888"
+		(at 44.0 6.0)
+		(layer "F.SilkS")
+		(uuid "00000000-0000-0000-0000-000000000021")
+		(effects
+			(font
+				(size 2.0 2.0)
+				(thickness 0.3)
+			)
+		)
+	)
+	(gr_text "SMA / ANTENNA + REF"
+		(at 44.0 32.0)
+		(layer "F.SilkS")
+		(uuid "00000000-0000-0000-0000-000000000022")
+		(effects
+			(font
+				(size 1.2 1.2)
+				(thickness 0.2)
+			)
+		)
+	)
+	(gr_text "Outline+M3 corner holes from enclosure DXF (88x38 R4.5, holes Ø3.4 @ +/-41,+/-14.21). CONNECTOR Y IS PLACEHOLDER at plate centre -- set from PCB rail height + connector centre heights (3D models). SMA Ø6.5 / USB 13x11 verify vs parts. Open in KiCad 10 to confirm parse."
 		(at 44.0 42.0)
 		(layer "Cmts.User")
-		(uuid "00000000-0000-0000-0000-000000000015")
+		(uuid "00000000-0000-0000-0000-000000000023")
 		(effects
 			(font
 				(size 1.0 1.0)

@@ -46,27 +46,37 @@ publishes the fully-populated board STEP as a **standalone release asset**
 around, without unpacking the fabrication zip. Between releases the same STEP is
 in the `release-package` CI artifact on each PR/run.
 
-## Starter geometry — verify before fab
+## Geometry — where it comes from, and what's still a placeholder
 
-The two end-plate projects here are **starting estimates**, not
-fabrication-ready. They were authored outside KiCad, so the first step is to
-**open each in KiCad 10 and confirm it parses**, then reconcile against the
-real enclosure:
+These are **starter boards**, not fabrication-ready. They were authored outside
+KiCad, so step one is always to **open each in KiCad 10 and confirm it parses.**
 
-- **Plate outline** is the nominal enclosure cross-section **88 × 38 mm**.
-  Check the actual groove/slot fit against the shortened-to-100mm STEP — the
-  panel that slides into the extrusion is usually a couple mm smaller.
-- **Cutout X positions** are transformed from the board's real connector X's
-  (SMA `J1/J3/J2/J4`, USB `J5`): plate-X = 44 + (board-X − 137). Front plate
-  SMA holes land at X = 18 / 36 / 54 / 71.8; rear USB opening at X = 64.
-- **Cutout vertical (Y) position** is a **placeholder at the plate centre**
-  (Y = 19). The real height needs the board's seated height in the extrusion
-  rail plus each connector's centre height — i.e. the 3D-models bring-over.
-- **Cutout sizes** are placeholders: SMA Ø6.5 mm (1/4-32 bulkhead), USB
-  13 × 11 mm (USB 3.0 Type-B). Verify against the actual parts.
-- **Rear plate**: confirm whether X needs mirroring for the assembly's
-  viewing orientation (it faces the opposite way from the front plate).
+**From the enclosure (solid):** the outline and mounting holes were taken from a
+FreeCAD cross-section of the extrusion end (DXF, centred on 0,0):
+
+- **Outline** — **88 × 38 mm, corner radius 4.5 mm** (the full end face).
+- **Four M3 corner mounting holes** — **Ø3.4 mm at (±41, ±14.21)** from centre
+  (an 82 × 28.42 mm pattern). The plate **screws on**; it is not a slide-in
+  panel. (The 84.2 mm groove measured earlier is the internal **PCB** slot, not
+  the plate.)
+
+**From the main board (solid):** cutout X's are the real connector positions
+mapped to plate-centred coords, `plate-X = 44 + (board-X − 138)`:
+
+- **SMA `J1/J3/J2/J4`** (front) → −27 / −9 / +9 / +26.8 mm from centre
+- **USB `J5`** (rear) → +19 mm from centre
 - **JTAG `J11` is internal** — no panel cutout.
 
-Each board also carries these caveats as a note on the `Cmts.User` layer.
-Drop the enclosure STEP (end plates removed) in as `enclosure.step` alongside.
+**Still placeholders — verify before fab:**
+
+- **Connector vertical (Y)** — parked at the plate centre. The real height is
+  the board's seated height on the PCB rail plus each connector's centre height;
+  once set, **check clearance to the bottom corner screws** (a low-mounted board
+  can crowd them).
+- **Cutout sizes** — SMA Ø6.5 mm (1/4-32 bulkhead), USB 13 × 11 mm (USB 3.0
+  Type-B). Verify against the actual parts.
+- **Rear plate** — confirm whether X needs mirroring for the assembly's viewing
+  orientation (it faces opposite the front).
+
+Each board carries these caveats on its `Cmts.User` layer. Drop the shortened
+enclosure STEP (end plates removed) in here as `enclosure.step`.
