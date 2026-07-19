@@ -12,6 +12,18 @@ mechanical/
   endplate-rear/          # a standalone KiCad project (rear panel)
 ```
 
+## Enclosure model
+
+`enclosure.step` is the [JLCMC split aluminium box][box] (`K70-8838-H7`,
+88 × 38 mm cross-section), **shortened from the stock 120 mm to 100 mm** to match
+the board, with the **stock end plates removed** so the fabricated PCB plates
+take their place. It's a **two-piece** model (the two clamshell halves) and is
+the EE↔ME interface artifact — the end-plate outline and its M3 corner
+mounting-hole pattern (Ø3.4 at ±41, ±14.21 from centre) were taken directly from
+its end profile. Verified: 88 × 38.02 × 100 mm, 2 solids.
+
+[box]: https://jlcmc.com/product/b/U01/BR9272/aluminum-box-%28jlc%29-88*38*120mm-split
+
 Each end plate is its **own** self-contained KiCad project (its own
 `fp-lib-table` / `sym-lib-table`); the root `TAPRX-888` board is untouched. The
 end plates are **non-functional PCBs** — Edge.Cuts, connector cutouts, mounting
@@ -78,5 +90,6 @@ mapped to plate-centred coords, `plate-X = 44 + (board-X − 138)`:
 - **Rear plate** — confirm whether X needs mirroring for the assembly's viewing
   orientation (it faces opposite the front).
 
-Each board carries these caveats on its `Cmts.User` layer. Drop the shortened
-enclosure STEP (end plates removed) in here as `enclosure.step`.
+Each board carries these caveats on its `Cmts.User` layer. The shortened
+enclosure (`enclosure.step`) is in place, so the outline and holes can be checked
+against it directly.
