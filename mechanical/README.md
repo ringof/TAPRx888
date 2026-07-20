@@ -80,8 +80,9 @@ mapped to plate-centred coords, `plate-X = 44 + (board-X − 138)`:
 - **JTAG `J11` is internal** — no panel cutout.
 
 **Connector vertical (Y) — set** from the measured **7.9 mm PCB rail height**
-above the enclosure floor (the plate's bottom edge), so connector centres sit at
-plate **Y = 30.12**. The SMA axis is ~the board plane; a **USB** connector body
+above the enclosure floor (the plate's **top** edge, Y=0 — verified against
+`enclosure.step`), so connector centres sit at plate **Y = 7.9**. The SMA axis is
+~the board plane; a **USB** connector body
 sits *above* the board plane, so that opening's centre will rise once the
 connector height is known (below). The connectors clear the bottom corner screws
 (those are out at the corners).
