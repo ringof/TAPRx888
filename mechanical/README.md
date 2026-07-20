@@ -79,14 +79,18 @@ mapped to plate-centred coords, `plate-X = 44 + (board-X − 138)`:
 - **USB `J5`** (rear) → +19 mm from centre
 - **JTAG `J11` is internal** — no panel cutout.
 
+**Connector vertical (Y) — set** from the measured **7.9 mm PCB rail height**
+above the enclosure floor (the plate's bottom edge), so connector centres sit at
+plate **Y = 30.12**. The SMA axis is ~the board plane; a **USB** connector body
+sits *above* the board plane, so that opening's centre will rise once the
+connector height is known (below). The connectors clear the bottom corner screws
+(those are out at the corners).
+
 **Still placeholders — verify before fab:**
 
-- **Connector vertical (Y)** — parked at the plate centre. The real height is
-  the board's seated height on the PCB rail plus each connector's centre height;
-  once set, **check clearance to the bottom corner screws** (a low-mounted board
-  can crowd them).
 - **Cutout sizes** — SMA Ø6.5 mm (1/4-32 bulkhead), USB 13 × 11 mm (USB 3.0
-  Type-B). Verify against the actual parts.
+  Type-B). Verify against the actual parts — this also sets the USB vertical
+  offset above the board plane.
 - **Rear plate** — confirm whether X needs mirroring for the assembly's viewing
   orientation (it faces opposite the front).
 
