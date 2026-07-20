@@ -69,8 +69,8 @@ def main():
   </model-viewer>
   <div class="legend">
     <span><b style="background:#9ea3a6"></b>enclosure</span>
-    <span><b style="background:#1a7333"></b>main board</span>
-    <span><b style="background:#2659b3"></b>end plates</span>
+    <span><b style="background:#1e4488"></b>main board</span>
+    <span><b style="background:#1e4488"></b>end plates</span>
   </div>
   <div class="hint">no CAD tool needed &middot; opens offline</div>
 </div>
