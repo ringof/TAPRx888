@@ -67,8 +67,10 @@ on board or `mechanical/**` changes (and on demand). It:
    export step`),
 2. runs **`scripts/assemble_mechanical.py`** (CadQuery) to place all four parts —
    enclosure, board, front plate, rear plate — in one shared frame, and
-3. uploads **`TAPRX-888-mechanical-assembly.step`**, a multi-component STEP a
-   reviewer opens in any CAD viewer to eyeball the fit.
+3. uploads three review artifacts:
+   - **`TAPRX-888-mechanical-assembly.step`** — multi-component STEP for any CAD tool,
+   - **`…-assembly.glb`** — the same assembly as binary glTF (Windows 3D Viewer, VS Code, Blender, web),
+   - **`…-mechanical-viewer.html`** — a **self-contained web page** (model-viewer + the GLB inlined) that spins the assembly in any browser, offline, no tools.
 
 `scripts/assemble_mechanical.py` is the **alignment definition** — the board sits
 at the 7.9 mm rail height, width centred, length down the case; the plates seat

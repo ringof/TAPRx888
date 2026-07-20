@@ -70,6 +70,7 @@ def main():
     for k in ("enclosure", "board", "front", "rear"):
         ap.add_argument("--" + k, required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--glb", help="also write a binary glTF (for the web viewer)")
     a = ap.parse_args()
 
     enc = load(a.enclosure)
@@ -109,6 +110,10 @@ def main():
         assy.add(shape, name=name, color=COL[name])
     assy.save(a.out)
     print("wrote", a.out)
+    if a.glb:
+        # binary glTF: colours + component names carry over for the web viewer
+        assy.save(a.glb, exportType="GLTF")
+        print("wrote", a.glb)
 
 
 if __name__ == "__main__":

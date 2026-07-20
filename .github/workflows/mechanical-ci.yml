@@ -73,7 +73,7 @@ jobs:
         # numpy pinned <2: cadquery 2.4.0's nptyping dep still references
         # np.bool8, removed in numpy 2.0 (AttributeError on import otherwise).
         run: pip install "cadquery==2.4.0" "numpy==1.26.4"
-      - name: Assemble mechanical fit-check STEP
+      - name: Assemble mechanical fit-check STEP + GLB
         run: |
           set -euxo pipefail
           python scripts/assemble_mechanical.py \
@@ -81,9 +81,25 @@ jobs:
             --board     out/step/board.step \
             --front     out/step/front.step \
             --rear      out/step/rear.step \
-            --out       out/TAPRX-888-mechanical-assembly.step
+            --out       out/TAPRX-888-mechanical-assembly.step \
+            --glb       out/TAPRX-888-mechanical-assembly.glb
+          ls -la out
+      - name: Build self-contained web viewer
+        run: |
+          set -euxo pipefail
+          # model-viewer bundle inlined into the HTML -> single offline file.
+          curl -fsSL https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js \
+            -o /tmp/model-viewer.min.js
+          python scripts/make_3d_viewer.py \
+            --glb out/TAPRX-888-mechanical-assembly.glb \
+            --lib /tmp/model-viewer.min.js \
+            --rev "${GITHUB_SHA::7}" \
+            --out out/TAPRX-888-mechanical-viewer.html
           ls -la out
       - uses: actions/upload-artifact@v6
         with:
           name: mechanical-assembly
-          path: out/TAPRX-888-mechanical-assembly.step
+          path: |
+            out/TAPRX-888-mechanical-assembly.step
+            out/TAPRX-888-mechanical-assembly.glb
+            out/TAPRX-888-mechanical-viewer.html
