@@ -39,14 +39,18 @@ jobs:
         run: |
           set -euxo pipefail
           mkdir -p out/step
-          # Main board: connector 3D models may be missing (#45) -- kicad-cli
-          # warns and exports the substrate, which is fine for the envelope check.
+          # --include-silkscreen/--include-soldermask bake those layers into the
+          # STEP as thin coloured solids (KiCad 9+), so the branding/labels show
+          # up in the assembly. Main board connector 3D models may be missing
+          # (#45) -- kicad-cli warns and exports the substrate, fine for the
+          # envelope check.
+          SILK="--include-silkscreen --include-soldermask"
           kicad-cli pcb export step TAPRX-888.kicad_pcb \
-            --no-dnp --subst-models -o out/step/board.step
+            --no-dnp --subst-models $SILK -o out/step/board.step
           kicad-cli pcb export step mechanical/endplate-front/endplate-front.kicad_pcb \
-            -o out/step/front.step
+            $SILK -o out/step/front.step
           kicad-cli pcb export step mechanical/endplate-rear/endplate-rear.kicad_pcb \
-            -o out/step/rear.step
+            $SILK -o out/step/rear.step
           ls -la out/step
       - uses: actions/upload-artifact@v6
         with:
