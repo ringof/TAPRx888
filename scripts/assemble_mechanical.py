@@ -42,7 +42,7 @@ BOARD_LEN_TO_Z_DEG = 90
 
 # Orientation reconciliation (see caveats). Defaults are the best guess; the
 # first CI artifact is the check that confirms or flips them.
-BOARD_FLIP_FLOOR = False   # 180 about Z if the board seats upside-down (board is correct)
+BOARD_FLIP_FLOOR = True    # 180 about the length axis -- flip the board over
 # First CI artifact showed the plate cutouts on the far edge from the board, so
 # both plates flip about X to drop the cutouts onto the connector edge. The STEP
 # carries no silkscreen, so this is purely the hole positions (X order preserved).
