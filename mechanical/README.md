@@ -76,25 +76,31 @@ FreeCAD cross-section of the extrusion end (DXF, centred on 0,0):
 mapped to plate-centred coords, `plate-X = 44 + (board-X − 138)`:
 
 - **SMA `J1/J3/J2/J4`** (front) → −27 / −9 / +9 / +26.8 mm from centre
-- **USB `J5`** (rear) → +19 mm from centre
+- **USB `J5`** (rear, X-mirrored) → −19 mm from centre (plate X = 25.04)
 - **JTAG `J11` is internal** — no panel cutout.
 
 **Connector vertical (Y) — set** from the measured **7.9 mm PCB rail height**
 above the enclosure floor (the plate's **top** edge, Y=0 — verified against
-`enclosure.step`), so connector centres sit at plate **Y = 7.9**. The SMA axis is
-~the board plane; a **USB** connector body
-sits *above* the board plane, so that opening's centre will rise once the
-connector height is known (below). The connectors clear the bottom corner screws
-(those are out at the corners).
+`enclosure.step`). The connectors clear the bottom corner screws (those are out
+at the corners).
 
-**Still placeholders — verify before fab:**
+**Cutouts — specified:**
 
-- **SMA holes — Ø7.0 mm** (specified). **USB opening — 13 × 11 mm** placeholder
-  (USB 3.0 Type-B) still to verify against the part; that also sets the USB
-  vertical offset above the board plane.
-- **Rear plate** — **X is mirrored** vs the front (the panel is viewed from
-  outside, facing opposite the front), so the USB opening sits at plate X = 25.04.
+- **SMA holes — Ø7.0 mm**, at plate **Y = 7.9** (edge-launch, board plane).
+- **USB opening — 12.5 × 12.7 mm** (12 × 12.2 connector face + clearance), at
+  plate **Y = 14.79** — its bottom edge is flush with the board's top surface
+  (7.9 + half of the 1.57 mm board) and the connector rises 12.2 mm into the box,
+  so its centre sits above the SMA plane.
+- **Rear plate is X-mirrored** vs the front (the panel is viewed from outside,
+  facing opposite the front); the USB opening sits at plate X = 25.04.
 
-Each board carries these caveats on its `Cmts.User` layer. The shortened
-enclosure (`enclosure.step`) is in place, so the outline and holes can be checked
-against it directly.
+**Still to do before fab:**
+
+- **Open each board in KiCad 10 to confirm it parses** (authored outside KiCad).
+- **Orientation overlay** — drop each plate onto its enclosure end (or the STEP)
+  and confirm the **J1 hole sits under J1** and **J5 under J5**. All X/Y match the
+  board; this just blesses which face points out.
+
+Each board carries the key parameters as a note on its `Cmts.User` layer. The
+shortened enclosure (`enclosure.step`) is in place, so the outline, holes, and
+cutouts can be checked against it directly.
