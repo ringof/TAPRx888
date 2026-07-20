@@ -62,8 +62,9 @@ def main():
   <model-viewer
     src="data:model/gltf-binary;base64,{glb_b64}"
     alt="TAPRX-888 enclosure, board and end plates assembled"
-    camera-controls touch-action="pan-y" auto-rotate rotation-per-second="12deg"
-    interaction-prompt="none" shadow-intensity="0.6" exposure="1.05"
+    camera-controls touch-action="pan-y"
+    camera-orbit="-30deg 68deg auto" interaction-prompt="none"
+    shadow-intensity="0.6" exposure="1.05"
     environment-image="neutral" min-field-of-view="10deg" max-field-of-view="45deg">
   </model-viewer>
   <div class="legend">
