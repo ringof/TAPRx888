@@ -35,15 +35,25 @@ def Rx(deg):
     return trimesh.transformations.rotation_matrix(np.radians(deg), [1, 0, 0])
 
 
-def force_double_sided(path):
-    """Patch every material in a GLB to doubleSided (in place, byte level).
+# Materials at/above this opacity are treated as solid PCB layers and forced
+# opaque; anything more transparent (the ~0.35 enclosure) stays translucent.
+OPAQUE_ALPHA = 0.5
 
-    glTF materials default to single-sided, so thin silkscreen / copper decals
-    back-face cull and vanish when the camera orbits to view them edge-on or
-    from behind (their normals point into the enclosure). Rendering both faces
-    keeps the silk visible from every angle -- the whole point of the viewer.
 
-    Done directly on the GLB (parse the JSON chunk, set doubleSided, rewrite the
+def fix_materials(path):
+    """Make the PCB layers opaque so silk stops disappearing (in place, GLB byte
+    level).
+
+    KiCad exports every PCB layer as alphaMode BLEND with a near-opaque alpha
+    (silk ~0.90, mask ~0.83, copper ~0.98). Transparent materials don't write
+    depth and get re-sorted back-to-front per camera angle, so as the viewer
+    orbits, the silk's draw order flips against the board underneath it and it
+    pops in and out. Forcing the near-opaque layers to alphaMode OPAQUE (they
+    then write depth and render stably) fixes it; the deliberately translucent
+    enclosure (alpha ~0.35) is left BLEND so you can still see inside. Also keep
+    doubleSided so thin decals never back-face cull.
+
+    Done directly on the GLB (parse the JSON chunk, patch materials, rewrite the
     chunk lengths) so it does not depend on trimesh's material export path.
     """
     with open(path, "rb") as f:
@@ -55,21 +65,30 @@ def force_double_sided(path):
         clen, ctype = struct.unpack("<II", data[off:off + 8])
         chunks.append([ctype, bytearray(data[off + 8:off + 8 + clen])])
         off += 8 + clen
-    n = 0
+    opaque = blend = 0
     for ctype, cdata in chunks:
         if ctype != 0x4E4F534A:            # JSON chunk only
             continue
         gltf = json.loads(bytes(cdata).decode("utf-8"))
         for m in gltf.get("materials", []):
             m["doubleSided"] = True
-            n += 1
+            bcf = m.get("pbrMetallicRoughness", {}).get("baseColorFactor")
+            alpha = bcf[3] if bcf and len(bcf) > 3 else 1.0
+            if alpha >= OPAQUE_ALPHA:
+                m["alphaMode"] = "OPAQUE"
+                if bcf:
+                    bcf[3] = 1.0
+                opaque += 1
+            else:
+                m["alphaMode"] = "BLEND"
+                blend += 1
         newjson = json.dumps(gltf, separators=(",", ":")).encode("utf-8")
         newjson += b" " * ((4 - len(newjson) % 4) % 4)   # pad to 4 bytes
         cdata[:] = newjson
     body = b"".join(struct.pack("<II", len(c), t) + bytes(c) for t, c in chunks)
     with open(path, "wb") as f:
         f.write(struct.pack("<III", magic, ver, 12 + len(body)) + body)
-    print("[glb] forced doubleSided on", n, "materials")
+    print("[glb] materials -> opaque:%d  translucent(enclosure):%d" % (opaque, blend))
 
 
 def main():
@@ -112,7 +131,7 @@ def main():
           % (np.round(scene.bounding_box.extents, 2),
              np.round(scene.bounding_box.centroid, 2)))
     scene.export(a.out)
-    force_double_sided(a.out)
+    fix_materials(a.out)
     print("wrote", a.out, "-", len(scene.geometry), "geometries")
 
 
