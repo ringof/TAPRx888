@@ -40,9 +40,17 @@ def main():
     for name, path in parts.items():
         m_glb = zup2yup @ np.array(mats[name]) @ yup2zup
         loaded = trimesh.load(path, force="scene")
-        for i, mesh in enumerate(loaded.dump()):   # world transforms baked in
+        raw = loaded.bounding_box.extents
+        meshes = loaded.dump()
+        for i, mesh in enumerate(meshes):
             mesh.apply_transform(m_glb)
             scene.add_geometry(mesh, node_name="%s_%d" % (name, i))
+        print("[glb] %-14s meshes=%2d  raw_extents=%s  placed_at=%s"
+              % (name, len(meshes), np.round(raw, 3),
+                 np.round(m_glb[:3, 3], 2)))
+    print("[glb] combined extents=%s centroid=%s"
+          % (np.round(scene.bounding_box.extents, 2),
+             np.round(scene.bounding_box.centroid, 2)))
     scene.export(a.out)
     print("wrote", a.out, "-", len(scene.geometry), "geometries")
 
