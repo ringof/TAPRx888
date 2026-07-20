@@ -25,6 +25,7 @@ no-op and left the board standing on end. The per-part C correction is the fix.)
 """
 import argparse
 import json
+import struct
 
 import numpy as np
 import trimesh
@@ -32,6 +33,43 @@ import trimesh
 
 def Rx(deg):
     return trimesh.transformations.rotation_matrix(np.radians(deg), [1, 0, 0])
+
+
+def force_double_sided(path):
+    """Patch every material in a GLB to doubleSided (in place, byte level).
+
+    glTF materials default to single-sided, so thin silkscreen / copper decals
+    back-face cull and vanish when the camera orbits to view them edge-on or
+    from behind (their normals point into the enclosure). Rendering both faces
+    keeps the silk visible from every angle -- the whole point of the viewer.
+
+    Done directly on the GLB (parse the JSON chunk, set doubleSided, rewrite the
+    chunk lengths) so it does not depend on trimesh's material export path.
+    """
+    with open(path, "rb") as f:
+        data = f.read()
+    magic, ver, total = struct.unpack("<III", data[:12])
+    assert magic == 0x46546C67, "not a GLB"
+    off, chunks = 12, []
+    while off < total:
+        clen, ctype = struct.unpack("<II", data[off:off + 8])
+        chunks.append([ctype, bytearray(data[off + 8:off + 8 + clen])])
+        off += 8 + clen
+    n = 0
+    for ctype, cdata in chunks:
+        if ctype != 0x4E4F534A:            # JSON chunk only
+            continue
+        gltf = json.loads(bytes(cdata).decode("utf-8"))
+        for m in gltf.get("materials", []):
+            m["doubleSided"] = True
+            n += 1
+        newjson = json.dumps(gltf, separators=(",", ":")).encode("utf-8")
+        newjson += b" " * ((4 - len(newjson) % 4) % 4)   # pad to 4 bytes
+        cdata[:] = newjson
+    body = b"".join(struct.pack("<II", len(c), t) + bytes(c) for t, c in chunks)
+    with open(path, "wb") as f:
+        f.write(struct.pack("<III", magic, ver, 12 + len(body)) + body)
+    print("[glb] forced doubleSided on", n, "materials")
 
 
 def main():
@@ -74,6 +112,7 @@ def main():
           % (np.round(scene.bounding_box.extents, 2),
              np.round(scene.bounding_box.centroid, 2)))
     scene.export(a.out)
+    force_double_sided(a.out)
     print("wrote", a.out, "-", len(scene.geometry), "geometries")
 
 
