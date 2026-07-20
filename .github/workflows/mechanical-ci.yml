@@ -1,13 +1,14 @@
 name: mechanical-ci
 
-# Mechanical fit-check: export 3D STEP from the main board and both end-plate
-# PCBs, assemble them with the enclosure into one multi-component STEP, and
-# publish it as a downloadable artifact for a quick mechanical review.
+# Mechanical fit-check: export 3D from the main board and both end-plate PCBs,
+# assemble them with the enclosure into one multi-component STEP + a coloured
+# GLB, and publish them plus a self-contained web viewer as an artifact.
 #
-# NON-GATING during bring-up (mirrors dev-checks). The main board's connector
-# 3D models are still missing (issue #45), so this is an *envelope* fit-check
-# for now; it gets richer once those models land. See scripts/assemble_mechanical.py
-# for the alignment definition.
+# The STEP comes from CadQuery (crisp geometry, for CAD). The GLB/viewer are
+# built from KiCad's OWN GLB export per board -- which carries the silkscreen /
+# soldermask / pad colours that a STEP import drops -- reusing the CadQuery
+# placement so both match. NON-GATING during bring-up. Board connector 3D models
+# are still missing (issue #45). See scripts/assemble_mechanical.py + assemble_glb.py.
 
 on:
   push:
@@ -16,6 +17,8 @@ on:
       - 'TAPRX-888.kicad_pcb'
       - 'mechanical/**'
       - 'scripts/assemble_mechanical.py'
+      - 'scripts/assemble_glb.py'
+      - 'scripts/make_3d_viewer.py'
       - '.github/workflows/mechanical-ci.yml'
   pull_request:
     branches: [dev, main]
@@ -30,33 +33,33 @@ jobs:
   boards-step:
     runs-on: ubuntu-latest
     container:
-      # Same pinned KiCad 10 image the other workflows use.
       image: ghcr.io/inti-cmnb/kicad10_auto:1.9.0-6_k10.0.4_d13.2
       options: --user root
     steps:
       - uses: actions/checkout@v6
-      - name: Export STEP from each PCB
+      - name: Export STEP + coloured GLB from each PCB
         run: |
           set -euxo pipefail
-          mkdir -p out/step
-          # --include-silkscreen bakes the silk into the STEP as thin solids
-          # (KiCad 9+), which the assembly script then paints white so the
-          # branding/labels are visible. Soldermask is intentionally NOT included:
-          # it's a thin layer over the whole board face and would be painted the
-          # same as silk. Main board connector 3D models may be missing (#45) --
-          # kicad-cli warns and exports the substrate, fine for the envelope check.
-          SILK="--include-silkscreen"
-          kicad-cli pcb export step TAPRX-888.kicad_pcb \
-            --no-dnp --subst-models $SILK -o out/step/board.step
-          kicad-cli pcb export step mechanical/endplate-front/endplate-front.kicad_pcb \
-            $SILK -o out/step/front.step
-          kicad-cli pcb export step mechanical/endplate-rear/endplate-rear.kicad_pcb \
-            $SILK -o out/step/rear.step
-          ls -la out/step
+          mkdir -p out/step out/glb
+          # STEP for CAD (silk baked as geometry). GLB for the viewer, where
+          # KiCad colours the silk/mask/pads natively. Main board connector 3D
+          # models may be missing (#45) -- kicad-cli warns and exports the
+          # substrate, fine for the envelope check.
+          STEP_OPTS="--include-silkscreen"
+          GLB_OPTS="--include-silkscreen --include-soldermask"
+          for pair in \
+            "TAPRX-888.kicad_pcb:board:--no-dnp --subst-models" \
+            "mechanical/endplate-front/endplate-front.kicad_pcb:front:" \
+            "mechanical/endplate-rear/endplate-rear.kicad_pcb:rear:" ; do
+            src="${pair%%:*}"; rest="${pair#*:}"; name="${rest%%:*}"; extra="${rest#*:}"
+            kicad-cli pcb export step "$src" $extra $STEP_OPTS -o "out/step/$name.step"
+            kicad-cli pcb export glb  "$src" $extra $GLB_OPTS  -o "out/glb/$name.glb"
+          done
+          ls -la out/step out/glb
       - uses: actions/upload-artifact@v6
         with:
-          name: board-steps
-          path: out/step/
+          name: board-parts
+          path: out/
 
   assemble:
     needs: boards-step
@@ -65,30 +68,34 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/download-artifact@v8
         with:
-          name: board-steps
-          path: out/step
+          name: board-parts
+          path: out
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install CadQuery
-        # numpy pinned <2: cadquery 2.4.0's nptyping dep still references
-        # np.bool8, removed in numpy 2.0 (AttributeError on import otherwise).
-        run: pip install "cadquery==2.4.0" "numpy==1.26.4"
-      - name: Assemble mechanical fit-check STEP + GLB
+      - name: Install CadQuery + trimesh
+        # numpy pinned <2 for cadquery 2.4.0 (nptyping uses np.bool8).
+        run: pip install "cadquery==2.4.0" "numpy==1.26.4" trimesh
+      - name: Assemble STEP + placement matrices + enclosure GLB
         run: |
           set -euxo pipefail
           python scripts/assemble_mechanical.py \
             --enclosure mechanical/enclosure.step \
-            --board     out/step/board.step \
-            --front     out/step/front.step \
-            --rear      out/step/rear.step \
-            --out       out/TAPRX-888-mechanical-assembly.step \
-            --glb       out/TAPRX-888-mechanical-assembly.glb
-          ls -la out
+            --board out/step/board.step --front out/step/front.step --rear out/step/rear.step \
+            --out out/TAPRX-888-mechanical-assembly.step \
+            --matrices out/placements.json \
+            --enclosure-glb out/enclosure.glb
+      - name: Assemble coloured GLB from KiCad's per-board GLBs
+        run: |
+          set -euxo pipefail
+          python scripts/assemble_glb.py \
+            --matrices out/placements.json \
+            --enclosure out/enclosure.glb \
+            --board out/glb/board.glb --front out/glb/front.glb --rear out/glb/rear.glb \
+            --out out/TAPRX-888-mechanical-assembly.glb
       - name: Build self-contained web viewer
         run: |
           set -euxo pipefail
-          # model-viewer bundle inlined into the HTML -> single offline file.
           curl -fsSL https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js \
             -o /tmp/model-viewer.min.js
           python scripts/make_3d_viewer.py \
