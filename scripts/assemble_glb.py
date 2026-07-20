@@ -6,9 +6,22 @@ STEP import drops -- but only one board per file. This places those coloured
 GLBs (plus the grey enclosure GLB) into one scene, reusing the CadQuery
 placement matrices so the result matches the STEP assembly exactly.
 
-glTF is +Y up while the placement matrices are in the enclosure's Z-up frame, so
-each matrix is conjugated by the Z-up <-> Y-up rotation before it is applied to a
-(Y-up) GLB: M_glb = Rx(-90) @ M @ Rx(90).
+Frames -- the subtle part:
+  * The placement matrices live in the *enclosure* frame, which is already
+    Y-up (Y = height above the floor, Z = length down the case). The glTF
+    viewer is also Y-up, so the matrices need NO outer frame conversion.
+  * KiCad's STEP export (which the matrices were built against) is Z-up: board
+    thickness on Z. But KiCad's GLB export is Y-up: thickness on Y (seen in the
+    raw extents -- the ~2 mm thickness lands on the Y axis). So each *KiCad*
+    part needs a one-time Rx(90) to move its thickness from Y onto Z, matching
+    the STEP frame the matrix expects. The enclosure GLB (from CadQuery) is
+    already in the matrix frame and needs no correction.
+
+    m_glb = M @ C @ S      C = Rx(90) for KiCad parts, identity for enclosure.
+
+(An earlier version conjugated by Rx(-90) . M . Rx(90); because every rotation
+in M is about X and same-axis rotations commute, that conjugation cancelled to a
+no-op and left the board standing on end. The per-part C correction is the fix.)
 """
 import argparse
 import json
@@ -32,18 +45,22 @@ def main():
     a = ap.parse_args()
 
     mats = json.load(open(a.matrices))
-    zup2yup, yup2zup = Rx(-90), Rx(90)
     parts = {"enclosure": a.enclosure, "main-board": a.board,
              "endplate-front": a.front, "endplate-rear": a.rear}
-    # KiCad exports GLB in METRES; the enclosure GLB (CadQuery) and the placement
-    # matrices are in mm. Scale the KiCad parts by 1000 so everything is mm.
+    # KiCad exports GLB in METRES and Y-up (thickness on Y); the enclosure GLB
+    # (CadQuery) is in mm and already in the matrix frame.
     UNIT = {"enclosure": 1.0, "main-board": 1000.0,
             "endplate-front": 1000.0, "endplate-rear": 1000.0}
+    # Per-part frame correction: KiCad parts need thickness moved Y->Z to match
+    # the STEP frame the placement matrices were built against.
+    kicad_fix, eye = Rx(90), np.eye(4)
+    CORR = {"enclosure": eye, "main-board": kicad_fix,
+            "endplate-front": kicad_fix, "endplate-rear": kicad_fix}
 
     scene = trimesh.Scene()
     for name, path in parts.items():
         s = UNIT[name]
-        m_glb = (zup2yup @ np.array(mats[name]) @ yup2zup) @ np.diag([s, s, s, 1.0])
+        m_glb = np.array(mats[name]) @ CORR[name] @ np.diag([s, s, s, 1.0])
         loaded = trimesh.load(path, force="scene")
         raw = loaded.bounding_box.extents
         meshes = loaded.dump()
