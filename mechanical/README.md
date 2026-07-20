@@ -89,9 +89,9 @@ connector height is known (below). The connectors clear the bottom corner screws
 
 **Still placeholders — verify before fab:**
 
-- **Cutout sizes** — SMA Ø6.5 mm (1/4-32 bulkhead), USB 13 × 11 mm (USB 3.0
-  Type-B). Verify against the actual parts — this also sets the USB vertical
-  offset above the board plane.
+- **SMA holes — Ø7.0 mm** (specified). **USB opening — 13 × 11 mm** placeholder
+  (USB 3.0 Type-B) still to verify against the part; that also sets the USB
+  vertical offset above the board plane.
 - **Rear plate** — confirm whether X needs mirroring for the assembly's viewing
   orientation (it faces opposite the front).
 
