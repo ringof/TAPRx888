@@ -42,9 +42,12 @@ BOARD_LEN_TO_Z_DEG = 90
 
 # Orientation reconciliation (see caveats). Defaults are the best guess; the
 # first CI artifact is the check that confirms or flips them.
-BOARD_FLIP_FLOOR = False   # 180 about Z if the board seats upside-down
-FRONT_FLIP_FLOOR = False   # 180 about X if the front cutouts land on the wrong edge
-REAR_FLIP_FLOOR  = False
+BOARD_FLIP_FLOOR = False   # 180 about Z if the board seats upside-down (board is correct)
+# First CI artifact showed the plate cutouts on the far edge from the board, so
+# both plates flip about X to drop the cutouts onto the connector edge. The STEP
+# carries no silkscreen, so this is purely the hole positions (X order preserved).
+FRONT_FLIP_FLOOR = True
+REAR_FLIP_FLOOR  = True
 # The rear panel is mounted facing the opposite way (its artwork is X-mirrored),
 # so it is spun 180 about the vertical (Y) axis to face outward at the USB end
 # and bring its USB cutout onto the connector. The front panel faces out as-is.
