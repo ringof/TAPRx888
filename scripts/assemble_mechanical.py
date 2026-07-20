@@ -42,7 +42,7 @@ BOARD_LEN_TO_Z_DEG = 90
 
 # Orientation reconciliation (see caveats). Defaults are the best guess; the
 # first CI artifact is the check that confirms or flips them.
-BOARD_FLIP_FLOOR = True    # 180 about the length axis -- flip the board over
+BOARD_END_OVER_END = True  # 180 about the width axis -- end-over-end (no width mirror)
 # First CI artifact showed the plate cutouts on the far edge from the board, so
 # both plates flip about X to drop the cutouts onto the connector edge. The STEP
 # carries no silkscreen, so this is purely the hole positions (X order preserved).
@@ -79,8 +79,8 @@ def main():
 
     # --- main board: rotate length->Z / thickness->Y, then seat in the case ---
     board = load(a.board).rotate((0, 0, 0), (1, 0, 0), BOARD_LEN_TO_Z_DEG)
-    if BOARD_FLIP_FLOOR:
-        board = board.rotate((0, 0, 0), (0, 0, 1), 180)
+    if BOARD_END_OVER_END:
+        board = board.rotate((0, 0, 0), (1, 0, 0), 180)   # width axis = end-over-end
     bb = board.BoundingBox()
     board = board.translate((
         -bb.center.x,                                     # centre width on X=0
