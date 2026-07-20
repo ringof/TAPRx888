@@ -58,6 +58,27 @@ publishes the fully-populated board STEP as a **standalone release asset**
 around, without unpacking the fabrication zip. Between releases the same STEP is
 in the `release-package` CI artifact on each PR/run.
 
+## Mechanical fit-check CI
+
+`.github/workflows/mechanical-ci.yml` builds a **one-file mechanical fit-check**
+on board or `mechanical/**` changes (and on demand). It:
+
+1. exports STEP from the **main board** and **both end plates** (`kicad-cli pcb
+   export step`),
+2. runs **`scripts/assemble_mechanical.py`** (CadQuery) to place all four parts —
+   enclosure, board, front plate, rear plate — in one shared frame, and
+3. uploads **`TAPRX-888-mechanical-assembly.step`**, a multi-component STEP a
+   reviewer opens in any CAD viewer to eyeball the fit.
+
+`scripts/assemble_mechanical.py` is the **alignment definition** — the board sits
+at the 7.9 mm rail height, width centred, length down the case; the plates seat
+at the ends and fill the opening. It's **non-gating** during bring-up.
+
+> Envelope-level for now: the board's connector 3D models are still missing
+> (3D-models issue), so the board STEP is substrate + whatever resolves. The
+> assembly script carries `*_FLIP_*` flags to reconcile orientation — the first
+> CI artifact is the pass that confirms them (see the script's caveats).
+
 ## Geometry — where it comes from, and what's still a placeholder
 
 These are **starter boards**, not fabrication-ready. They were authored outside

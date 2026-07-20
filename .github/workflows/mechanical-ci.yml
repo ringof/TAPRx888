@@ -1,0 +1,83 @@
+name: mechanical-ci
+
+# Mechanical fit-check: export 3D STEP from the main board and both end-plate
+# PCBs, assemble them with the enclosure into one multi-component STEP, and
+# publish it as a downloadable artifact for a quick mechanical review.
+#
+# NON-GATING during bring-up (mirrors dev-checks). The main board's connector
+# 3D models are still missing (issue #45), so this is an *envelope* fit-check
+# for now; it gets richer once those models land. See scripts/assemble_mechanical.py
+# for the alignment definition.
+
+on:
+  push:
+    branches: [design, 'dev-*']
+    paths: &mech_paths
+      - 'TAPRX-888.kicad_pcb'
+      - 'mechanical/**'
+      - 'scripts/assemble_mechanical.py'
+      - '.github/workflows/mechanical-ci.yml'
+  pull_request:
+    branches: [dev, main]
+    paths: *mech_paths
+  workflow_dispatch:
+
+concurrency:
+  group: mechanical-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  boards-step:
+    runs-on: ubuntu-latest
+    container:
+      # Same pinned KiCad 10 image the other workflows use.
+      image: ghcr.io/inti-cmnb/kicad10_auto:1.9.0-6_k10.0.4_d13.2
+      options: --user root
+    steps:
+      - uses: actions/checkout@v6
+      - name: Export STEP from each PCB
+        run: |
+          set -euxo pipefail
+          mkdir -p out/step
+          # Main board: connector 3D models may be missing (#45) -- kicad-cli
+          # warns and exports the substrate, which is fine for the envelope check.
+          kicad-cli pcb export step TAPRX-888.kicad_pcb \
+            --no-dnp --subst-models -o out/step/board.step
+          kicad-cli pcb export step mechanical/endplate-front/endplate-front.kicad_pcb \
+            -o out/step/front.step
+          kicad-cli pcb export step mechanical/endplate-rear/endplate-rear.kicad_pcb \
+            -o out/step/rear.step
+          ls -la out/step
+      - uses: actions/upload-artifact@v6
+        with:
+          name: board-steps
+          path: out/step/
+
+  assemble:
+    needs: boards-step
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v8
+        with:
+          name: board-steps
+          path: out/step
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CadQuery
+        run: pip install "cadquery==2.4.0"
+      - name: Assemble mechanical fit-check STEP
+        run: |
+          set -euxo pipefail
+          python scripts/assemble_mechanical.py \
+            --enclosure mechanical/enclosure.step \
+            --board     out/step/board.step \
+            --front     out/step/front.step \
+            --rear      out/step/rear.step \
+            --out       out/TAPRX-888-mechanical-assembly.step
+          ls -la out
+      - uses: actions/upload-artifact@v6
+        with:
+          name: mechanical-assembly
+          path: out/TAPRX-888-mechanical-assembly.step
