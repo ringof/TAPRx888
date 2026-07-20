@@ -35,10 +35,15 @@ def main():
     zup2yup, yup2zup = Rx(-90), Rx(90)
     parts = {"enclosure": a.enclosure, "main-board": a.board,
              "endplate-front": a.front, "endplate-rear": a.rear}
+    # KiCad exports GLB in METRES; the enclosure GLB (CadQuery) and the placement
+    # matrices are in mm. Scale the KiCad parts by 1000 so everything is mm.
+    UNIT = {"enclosure": 1.0, "main-board": 1000.0,
+            "endplate-front": 1000.0, "endplate-rear": 1000.0}
 
     scene = trimesh.Scene()
     for name, path in parts.items():
-        m_glb = zup2yup @ np.array(mats[name]) @ yup2zup
+        s = UNIT[name]
+        m_glb = (zup2yup @ np.array(mats[name]) @ yup2zup) @ np.diag([s, s, s, 1.0])
         loaded = trimesh.load(path, force="scene")
         raw = loaded.bounding_box.extents
         meshes = loaded.dump()
