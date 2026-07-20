@@ -76,6 +76,24 @@ on board or `mechanical/**` changes (and on demand). It:
 at the 7.9 mm rail height, width centred, length down the case; the plates seat
 at the ends and fill the opening. It's **non-gating** during bring-up.
 
+### Live viewer on GitHub Pages
+
+The `pages` job publishes the viewer to **GitHub Pages** so the wiki can link a
+live URL instead of a download:
+
+> **<https://ringof.github.io/TAPRx888/>** — refreshes on every mechanical build.
+
+The viewer HTML becomes the site `index.html`. The job runs on push / manual
+dispatch only (never from a PR — a PR must not move the live site) and is
+non-gating. **One-time setup:** *Settings → Pages → Source: **GitHub Actions*** (the
+workflow also asks the API to enable it via `configure-pages`, so the first run
+usually turns it on by itself). If the deploy is rejected for the branch, allow it
+under *Settings → Environments → `github-pages` → Deployment branches*.
+
+> A GitHub **Wiki page cannot embed the viewer directly** — wiki HTML is
+> sanitised, so `<script>` and the `<model-viewer>` web component are stripped.
+> Link to the Pages URL; don't paste the HTML into a wiki page.
+
 > Envelope-level for now: the board's connector 3D models are still missing
 > (3D-models issue), so the board STEP is substrate + whatever resolves. The
 > assembly script carries `*_FLIP_*` flags to reconcile orientation — the first

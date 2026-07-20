@@ -111,3 +111,44 @@ jobs:
             out/TAPRX-888-mechanical-assembly.step
             out/TAPRX-888-mechanical-assembly.glb
             out/TAPRX-888-mechanical-viewer.html
+
+  # Publish the self-contained viewer to GitHub Pages so the wiki can link a
+  # live URL (https://ringof.github.io/TAPRx888/) that refreshes each build.
+  # Push / manual only -- never from PRs (a PR must not move the live site).
+  # Non-gating like the rest; needs Pages enabled once (Settings -> Pages ->
+  # Source: GitHub Actions). See mechanical/README.md.
+  pages:
+    needs: assemble
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: mechanical-assembly
+          path: dl
+      - name: Lay out the Pages site (viewer as index.html)
+        run: |
+          set -euxo pipefail
+          mkdir -p site
+          cp dl/TAPRX-888-mechanical-viewer.html site/index.html
+          ls -la site
+      # enablement: true asks the API to turn Pages on (Actions build type) so a
+      # first run doesn't require the manual toggle; harmless once already on.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
