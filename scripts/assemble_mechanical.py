@@ -119,8 +119,8 @@ def main():
     with open(a.matrices, "w") as f:
         json.dump({k: v.tolist() for k, v in mats.items()}, f, indent=1)
     print("wrote", a.matrices)
-    Assembly(name="enclosure").add(enc, name="enclosure",
-                                   color=COL["enclosure"]).save(a.enclosure_glb, exportType="GLTF")
+    Assembly(name="enc-root").add(enc, name="enclosure",
+                                  color=COL["enclosure"]).save(a.enclosure_glb, exportType="GLTF")
     print("wrote", a.enclosure_glb)
 
 
