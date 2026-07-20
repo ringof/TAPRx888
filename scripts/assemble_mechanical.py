@@ -59,6 +59,12 @@ COL = {
     "endplate-front": Color(0.15, 0.35, 0.70, 1.00),  # blue
     "endplate-rear":  Color(0.15, 0.35, 0.70, 1.00),
 }
+SILK_COLOR = Color(0.93, 0.93, 0.93, 1.0)   # silkscreen white
+# kicad --include-silkscreen exports silk as separate thin solids sitting on the
+# board faces. They import with no colour, so they render the same as the
+# substrate and vanish. Solids thinner than this (mm) are silk -> paint white;
+# thicker ones are the substrate/enclosure -> component colour.
+SILK_MAX_THICKNESS = 0.5
 
 
 def load(path):
@@ -104,10 +110,18 @@ def main():
     rear = place_plate(load(a.rear), at_z_max=False, face_flip_deg=REAR_FACE_FLIP_DEG,
                        floor_flip=REAR_FLIP_FLOOR)                   # USB end
 
+    def add_component(assy, shape, name):
+        # split into solids so the thin silk solids can be coloured separately
+        for i, sol in enumerate(shape.Solids()):
+            bb = sol.BoundingBox()
+            silk = min(bb.xlen, bb.ylen, bb.zlen) < SILK_MAX_THICKNESS
+            assy.add(sol, name="%s-%s-%d" % (name, "silk" if silk else "body", i),
+                     color=SILK_COLOR if silk else COL[name])
+
     assy = Assembly(name="TAPRX-888-mechanical")
     for shape, name in ((enc, "enclosure"), (board, "main-board"),
                         (front, "endplate-front"), (rear, "endplate-rear")):
-        assy.add(shape, name=name, color=COL[name])
+        add_component(assy, shape, name)
     assy.save(a.out)
     print("wrote", a.out)
     if a.glb:

@@ -39,12 +39,13 @@ jobs:
         run: |
           set -euxo pipefail
           mkdir -p out/step
-          # --include-silkscreen/--include-soldermask bake those layers into the
-          # STEP as thin coloured solids (KiCad 9+), so the branding/labels show
-          # up in the assembly. Main board connector 3D models may be missing
-          # (#45) -- kicad-cli warns and exports the substrate, fine for the
-          # envelope check.
-          SILK="--include-silkscreen --include-soldermask"
+          # --include-silkscreen bakes the silk into the STEP as thin solids
+          # (KiCad 9+), which the assembly script then paints white so the
+          # branding/labels are visible. Soldermask is intentionally NOT included:
+          # it's a thin layer over the whole board face and would be painted the
+          # same as silk. Main board connector 3D models may be missing (#45) --
+          # kicad-cli warns and exports the substrate, fine for the envelope check.
+          SILK="--include-silkscreen"
           kicad-cli pcb export step TAPRX-888.kicad_pcb \
             --no-dnp --subst-models $SILK -o out/step/board.step
           kicad-cli pcb export step mechanical/endplate-front/endplate-front.kicad_pcb \
