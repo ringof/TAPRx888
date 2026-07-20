@@ -33,13 +33,17 @@ def main():
 <style>
   :root {{ color-scheme: light dark; }}
   * {{ box-sizing: border-box; }}
+  html, body {{ height:100%; }}
   body {{ margin:0; font-family: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    background:#14171a; color:#e7ebee; height:100vh; display:flex; flex-direction:column; }}
-  header {{ padding:14px 20px; border-bottom:1px solid #2a3037; }}
+    background:#14171a; color:#e7ebee; display:flex; flex-direction:column; }}
+  header {{ padding:14px 20px; border-bottom:1px solid #2a3037; flex:0 0 auto; }}
   h1 {{ margin:0; font-size:17px; font-weight:620; letter-spacing:-.01em; }}
   header p {{ margin:4px 0 0; font-size:12.5px; color:#98a1a7; }}
-  model-viewer {{ flex:1; width:100%; background:
-    radial-gradient(120% 120% at 50% 25%, #20262c 0%, #101315 70%); }}
+  /* the viewport fills the remaining height; min-height:0 lets the flex child
+     actually shrink/grow instead of collapsing to model-viewer's default size */
+  .wrap {{ position:relative; flex:1 1 auto; min-height:0; }}
+  model-viewer {{ position:absolute; inset:0; width:100%; height:100%;
+    background: radial-gradient(120% 120% at 50% 25%, #20262c 0%, #101315 70%); }}
   .legend {{ position:absolute; left:16px; bottom:14px; display:flex; gap:14px;
     flex-wrap:wrap; font-size:12px; background:rgba(20,23,26,.72); padding:8px 12px;
     border:1px solid #2a3037; border-radius:9px; backdrop-filter:blur(3px); }}
@@ -48,7 +52,6 @@ def main():
   .hint {{ position:absolute; right:16px; bottom:14px; font-size:11.5px;
     color:#8b939a; background:rgba(20,23,26,.72); padding:6px 10px;
     border:1px solid #2a3037; border-radius:9px; }}
-  .wrap {{ position:relative; flex:1; display:flex; }}
 </style>
 </head><body>
 <header>
