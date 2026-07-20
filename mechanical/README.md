@@ -92,8 +92,8 @@ connector height is known (below). The connectors clear the bottom corner screws
 - **SMA holes — Ø7.0 mm** (specified). **USB opening — 13 × 11 mm** placeholder
   (USB 3.0 Type-B) still to verify against the part; that also sets the USB
   vertical offset above the board plane.
-- **Rear plate** — confirm whether X needs mirroring for the assembly's viewing
-  orientation (it faces opposite the front).
+- **Rear plate** — **X is mirrored** vs the front (the panel is viewed from
+  outside, facing opposite the front), so the USB opening sits at plate X = 25.04.
 
 Each board carries these caveats on its `Cmts.User` layer. The shortened
 enclosure (`enclosure.step`) is in place, so the outline and holes can be checked
