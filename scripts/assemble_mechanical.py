@@ -112,7 +112,13 @@ def main():
 
     def add_component(assy, shape, name):
         # split into solids so the thin silk solids can be coloured separately
-        for i, sol in enumerate(shape.Solids()):
+        solids = shape.Solids()
+        exts = sorted(min(s.BoundingBox().xlen, s.BoundingBox().ylen, s.BoundingBox().zlen)
+                      for s in solids)
+        nsilk = sum(1 for m in exts if m < SILK_MAX_THICKNESS)
+        print("[diag] %-14s solids=%3d  silk(<%.2f)=%3d  thinnest=%s"
+              % (name, len(solids), SILK_MAX_THICKNESS, nsilk, [round(m, 3) for m in exts[:6]]))
+        for i, sol in enumerate(solids):
             bb = sol.BoundingBox()
             silk = min(bb.xlen, bb.ylen, bb.zlen) < SILK_MAX_THICKNESS
             assy.add(sol, name="%s-%s-%d" % (name, "silk" if silk else "body", i),
