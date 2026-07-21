@@ -87,13 +87,15 @@ kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
   ibom \
   || echo "WARN: iBOM generation failed; release continues without it."
 
-# NOTE: STEP (3D model) and 3D renders are intentionally NOT built here. The
-# board's footprints reference custom 3D models via ${TIS} (Turn Island Systems'
-# model library) and the deprecated ${KISYS3DMOD}, neither of which exists in the
-# CI image -- KiBot cannot resolve them and aborts. Restoring STEP/renders needs
-# either that model library provisioned in the CI image, or the
-# footprints' 3D paths remapped to KiCad's standard packages. Tracked as a
-# follow-up; the outputs remain defined in scripts/TAPRX-888.kibot.yaml for then.
+# NOTE: STEP (3D model) and 3D renders are intentionally NOT built here yet.
+# The footprints' 3D paths have been remapped (issue #45) to a two-tier scheme:
+# stock packages resolve via ${KICAD10_3DMODEL_DIR} (shipped in the CI image),
+# and a few custom parts resolve via ${KIPRJMOD}/3d/ (vendored in-repo; see
+# 3d/README.md). KiBot aborts if ANY (model ...) path is unresolvable, and the
+# custom 3d/ models are still being vendored. Re-enable the step / render_top /
+# render_bottom outputs once scripts/check_3d_models.py --require-local passes
+# (all custom models present). The outputs remain defined in
+# scripts/TAPRX-888.kibot.yaml for then.
 
 echo "Built package for rev${REVISION} (git ${GIT_HASH}):"
 find "$OUT" -type f | sort

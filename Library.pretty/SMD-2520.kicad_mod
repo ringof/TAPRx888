@@ -183,7 +183,7 @@
 		(uuid "4abc28a8-bde9-4d50-af10-820c96d0cee2")
 	)
 	(embedded_fonts no)
-	(model "${TIS}/TIS_3D/Oscillator.3dshapes/Oscillator_SMD_Abracon_ASV-4Pin_7.0x5.1mm.step"
+	(model "${KIPRJMOD}/3d/SMD-2520.step"
 		(offset
 			(xyz 0 0 0)
 		)
