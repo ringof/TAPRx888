@@ -32,15 +32,25 @@ below — the footprints already point at these paths, so a drop-in "just works"
 and the entry flips from *pending* to *present*. STEP is required because the
 board **STEP export only consumes STEP-format models** (it ignores `.wrl`).
 
-| File | Footprint | Refs | Part | Source / license | Status |
-|---|---|---|---|---|---|
-| `Murata2U.step` | `Murata2U` | L8–L14 | Murata LQW-series wire-wound RF inductor | _TBD_ | ⏳ pending |
-| `SMA_Jack_EdgeMount_JLC.step` | `SMA_Jack_EdgeMount_JLC_With_Nut` | J1–J4 | Edge-mount SMA jack (JLC) | _TBD_ | ⏳ pending |
-| `USB-3.0.step` | `USB-3.0` | J5 | USB 3.0 connector | _TBD_ | ⏳ pending |
-| `TCXO-3225.step` | `TCXO-3225` | X1 | Abracon ASTX-H12 TCXO, 3.2×2.5 mm | _TBD_ | ⏳ pending |
-| `SMD-2520.step` | `SMD-2520` | U10 | 19.2 MHz oscillator, 2.5×2.0 mm | _TBD_ | ⏳ pending |
-| `LED_RGB_SIDE.step` | `LED_RGB_SIDE` | D3 | Side-view RGB LED | _TBD_ | ⏳ pending |
-| `BUTTON-4p5X4p5.step` | `BUTTON-4p5X4p5` | B1 | 4.5×4.5 mm tact switch | _TBD_ | ⏳ pending |
+| File | Footprint | Refs | Part | LCSC # | License | Status |
+|---|---|---|---|---|---|---|
+| `Murata2U.step` | `Murata2U` | L8–L14 | Wire-wound RF inductor, 1008 (120–820 nH) | `C162664`, `C701161`, `C2044072`, `C2043109` ¹ | _TBD_ | ⏳ pending |
+| `SMA_Jack_EdgeMount_JLC.step` | `SMA_Jack_EdgeMount_JLC_With_Nut` | J1–J4 | Edge-mount SMA jack w/ nut | `C2874826` ² | _TBD_ | ⏳ pending |
+| `USB-3.0.step` | `USB-3.0` | J5 | USB 3.0 connector | `C2895032` | _TBD_ | ⏳ pending |
+| `TCXO-3225.step` | `TCXO-3225` | X1 | 27 MHz TCXO, 3.2×2.5 mm | `C5203549` (alt `C46598427`) | _TBD_ | ⏳ pending |
+| `SMD-2520.step` | `SMD-2520` | U10 | 19.2 MHz oscillator, 2.5×2.0 mm | `C49304731` | _TBD_ | ⏳ pending |
+| `LED_RGB_SIDE.step` | `LED_RGB_SIDE` | D3 | Side-view RGB LED | `C389528` | _TBD_ | ⏳ pending |
+| `BUTTON-4p5X4p5.step` | `BUTTON-4p5X4p5` | B1 | 4.5×4.5 mm tact switch | `C410371` | _TBD_ | ⏳ pending |
+
+¹ One model body covers all seven (identical 1008 package, differing inductance):
+L8 180 nH `C162664`; L9/L12 820 nH `C701161`; L10/L11 120 nH `C2044072`;
+L13/L14 150 nH `C2043109`. Grab any one's STEP.
+² Correct part for all four is `C2874826`; J2–J4 currently carry the wrong
+`C914558` in the BOM (tracked in #63). A single model body fits all four.
+
+The LCSC number is the fastest route to a STEP: the part's LCSC/JLCPCB page (or
+its EasyEDA model) almost always has one. Fill the **License** cell — and confirm
+redistribution — before committing each model.
 
 Library-only (not placed on the current board, present in `Library.pretty/`):
 
