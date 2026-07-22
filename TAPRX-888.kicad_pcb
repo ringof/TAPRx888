@@ -618,7 +618,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "0467d535-add5-4b65-b3c7-fc4e4d5125a2")
 		(at 138 71 90)
@@ -10461,7 +10461,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "3617c979-e8d2-4f53-9709-e5d8e552297f")
 		(at 170 96.125 180)
@@ -11337,7 +11337,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "3949c75f-b253-4e02-8d80-bcd2cb4f255d")
 		(at 149 73 180)
@@ -11556,7 +11556,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "3c945bc5-0d1b-45b2-b613-d14a3f46d53b")
 		(at 140.2 116.1 180)
@@ -12598,7 +12598,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "463cef0f-4e05-4a3b-93ae-1d7ab5737b30")
 		(at 149 77.5 180)
@@ -17363,7 +17363,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "55ce034a-3556-489f-828a-5217a8a3e5c6")
 		(at 149.25 82.95 180)
@@ -20754,7 +20754,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "68150e90-63a9-4bb2-be01-2f5171ceaff5")
 		(at 108 72 -90)
@@ -21813,7 +21813,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "6de8ee3e-02c9-41a1-9645-9854f12a28f6")
 		(at 106 129 90)
@@ -23127,7 +23127,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "75d7ef26-4af2-42f5-8ade-b62f703ac7f4")
 		(at 136 81)
@@ -28102,7 +28102,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "8c67d684-0590-47ab-93ac-67233367a180")
 		(at 153 125)
@@ -34488,7 +34488,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "b201d18f-c8b0-4564-9a1f-0c9c67d7b4cf")
 		(at 106 121 90)
@@ -39733,7 +39733,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "c432658d-3cb7-43be-97c6-0ec02d5edcd9")
 		(at 128 100 180)
@@ -40390,7 +40390,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "c6d7f05f-ab25-458a-9800-087c75abfd45")
 		(at 147.75 96.5 -90)
@@ -41367,7 +41367,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "d13c9c99-4181-47f0-903b-c2b8a8fb02a4")
 		(at 170 90.125 180)
@@ -44070,7 +44070,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "d94e583a-9d78-427e-ab20-c09fe51017da")
 		(at 141 90 180)
@@ -45669,7 +45669,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "e2737106-2428-4b4e-b6f0-b713a31a1c1d")
 		(at 128 125 180)
@@ -46291,7 +46291,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "e4e42100-3f7d-40c2-8c62-f3d688356311")
 		(at 140 109 180)
@@ -47699,7 +47699,7 @@
 			)
 		)
 	)
-	(footprint "Library:PAD_0603"
+	(footprint "Library:C_0603"
 		(layer "F.Cu")
 		(uuid "e6cc3091-8a72-4316-809f-86d1674a7f7a")
 		(at 118 57 90)
