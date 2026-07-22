@@ -216,7 +216,7 @@
 			(xyz 0 0 0)
 		)
 		(scale
-			(xyz 0.7 0.2 0.2)
+			(xyz 1 1 1)
 		)
 		(rotate
 			(xyz -0 -0 -0)
