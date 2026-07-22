@@ -1089,7 +1089,7 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.7 0.2 0.2)
+				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz -0 -0 -0)
@@ -1822,10 +1822,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.3001 1 1)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -90)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -4251,10 +4251,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.6 0.5 0.5)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -90)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -15449,7 +15449,7 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.7 0.2 0.2)
+				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz -0 -0 -0)
@@ -16584,7 +16584,7 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.7 0.2 0.2)
+				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz -0 -0 -0)
@@ -17920,13 +17920,13 @@
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Connector_Coaxial.3dshapes/U.FL_Hirose_U.FL-R-SMT-1_Vertical.step"
 			(offset
-				(xyz 0 0.635 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -26354,7 +26354,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -30530,15 +30530,15 @@
 			(uuid "b52d70d5-5b3a-4a72-81ea-fccaaa087586")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step"
+		(model "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_5.3x5.3mm_P1.27mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 1.9 1.5 1)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -38453,7 +38453,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -47695,7 +47695,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -49269,7 +49269,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 90)
 			)
 		)
 	)
@@ -50398,7 +50398,7 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.7 0.2 0.2)
+				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz -0 -0 -0)
