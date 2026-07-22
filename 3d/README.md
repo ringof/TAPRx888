@@ -41,6 +41,7 @@ board **STEP export only consumes STEP-format models** (it ignores `.wrl`).
 | `SMD-2520.step` | `SMD-2520` | U10 | 19.2 MHz oscillator, 2.5×2.0 mm | `C49304731` | _TBD_ | ⏳ pending |
 | `LED_RGB_SIDE.step` | `LED_RGB_SIDE` | D3 | Side-view RGB LED | `C389528` | _TBD_ | ⏳ pending |
 | `BUTTON-4p5X4p5.step` | `BUTTON-4p5X4p5` | B1 | 4.5×4.5 mm tact switch | `C410371` | _TBD_ | ⏳ pending |
+| `SP3011.step` | `SP3011` | U7 | Littelfuse SP3011-06UTG TVS array, UDFN-14 (~3.5×1.35 mm) | `C207281` | _TBD_ | ⏳ pending |
 
 ¹ One model body covers all seven (identical 1008 package, differing inductance):
 L8 180 nH `C162664`; L9/L12 820 nH `C701161`; L10/L11 120 nH `C2044072`;

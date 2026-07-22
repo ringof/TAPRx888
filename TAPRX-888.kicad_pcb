@@ -1817,7 +1817,7 @@
 			(uuid "4ef2d8dd-45ac-474b-81f2-d622959c65a8")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/DFN-14-1EP_3x4mm_P0.5mm_EP1.7x3.3mm.step"
+		(model "${KIPRJMOD}/3d/SP3011.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -4254,7 +4254,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 -90)
 			)
 		)
 	)
@@ -30538,7 +30538,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 -90)
 			)
 		)
 	)
@@ -38453,7 +38453,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 90)
+				(xyz 0 0 -90)
 			)
 		)
 	)
