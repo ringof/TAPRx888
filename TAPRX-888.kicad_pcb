@@ -6788,10 +6788,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -10210,10 +10210,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -12266,13 +12266,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0.0254 14.605 0.5999988)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 -180 -180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -13205,13 +13205,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0.0254 14.605 0.5999988)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 -180 -180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -19180,13 +19180,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/LED_RGB_SIDE.step"
 			(offset
-				(xyz 0 -0.25 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 90 90)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -26973,10 +26973,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -29039,10 +29039,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -33352,10 +33352,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -39482,10 +39482,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 1 1.5 1)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -90)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -43606,10 +43606,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -44060,13 +44060,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/USB-3.0.step"
 			(offset
-				(xyz 0 -8 0)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 -0 -0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -46284,10 +46284,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 2.8 2.8 2.8)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 0 0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -48512,13 +48512,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0.0254 14.605 0.5999988)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 -180 -180)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -49484,10 +49484,10 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 0.4 0.4 0.4)
+				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -0)
+				(xyz 0 0 0)
 			)
 		)
 	)
@@ -51888,13 +51888,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0.0254 14.605 0.5999988)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 -180 -180)
+				(xyz 0 0 0)
 			)
 		)
 	)

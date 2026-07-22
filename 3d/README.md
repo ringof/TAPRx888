@@ -62,6 +62,32 @@ Library-only (not placed on the current board, present in `Library.pretty/`):
 confirm the file is redistributable (manufacturer models usually are; a few
 carry restrictive EULAs). Provenance lives in the table above.
 
+## 3D model ↔ footprint alignment policy
+
+Who owns the alignment correction depends on which side we control. The rule:
+**where you do *not* control the geometry (a KiCad stock model, or a KiCad stock
+footprint), correct in the footprint's model transform and leave the STEP
+untouched; where you control *both* (custom footprint + custom model), make them
+seat at identity by construction.**
+
+| | **KiCad standard footprint** | **Custom footprint** |
+|---|---|---|
+| **KiCad standard model** | **(1)** Aligns at identity by design. The transform **must** be `offset 0/0/0`, `rotate 0/0/0`, `scale 1/1/1`; strip any stray transform that crept in. | **(2)** Never modify the stock STEP (it's shared and gets overwritten on library updates). Align in **Footprint Properties → 3D Models** (offset/rotate). |
+| **Custom / vendor model** | **(3)** Never modify the stock footprint. Align in **Footprint Properties** (offset/rotate) — or fix the model's origin in the STEP. | **(4)** We own both, so make them align at **`offset 0/0/0`, `rotate 0/0/0`**: author/export the STEP with its origin and orientation matching the footprint (which sits at the standard origin). No transform hacks. |
+
+Notes:
+- **`scale` is always `1/1/1`.** A correct STEP is authored in real millimetres.
+  Any non-unity or anisotropic scale is a hack forcing a wrong/mis-sized model to
+  fit — fix the model or the mapping, don't scale.
+- Alignment is a **footprint-level** property: apply a correction to *every*
+  instance of a footprint type (keep them uniform) and to the `Library.pretty/`
+  source, not to one placed instance.
+- **How this project maps on:** the board's stock models sit on **custom** TIS
+  footprints → **case 2** (align via footprint transform, STEP untouched — this is
+  what the per-footprint calibration pass does). The custom parts in the table
+  above are custom model **on** custom footprint → **case 4** (their footprint
+  transform is reset to identity; author the vendored STEP to seat there).
+
 ## Re-enabling STEP + 3D renders in CI
 
 `scripts/build_release.sh` intentionally does **not** build STEP/renders yet:
