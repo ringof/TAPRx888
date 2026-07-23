@@ -44058,7 +44058,7 @@
 			(uuid "e6349a04-4bee-4d1e-924d-48a47cc6b259")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/USB-3.0.step"
+		(model "${KICAD10_3DMODEL_DIR}/Connector_USB.3dshapes/USB_A_Molex_67643_Horizontal.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -49479,7 +49479,7 @@
 			(uuid "842c035b-c49e-47ff-aaef-86f752c99b29")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/SMD-2520.step"
+		(model "${KICAD10_3DMODEL_DIR}/Oscillator.3dshapes/Oscillator_SMD_SeikoEpson_SG210-4Pin_2.5x2.0mm.step"
 			(offset
 				(xyz 0 0 0)
 			)

@@ -191,7 +191,7 @@
 		(uuid "fbca9e09-5c8d-45b6-8152-e3f619ff1921")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/3d/USB-3.0.step"
+	(model "${KICAD10_3DMODEL_DIR}/Connector_USB.3dshapes/USB_A_Molex_67643_Horizontal.step"
 		(offset
 			(xyz 0 0 0)
 		)

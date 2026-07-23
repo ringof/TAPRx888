@@ -36,9 +36,7 @@ board **STEP export only consumes STEP-format models** (it ignores `.wrl`).
 |---|---|---|---|---|---|---|
 | `Murata2U.step` | `Murata2U` | L8–L14 | Wire-wound RF inductor, 1008 (120–820 nH) | `C162664`, `C701161`, `C2044072`, `C2043109` ¹ | _TBD_ | ⏳ pending |
 | `SMA_Jack_EdgeMount_JLC.step` | `SMA_Jack_EdgeMount_JLC_With_Nut` | J1–J4 | Edge-mount SMA jack w/ nut | `C2874826` ² | _TBD_ | ⏳ pending |
-| `USB-3.0.step` | `USB-3.0` | J5 | USB 3.0 connector | `C2895032` | _TBD_ | ⏳ pending |
 | `TCXO-3225.step` | `TCXO-3225` | X1 | 27 MHz TCXO, 3.2×2.5 mm | `C5203549` (alt `C46598427`) | _TBD_ | ⏳ pending |
-| `SMD-2520.step` | `SMD-2520` | U10 | 19.2 MHz oscillator, 2.5×2.0 mm | `C49304731` | _TBD_ | ⏳ pending |
 | `LED_RGB_SIDE.step` | `LED_RGB_SIDE` | D3 | Side-view RGB LED | `C389528` | _TBD_ | ⏳ pending |
 | `BUTTON-4p5X4p5.step` | `BUTTON-4p5X4p5` | B1 | 4.5×4.5 mm tact switch | `C410371` | _TBD_ | ⏳ pending |
 | `SP3011.step` | `SP3011` | U7 | Littelfuse SP3011-06UTG TVS array, UDFN-14 (~3.5×1.35 mm) | `C207281` | _TBD_ | ⏳ pending |
@@ -48,6 +46,15 @@ L8 180 nH `C162664`; L9/L12 820 nH `C701161`; L10/L11 120 nH `C2044072`;
 L13/L14 150 nH `C2043109`. Grab any one's STEP.
 ² Correct part for all four is `C2874826`; J2–J4 currently carry the wrong
 `C914558` in the BOM (tracked in #63). A single model body fits all four.
+
+**Resolved to KiCad stock (no vendored model needed):**
+- **U10** (`SMD-2520`, YXC OT2EL89 19.2 MHz osc, `C49304731`) →
+  `Oscillator.3dshapes/Oscillator_SMD_SeikoEpson_SG210-4Pin_2.5x2.0mm.step`
+  (same 2.5×2.0 mm 4-pin body).
+- **J5** (`USB-3.0`, XUNPU USB-306BWD-ARW USB 3.0 Type-A, `C2895032`) →
+  `Connector_USB.3dshapes/USB_A_Molex_67643_Horizontal.step` (the Type-A shell is
+  spec-standardized, so this is dimensionally exact for the enclosure interface;
+  only rear tabs differ). EasyEDA had no 3D model for either part.
 
 The LCSC number is the fastest route to a STEP: the part's LCSC/JLCPCB page (or
 its EasyEDA model) almost always has one. Fill the **License** cell — and confirm
