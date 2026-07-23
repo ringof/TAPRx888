@@ -44060,13 +44060,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/USB-3.0.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 1 4)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 90)
 			)
 		)
 	)
