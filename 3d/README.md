@@ -34,7 +34,6 @@ board **STEP export only consumes STEP-format models** (it ignores `.wrl`).
 
 | File | Footprint | Refs | Part | LCSC # | License | Status |
 |---|---|---|---|---|---|---|
-| `Murata2U.step` | `Murata2U` | L8–L14 | Wire-wound RF inductor, 1008 (120–820 nH) | `C162664`, `C701161`, `C2044072`, `C2043109` ¹ | _TBD_ | ⏳ pending |
 | `SMA_Jack_EdgeMount_JLC.step` | `SMA_Jack_EdgeMount_JLC_With_Nut` | J1–J4 | Edge-mount SMA jack w/ nut | `C2874826` ² | _TBD_ | ⏳ pending |
 | `USB-3.0.step` | `USB-3.0` | J5 | XUNPU USB-306BWD-ARW, USB 3.0 **Type-B** receptacle | `C2895032` | GSB3211311WEU ³ | ✅ present |
 | `TCXO-3225.step` | `TCXO-3225` | X1 | 27 MHz TCXO, 3.2×2.5 mm | `C5203549` (alt `C46598427`) | _TBD_ | ⏳ pending |
@@ -52,6 +51,10 @@ L13/L14 150 nH `C2043109`. Grab any one's STEP.
 - **U10** (`SMD-2520`, YXC OT2EL89 19.2 MHz osc, `C49304731`) →
   `Oscillator.3dshapes/Oscillator_SMD_SeikoEpson_SG210-4Pin_2.5x2.0mm.step`
   (same 2.5×2.0 mm 4-pin body). EasyEDA had no 3D model.
+- **L8–L14** (`Murata2U`, 1008 wire-wound inductors, `C162664`/`C701161`/
+  `C2044072`/`C2043109`) → `Inductor_SMD.3dshapes/L_1008_2520Metric.step`
+  (body 2.5×2.0 mm; swapped off the EasyEDA model to drop its molded watermark —
+  a plain chip body vs. the wire-wound coil, but dimensionally correct).
 
 ³ **J5 is USB 3.0 Type-B**, not Type-A — KiCad ships no full-size Type-B model,
 and neither EasyEDA nor the CAD aggregators had the XUNPU part. Since the USB 3.0

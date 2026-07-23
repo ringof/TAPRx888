@@ -157,7 +157,7 @@
 		(uuid "26d21f85-8232-4810-b438-0e0b7f5b8c20")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/3d/Murata2U.step"
+	(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 		(offset
 			(xyz 0 0 0)
 		)

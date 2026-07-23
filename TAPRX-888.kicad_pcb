@@ -6783,7 +6783,7 @@
 			(uuid "cbec0715-4a73-4e7e-9528-157eaecbe50d")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10205,7 +10205,7 @@
 			(uuid "d1c3aead-2e57-4462-b40c-ddf390c31c9c")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -26968,7 +26968,7 @@
 			(uuid "dfc3bb10-0f95-45bc-a505-01b663572713")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -29034,7 +29034,7 @@
 			(uuid "1941024c-b94e-46c2-a158-475614620c36")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -33347,7 +33347,7 @@
 			(uuid "670873e4-73b6-477c-9c90-a4d67d7d3481")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -43601,7 +43601,7 @@
 			(uuid "d8290bf4-211f-45c6-81a5-cd9ee711325b")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -46279,7 +46279,7 @@
 			(uuid "e1d326c1-ee19-4a6d-b2cf-91307cc27786")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/3d/Murata2U.step"
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_1008_2520Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
