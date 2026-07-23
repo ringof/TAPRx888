@@ -12266,13 +12266,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 4.5 -5.67)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -13205,13 +13205,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 4.5 -5.67)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -48512,13 +48512,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 4.5 -5.67)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -51888,13 +51888,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 4.5 -5.67)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 180)
 			)
 		)
 	)
