@@ -38,3 +38,6 @@ drc.rpt
 # Python bytecode
 __pycache__/
 *.pyc
+
+# KiCad lock files
+*.lck
