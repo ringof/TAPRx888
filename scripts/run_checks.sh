@@ -96,8 +96,29 @@ if python3 scripts/check_3d_models.py --require-local . > reports/check_3d_model
 else
   note "- ❌ 3D models: unresolved or missing (see reports/check_3d_models.txt)"; fail=1
 fi
-kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
-  || note "- ⚠️ STEP export failed"
+# Headless kicad-cli does NOT inherit KiCad's default 3D path var, so stock
+# ${KICAD10_3DMODEL_DIR}/... models don't resolve unless we set it. Point it at
+# the image's model dir (custom parts resolve via ${KIPRJMOD}, which KiCad sets).
+if [ -z "${KICAD10_3DMODEL_DIR:-}" ]; then
+  for d in /usr/share/kicad/3dmodels /usr/local/share/kicad/3dmodels; do
+    [ -d "$d" ] && KICAD10_3DMODEL_DIR="$d" && break
+  done
+  [ -z "${KICAD10_3DMODEL_DIR:-}" ] && KICAD10_3DMODEL_DIR="$(find / -maxdepth 7 -type d -name 'Resistor_SMD.3dshapes' 2>/dev/null | head -1 | xargs -r dirname)"
+  export KICAD10_3DMODEL_DIR
+fi
+note "- 3D model path: KICAD10_3DMODEL_DIR=${KICAD10_3DMODEL_DIR:-<unset>}"
+
+# STEP export -- gate on model resolution: kicad-cli still exits 0 when a model
+# is missing (it just skips it), so grep the log for unresolved-model warnings.
+if kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step > reports/step_export.log 2>&1; then
+  if grep -qE 'File not found|Could not add' reports/step_export.log; then
+    note "- ❌ STEP: some 3D models did not resolve (see reports/step_export.log)"; fail=1
+  else
+    note "- ✅ STEP: board STEP built, all component models resolved"
+  fi
+else
+  note "- ⚠️ STEP export failed (see reports/step_export.log)"
+fi
 kicad-cli pcb render "$PCB" --side top -o reports/TAPRX-888-3d-top.png \
   || note "- ⚠️ 3D render (top) failed"
 
