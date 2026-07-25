@@ -12,5 +12,10 @@
     "page_layout_descr_file": "../../TAPR.kicad_wks"
   },
   "sheets": [],
-  "text_variables": {}
+  "text_variables": {
+    "GIT_HASH": "dev",
+    "DESIGNER": "Paul Elliott (WB6CXC)",
+    "LICENSE": "MIT",
+    "REPO": "github.com/TAPR/TAPRx888"
+  }
 }
