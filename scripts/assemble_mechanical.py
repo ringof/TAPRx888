@@ -65,6 +65,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     for k in ("enclosure", "board", "front", "rear"):
         ap.add_argument("--" + k, required=True)
+    ap.add_argument("--board-bare", required=True,
+                    help="component-free board datum STEP (kicad-cli --board-only): "
+                         "its bbox is the substrate mid-plane + Edge.Cuts outline, "
+                         "so the board seat never moves when parts change")
     ap.add_argument("--out", required=True, help="multi-component STEP")
     ap.add_argument("--matrices", required=True, help="placement matrices JSON")
     ap.add_argument("--enclosure-glb", required=True, help="enclosure-only GLB")
@@ -76,16 +80,26 @@ def main():
     mats = {"enclosure": np.eye(4)}   # enclosure is the master (identity)
 
     # --- main board: length->Z, thickness->Y, end-over-end, then seat in case --
+    # Seat off the component-free datum (--board-only), NOT the populated board:
+    # a bounding box that includes the 3D component models drifts every time a
+    # part changes height. The datum's bbox is the bare PCB, so its center is the
+    # substrate mid-plane (vertical) and the Edge.Cuts outline center (lateral).
+    # The datum shares the board's origin, so the transform we derive from it
+    # applies verbatim to the populated board.
+    def orient_board(shape):
+        shape = shape.rotate((0, 0, 0), (1, 0, 0), BOARD_LEN_TO_Z_DEG)
+        if BOARD_END_OVER_END:
+            shape = shape.rotate((0, 0, 0), (1, 0, 0), 180)
+        return shape
+
     R_board = _rot("x", BOARD_LEN_TO_Z_DEG)
-    board = load(a.board).rotate((0, 0, 0), (1, 0, 0), BOARD_LEN_TO_Z_DEG)
     if BOARD_END_OVER_END:
-        board = board.rotate((0, 0, 0), (1, 0, 0), 180)
         R_board = _rot("x", 180) @ R_board
-    bb = board.BoundingBox()
+    bb = orient_board(load(a.board_bare)).BoundingBox()   # bare PCB datum
     t_board = np.array([-bb.center.x,
                         (floor + RAIL) - bb.center.y,
                         (eb.zmin + (eb.zlen - bb.zlen) / 2.0) - bb.zmin])
-    board = board.translate(tuple(t_board))
+    board = orient_board(load(a.board)).translate(tuple(t_board))  # populated
     mats["main-board"] = _mat(R_board, t_board)
 
     # --- end plates: fill the opening, seat just outside an end -----------------
