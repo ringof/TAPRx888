@@ -1341,8 +1341,8 @@
 		(uuid "00000000-0000-0000-0000-000000000008")
 	)
 	(gr_circle
-		(center 121.5 92.39)
-		(end 125 92.39)
+		(center 121.5 95.39)
+		(end 125 95.39)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -1352,8 +1352,8 @@
 		(uuid "00000000-0000-0000-0000-000000000013")
 	)
 	(gr_circle
-		(center 139.5 92.39)
-		(end 143 92.39)
+		(center 139.5 95.39)
+		(end 143 95.39)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -1363,8 +1363,8 @@
 		(uuid "00000000-0000-0000-0000-000000000015")
 	)
 	(gr_circle
-		(center 157.486 92.39)
-		(end 160.986 92.39)
+		(center 157.486 95.39)
+		(end 160.986 95.39)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -1374,8 +1374,8 @@
 		(uuid "00000000-0000-0000-0000-000000000017")
 	)
 	(gr_circle
-		(center 175.3 92.39)
-		(end 178.8 92.39)
+		(center 175.3 95.39)
+		(end 178.8 95.39)
 		(stroke
 			(width 0.1)
 			(type default)
