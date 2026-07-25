@@ -60,11 +60,9 @@ outputs:
       extra_fields: 'LCSC Part #,MFG,MPN'
 
   # ---- fab (release) ----
-  # NOTE: these 3D outputs are DEFINED but not yet invoked by build_release.sh.
-  # The 3D paths are now remapped (issue #45) to a two-tier scheme: stock parts
-  # via ${KICAD10_3DMODEL_DIR} (in the CI image) and custom parts via
-  # ${KIPRJMOD}/3d/ (vendored in-repo, see 3d/README.md). Re-enable once the
-  # custom models are all present -- scripts/check_3d_models.py --require-local.
+  # STEP + 3D renders, invoked by build_release.sh. All footprint 3D paths
+  # resolve (issue #45): stock via ${KICAD10_3DMODEL_DIR} (in the CI image),
+  # custom via ${KIPRJMOD}/3d/ (vendored in-repo, see 3d/README.md).
   - name: step
     comment: '3D model (STEP)'
     type: step

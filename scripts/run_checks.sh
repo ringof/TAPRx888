@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Dev-CI check runner for the TAPRX-888 KiCad project (Phase 1).
 #
-# Runs ERC, DRC, and a BOM completeness check with kicad-cli, and produces the
-# schematic PDF plus gerbers/drill as artifacts. The KiBot outputs (interactive
-# BOM, STEP, CPL, 3D renders) and the release pipeline are Phase 2.
+# Runs ERC, DRC, and a BOM completeness check with kicad-cli, plus a 3D-model
+# resolution check, and produces the schematic PDF, gerbers/drill, the board
+# STEP and a top 3D render as artifacts. The KiBot turnkey/release outputs
+# (interactive BOM, CPL, composited PDFs) are the release pipeline.
 #
 # Gating is governed by ENFORCE:
 #   ENFORCE=false (default) -> checks run and report, but never fail the job
@@ -84,10 +85,27 @@ kicad-cli pcb export gerbers "$PCB" -o reports/gerbers/ \
 kicad-cli pcb export drill "$PCB" -o reports/gerbers/ \
   || note "- ⚠️ drill export failed"
 
+# --- 3D models + STEP/render (gate on resolution; export as artifacts) --------
+# Every footprint (model ...) must resolve: stock via ${KICAD10_3DMODEL_DIR}
+# (shipped in this image), custom via ${KIPRJMOD}/3d/ (vendored in-repo, #45).
+# check_3d_models gates on structure (no legacy refs; all board-used models
+# present); the STEP export then confirms they actually LOAD, and is uploaded as
+# an artifact -- the board STEP is the EE<->ME interface (mechanical/README.md).
+if python3 scripts/check_3d_models.py --require-local . > reports/check_3d_models.txt 2>&1; then
+  note "- ✅ 3D models: no legacy refs; all board-used models present"
+else
+  note "- ❌ 3D models: unresolved or missing (see reports/check_3d_models.txt)"; fail=1
+fi
+kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
+  || note "- ⚠️ STEP export failed"
+kicad-cli pcb render "$PCB" --side top -o reports/TAPRX-888-3d-top.png \
+  || note "- ⚠️ 3D render (top) failed"
+
 # --- Report detail (echoed to the run log + job summary) ----------------------
 emit_report "ERC report (erc.rpt)" reports/erc.rpt
 emit_report "DRC report (drc.rpt)" reports/drc.rpt
 emit_report "BOM completeness (bom_check.txt)" reports/bom_check.txt
+emit_report "3D model check (check_3d_models.txt)" reports/check_3d_models.txt
 
 # --- Verdict ------------------------------------------------------------------
 if [ "$fail" -ne 0 ]; then

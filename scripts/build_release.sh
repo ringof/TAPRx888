@@ -87,15 +87,13 @@ kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
   ibom \
   || echo "WARN: iBOM generation failed; release continues without it."
 
-# NOTE: STEP (3D model) and 3D renders are intentionally NOT built here yet.
-# The footprints' 3D paths have been remapped (issue #45) to a two-tier scheme:
-# stock packages resolve via ${KICAD10_3DMODEL_DIR} (shipped in the CI image),
-# and a few custom parts resolve via ${KIPRJMOD}/3d/ (vendored in-repo; see
-# 3d/README.md). KiBot aborts if ANY (model ...) path is unresolvable, and the
-# custom 3d/ models are still being vendored. Re-enable the step / render_top /
-# render_bottom outputs once scripts/check_3d_models.py --require-local passes
-# (all custom models present). The outputs remain defined in
-# scripts/TAPRX-888.kibot.yaml for then.
+# STEP (3D model) + 3D renders. The footprints' 3D paths resolve now (issue #45,
+# two-tier scheme: stock via ${KICAD10_3DMODEL_DIR} shipped in the CI image,
+# custom via ${KIPRJMOD}/3d/ vendored in-repo -- see 3d/README.md). The board
+# STEP is the EE<->ME interface (mechanical/README.md). These are 2D-independent
+# and need no netlist, so --skip-pre all is safe.
+kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre all \
+  step render_top render_bottom
 
 echo "Built package for rev${REVISION} (git ${GIT_HASH}):"
 find "$OUT" -type f | sort
