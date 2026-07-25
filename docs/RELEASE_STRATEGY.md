@@ -224,6 +224,35 @@ The git hash also lives inside the files and in the release title/tag.
 >   remapped to KiCad's standard packages). The KiBot `step`/`render_*` outputs
 >   remain defined for then.
 
+## Mechanical end plates (independent lane)
+
+The enclosure **end plates** (`mechanical/endplate-front`,
+`mechanical/endplate-rear`) are non-functional parts that evolve on their own
+cadence, so they are released **independently of the board** by
+`.github/workflows/endplate-release.yml` — the board's `v<MAJOR>.<MINOR>` number
+never moves for a plate change, and vice versa.
+
+- **Trigger & no-op rule:** runs on every merge to `main`; publishes **only when
+  a plate design file changed** — either plate directory, or the shared
+  `TAPR.kicad_wks` frame (it renders on the fab drawing) — since the last
+  endplates release. Other merges are a no-op.
+- **Combined version:** both plates are always cut **together** at one version.
+  Tags are `endplates-v<MAJOR>.<MINOR>`; the minor auto-increments
+  (`endplates-v1.3 → endplates-v1.4`) and never rolls over; first release →
+  `endplates-v1.0`. A **major** bump is a human decision (dispatch with
+  `version: 2.0`). This lane's numbering is separate from the board's, so it is
+  computed inline in the workflow rather than through `scripts/next_version.sh`.
+- **Build:** `scripts/build_endplates.sh` stamps provenance (title-block `rev` +
+  `${GIT_HASH}`) into each plate via `scripts/inject_provenance.py` — run with an
+  **empty `--sheets`**, since a plate is a PCB-only project — then exports, per
+  plate: `endplate-<front|rear>-v<REV>-gerbers.zip` (gerbers + Excellon drill)
+  and `endplate-<front|rear>-v<REV>-fab.pdf` (framed human-readable drawing). No
+  BOM/CPL/assembly — the plates have no components.
+- **Dispatch / PR preview:** same `version` override and `dry_run` inputs as the
+  board lanes; a PR touching a plate or the endplate pipeline runs a forced
+  dry-run (both packages built and uploaded as a run artifact, nothing
+  published).
+
 ## Edge cases
 
 - **First production release:** no prior non-prerelease → `v1.0` (always
