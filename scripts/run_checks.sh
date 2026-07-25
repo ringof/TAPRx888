@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Dev-CI check runner for the TAPRX-888 KiCad project (Phase 1).
 #
-# Runs ERC, DRC, and a BOM completeness check with kicad-cli, and produces the
-# schematic PDF plus gerbers/drill as artifacts. The KiBot outputs (interactive
-# BOM, STEP, CPL, 3D renders) and the release pipeline are Phase 2.
+# Runs ERC, DRC, and a BOM completeness check with kicad-cli, plus a 3D-model
+# resolution check, and produces the schematic PDF, gerbers/drill, the board
+# STEP and a top 3D render as artifacts. The KiBot turnkey/release outputs
+# (interactive BOM, CPL, composited PDFs) are the release pipeline.
 #
 # Gating is governed by ENFORCE:
 #   ENFORCE=false (default) -> checks run and report, but never fail the job
@@ -84,10 +85,53 @@ kicad-cli pcb export gerbers "$PCB" -o reports/gerbers/ \
 kicad-cli pcb export drill "$PCB" -o reports/gerbers/ \
   || note "- ⚠️ drill export failed"
 
+# --- 3D models + STEP/render (structure gates; STEP built from vendored models) -
+# check_3d_models GATES on structure: no legacy refs survive the remap, every
+# board-used ${KIPRJMOD}/3d/ custom model is present, AND every board-used stock
+# model is vendored under 3d/kicad-stock/ (#45). All 3D paths therefore resolve
+# from the repo itself -- no image models and no network needed -- so the STEP
+# below is fully populated and is uploaded as the EE<->ME artifact
+# (mechanical/README.md).
+if python3 scripts/check_3d_models.py --require-local . > reports/check_3d_models.txt 2>&1; then
+  note "- ✅ 3D models: no legacy refs; all board-used models present"
+else
+  note "- ❌ 3D models: unresolved or missing (see reports/check_3d_models.txt)"; fail=1
+fi
+# The stock KiCad models are vendored in-repo (3d/kicad-stock/, mirroring the
+# .3dshapes layout) so the STEP is reproducible with no image models or network
+# (the CI image ships no 3D models, and KiBot's on-demand download 404s on KiCad
+# 10). Point KICAD10_3DMODEL_DIR at that mirror unless the environment already set
+# it -- a local KiCad install defines it, so respect that; custom parts resolve
+# via ${KIPRJMOD}, which KiCad always sets.
+if [ -z "${KICAD10_3DMODEL_DIR:-}" ]; then
+  export KICAD10_3DMODEL_DIR="$PWD/3d/kicad-stock"
+fi
+note "- 3D model path: KICAD10_3DMODEL_DIR=${KICAD10_3DMODEL_DIR:-<unset>}"
+
+# STEP export with the full board-feature flag set, so the shell matches the PCB
+# editor's 3D view (copper/silk/mask + solid, watertight body) rather than a bare
+# outline. --subst-models pulls the STEP twin of any VRML-referenced model. With
+# every model vendored, an unresolved model is a real regression -> gate on it.
+if kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
+      --subst-models --include-tracks --include-silkscreen --include-soldermask \
+      --cut-vias-in-body --fill-all-vias --drill-origin --min-distance=0.01mm \
+      > reports/step_export.log 2>&1; then
+  if grep -qE 'File not found|Could not add' reports/step_export.log; then
+    note "- ❌ STEP: some 3D models did not resolve (see reports/step_export.log)"; fail=1
+  else
+    note "- ✅ STEP: board STEP built, all component models resolved"
+  fi
+else
+  note "- ⚠️ STEP export failed (see reports/step_export.log)"
+fi
+kicad-cli pcb render "$PCB" --side top -o reports/TAPRX-888-3d-top.png \
+  || note "- ⚠️ 3D render (top) failed"
+
 # --- Report detail (echoed to the run log + job summary) ----------------------
 emit_report "ERC report (erc.rpt)" reports/erc.rpt
 emit_report "DRC report (drc.rpt)" reports/drc.rpt
 emit_report "BOM completeness (bom_check.txt)" reports/bom_check.txt
+emit_report "3D model check (check_3d_models.txt)" reports/check_3d_models.txt
 
 # --- Verdict ------------------------------------------------------------------
 if [ "$fail" -ne 0 ]; then

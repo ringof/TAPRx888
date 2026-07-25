@@ -28,9 +28,16 @@ fp-info-cache
 *.rpt
 erc.rpt
 drc.rpt
-*.step
-*.stp
+
+# Generated board STEP export (kicad-cli / KiBot output — regenerated, not
+# committed). Scoped to the root board so it does NOT swallow the vendored
+# component 3D models tracked under 3d/ (see 3d/README.md).
+/TAPRX-888.step
+/TAPRX-888.stp
 
 # Python bytecode
 __pycache__/
 *.pyc
+
+# KiCad lock files
+*.lck

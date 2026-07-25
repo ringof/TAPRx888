@@ -152,15 +152,15 @@
 		(uuid "8cd9dbc4-9d40-424f-9474-fd05c90cdc58")
 	)
 	(embedded_fonts no)
-	(model ":TIS:TIS_3D/SMA-angled.STEP"
+	(model "${KIPRJMOD}/3d/SMA-RA-Jack.step"
 		(offset
-			(xyz 0 0 -4)
+			(xyz 0 0 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 -90)
+			(xyz 0 0 0)
 		)
 	)
 )

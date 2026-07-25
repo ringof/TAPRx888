@@ -39,9 +39,12 @@ requirement.
 ## The board STEP is the interface
 
 Mechanical design works from the board's exported **STEP** (board outline,
-thickness, connector positions, component heights, mounting holes). Once the 3D
-models are resolved (see the 3D-models issue), CI publishes that STEP as a
-release asset so ME always has the current board to design the case around.
+thickness, connector positions, component heights, mounting holes). The 3D models
+are now resolved (all vendored in-repo, see `3d/README.md`), so `main-release`
+publishes the fully-populated board STEP as a **standalone release asset**
+(`TAPRX-888-v<REV>.step`) — ME always has the current board to design the case
+around, without unpacking the fabrication zip. Between releases the same STEP is
+in the `release-package` CI artifact on each PR/run.
 
 > Status: scaffold. Drop the enclosure STEP and the end-plate KiCad projects
 > here as they're created.
