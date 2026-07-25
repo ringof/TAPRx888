@@ -61,14 +61,30 @@ outputs:
 
   # ---- fab (release) ----
   # STEP + 3D renders, invoked by build_release.sh. All footprint 3D paths
-  # resolve (issue #45): stock via ${KICAD10_3DMODEL_DIR} (in the CI image),
-  # custom via ${KIPRJMOD}/3d/ (vendored in-repo, see 3d/README.md).
+  # resolve (issue #45): stock via ${KICAD10_3DMODEL_DIR}, custom via
+  # ${KIPRJMOD}/3d/ (vendored in-repo, see 3d/README.md). KiBot downloads/caches
+  # any stock model not shipped in the image, so the STEP is fully populated.
+  #
+  # `export_3d` (not the legacy `step`) is the KiCad-10 output: it wraps
+  # `kicad-cli pcb export step` and exposes the board-feature flags, so the
+  # released STEP matches the PCB editor's 3D view (copper/silk/mask + component
+  # bodies) instead of a bare board. subst_models pulls the STEP twin of any
+  # VRML-referenced model; the via options give a solid, watertight body.
   - name: step
     comment: '3D model (STEP)'
-    type: step
+    type: export_3d
     dir: fab
     options:
+      format: step
       output: TAPRX-888.step
+      subst_models: true
+      include_tracks: true
+      include_silkscreen: true
+      include_soldermask: true
+      cut_vias_in_body: true
+      fill_all_vias: true
+      origin: drill
+      min_distance: 0.01
 
   - name: render_top
     comment: '3D render -- top'

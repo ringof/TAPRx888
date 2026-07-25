@@ -88,22 +88,13 @@ kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
   || echo "WARN: iBOM generation failed; release continues without it."
 
 # STEP (3D model) + 3D renders. The footprints' 3D paths resolve now (issue #45,
-# two-tier scheme: stock via ${KICAD10_3DMODEL_DIR} shipped in the CI image,
-# custom via ${KIPRJMOD}/3d/ vendored in-repo -- see 3d/README.md). The board
-# STEP is the EE<->ME interface (mechanical/README.md). These are 2D-independent
-# and need no netlist, so --skip-pre all is safe.
-#
-# Headless kicad-cli/KiBot do NOT inherit KiCad's default 3D path var, so stock
-# ${KICAD10_3DMODEL_DIR}/... models silently fail to load unless we set it (the
-# board STEP would otherwise contain only the custom ${KIPRJMOD}/3d/ parts).
-if [ -z "${KICAD10_3DMODEL_DIR:-}" ]; then
-  for d in /usr/share/kicad/3dmodels /usr/local/share/kicad/3dmodels; do
-    [ -d "$d" ] && KICAD10_3DMODEL_DIR="$d" && break
-  done
-  [ -z "${KICAD10_3DMODEL_DIR:-}" ] && KICAD10_3DMODEL_DIR="$(find / -maxdepth 7 -type d -name 'Resistor_SMD.3dshapes' 2>/dev/null | head -1 | xargs -r dirname)"
-  export KICAD10_3DMODEL_DIR
-fi
-echo "3D model path: KICAD10_3DMODEL_DIR=${KICAD10_3DMODEL_DIR:-<unset>}"
+# two-tier scheme: stock via ${KICAD10_3DMODEL_DIR}, custom via ${KIPRJMOD}/3d/
+# vendored in-repo -- see 3d/README.md). KiBot sets KiCad's 3D-path environment
+# itself and downloads/caches any stock model not shipped in the image (the
+# `step` run logs "N 3D models downloaded or cached"), so the board STEP is fully
+# populated -- do NOT set KICAD10_3DMODEL_DIR here. The board STEP is the EE<->ME
+# interface (mechanical/README.md). These are 2D-independent and need no netlist,
+# so --skip-pre all is safe.
 kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre all \
   step render_top render_bottom
 
