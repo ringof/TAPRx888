@@ -286,7 +286,7 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "REAR PLATE: X mirrored vs front (outside view).\nOutline+M3 corner holes from enclosure DXF (88x38 R4.5, holes Ø3.4 @ +/-41,+/-14.21).\nConnector Y set from measured 7.9mm PCB rail height above enclosure floor (TOP edge, Y=0).\nSMA holes Ø7.0 at plate Y 7.90 (edge-launch, board plane).\nUSB opening 12.5x12.7 at plate Y 14.79 (bottom flush to board top surface; connector rises 12.2 into box).\nFloor = connector edge (top, Y=0).\nSMA: J1=RF IN J3=SPARE J2=TIMESYNC IN J4=EXT REF.\nOpen in KiCad 10 to confirm parse."
+	(gr_text "REAR PLATE (USB). X-mirrored vs front (outside view). Non-functional enclosure end plate.\nOutline 88x38 R4.5; M3 corner holes Ø3.4 @ +/-41,+/-14.21 (plate screws on, full face).\nUSB 3.0 opening 12.5x12.9 centered at plate (25.04, 15.49).\nSTATUS hole Ø2.0 at plate (44.0, 9.0) to view the D3 LED (body-center aligned via the fit-check; D3 3D model +0.5 Z).\nplate Y from floor edge Y=0, +Y = up. Dimensions dialed in against the 3D fit-check; open in KiCad 10 to confirm."
 		(at 148.59 133.35 0)
 		(layer "Cmts.User")
 		(uuid "00000000-0000-0000-0000-000000000088")
