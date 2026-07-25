@@ -297,5 +297,28 @@
 			)
 		)
 	)
+	(gr_circle
+		(center 148.5 96.99)
+		(end 149.5 96.99)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "00000000-0000-0000-0000-000000000089")
+	)
+	(gr_text "STATUS"
+		(at 148.5 92.89 0)
+		(layer "B.SilkS")
+		(uuid "00000000-0000-0000-0000-000000000090")
+		(effects
+			(font
+				(size 1.25 1.25)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
 	(embedded_fonts no)
 )
