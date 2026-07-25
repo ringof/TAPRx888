@@ -179,7 +179,10 @@
 			(outputdirectory "")
 		)
 	)
+	(property "DESIGNER" "Paul Elliott (WB6CXC)")
 	(property "GIT_HASH" "dev")
+	(property "LICENSE" "MIT")
+	(property "REPO" "github.com/TAPR/TAPRx888")
 	(footprint "Library:PAD_0603"
 		(layer "F.Cu")
 		(uuid "0112452e-5d52-40fe-890c-09e0ecdf3dae")
@@ -1092,7 +1095,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -0)
+				(xyz -0 -0 -90)
 			)
 		)
 	)
@@ -12266,13 +12269,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 4.5 -5.67)
+				(xyz 0 14 0.65)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz -0 -180 -180)
 			)
 		)
 	)
@@ -13205,13 +13208,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 4.5 -5.67)
+				(xyz 0 14 0.65)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz -0 -180 -180)
 			)
 		)
 	)
@@ -15452,7 +15455,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -0)
+				(xyz -0 -0 -90)
 			)
 		)
 	)
@@ -16587,7 +16590,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -0)
+				(xyz -0 -0 -90)
 			)
 		)
 	)
@@ -39485,7 +39488,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -90 -0 -0)
 			)
 		)
 	)
@@ -44060,13 +44063,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/USB-3.0.step"
 			(offset
-				(xyz 0 1 4)
+				(xyz 0 -7.9 1)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 90)
+				(xyz -90 -0 -0)
 			)
 		)
 	)
@@ -45659,13 +45662,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/BUTTON-4p5X4p5.step"
 			(offset
-				(xyz 0 0 3)
+				(xyz 0 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -48512,13 +48515,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 4.5 -5.67)
+				(xyz 0 14 0.65)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz -0 -180 -180)
 			)
 		)
 	)
@@ -50401,7 +50404,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -0 -0 -0)
+				(xyz -0 -0 -90)
 			)
 		)
 	)
@@ -51888,13 +51891,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/3d/SMA_Jack_EdgeMount_JLC.step"
 			(offset
-				(xyz 0 4.5 -5.67)
+				(xyz 0 14 0.65)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 180)
+				(xyz -0 -180 -180)
 			)
 		)
 	)
