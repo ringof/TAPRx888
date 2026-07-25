@@ -60,7 +60,15 @@ for entry in "${PLATES[@]}"; do
     --layers "F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts"
   kicad-cli pcb export drill "$pcb" -o "$gdir/" \
     --format excellon --drill-origin absolute --excellon-units mm
-  ( cd "$gdir" && zip -qr "$OUT/${stem}-gerbers.zip" . )
+  # Zip with python3 (present in the kicad image; `zip` is not). Flat archive:
+  # gerber + drill files at the root, as JLCPCB expects.
+  python3 - "$OUT/${stem}-gerbers.zip" "$gdir" <<'PY'
+import os, sys, zipfile
+zp, src = sys.argv[1], sys.argv[2]
+with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+    for name in sorted(os.listdir(src)):
+        z.write(os.path.join(src, name), arcname=name)
+PY
   rm -rf "$gdir"
 
   # --- Human-readable framed fab drawing --------------------------------------
