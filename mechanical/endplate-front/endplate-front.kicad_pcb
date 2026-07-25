@@ -834,7 +834,13 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "Outline+M3 corner holes from enclosure DXF (88x38 R4.5, holes Ø3.4 @ +/-41,+/-14.21). Connector Y set from measured 7.9mm PCB rail height above enclosure floor (TOP edge, Y=0). SMA holes Ø7.0 at plate Y 7.90 (edge-launch, board plane). USB opening 12.5x12.7 at plate Y 14.79 (bottom flush to board top surface; connector rises 12.2 into box). Floor = connector edge (top, Y=0). SMA: J1=RF IN J3=SPARE J2=TIMESYNC IN J4=EXT REF. Open in KiCad 10 to confirm parse."
+	(gr_text "Outline+M3 corner holes from enclosure DXF (88x38 R4.5, holes Ø3.4 @ +/-41,+/-14.21).
+Connector Y set from measured 7.9mm PCB rail height above enclosure floor (TOP edge, Y=0).
+SMA holes Ø7.0 at plate Y 7.90 (edge-launch, board plane).
+USB opening 12.5x12.7 at plate Y 14.79 (bottom flush to board top surface; connector rises 12.2 into box).
+Floor = connector edge (top, Y=0).
+SMA: J1=RF IN J3=SPARE J2=TIMESYNC IN J4=EXT REF.
+Open in KiCad 10 to confirm parse."
 		(at 44.0 42.02)
 		(layer "Cmts.User")
 		(uuid "00000000-0000-0000-0000-000000000069")
