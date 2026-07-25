@@ -8,6 +8,9 @@
     "filename": "endplate-rear.kicad_pcb",
     "version": 3
   },
+  "pcbnew": {
+    "page_layout_descr_file": "../../TAPR.kicad_wks"
+  },
   "sheets": [],
   "text_variables": {}
 }
