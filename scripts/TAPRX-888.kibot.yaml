@@ -61,9 +61,10 @@ outputs:
 
   # ---- fab (release) ----
   # STEP + 3D renders, invoked by build_release.sh. All footprint 3D paths
-  # resolve (issue #45): stock via ${KICAD10_3DMODEL_DIR}, custom via
-  # ${KIPRJMOD}/3d/ (vendored in-repo, see 3d/README.md). KiBot downloads/caches
-  # any stock model not shipped in the image, so the STEP is fully populated.
+  # resolve from the repo (issue #45): stock via ${KICAD10_3DMODEL_DIR} (which
+  # build_release.sh points at the vendored 3d/kicad-stock/ mirror), custom via
+  # ${KIPRJMOD}/3d/. No image models or network needed -- the CI image ships no
+  # 3D models and KiBot's on-demand download 404s on KiCad 10 (see 3d/README.md).
   #
   # `export_3d` (not the legacy `step`) is the KiCad-10 output: it wraps
   # `kicad-cli pcb export step` and exposes the board-feature flags, so the

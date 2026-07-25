@@ -87,14 +87,17 @@ kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre erc,drc \
   ibom \
   || echo "WARN: iBOM generation failed; release continues without it."
 
-# STEP (3D model) + 3D renders. The footprints' 3D paths resolve now (issue #45,
-# two-tier scheme: stock via ${KICAD10_3DMODEL_DIR}, custom via ${KIPRJMOD}/3d/
-# vendored in-repo -- see 3d/README.md). KiBot sets KiCad's 3D-path environment
-# itself and downloads/caches any stock model not shipped in the image (the
-# `step` run logs "N 3D models downloaded or cached"), so the board STEP is fully
-# populated -- do NOT set KICAD10_3DMODEL_DIR here. The board STEP is the EE<->ME
-# interface (mechanical/README.md). These are 2D-independent and need no netlist,
-# so --skip-pre all is safe.
+# STEP (3D model) + 3D renders. All footprint 3D paths resolve from the repo
+# (issue #45): stock via ${KICAD10_3DMODEL_DIR} -> the vendored 3d/kicad-stock/
+# mirror, custom via ${KIPRJMOD}/3d/. Point the var at that mirror when unset so
+# the export needs no image models and no network -- the CI image ships no 3D
+# models and KiBot's on-demand download 404s on KiCad 10 (see 3d/README.md). The
+# board STEP is the EE<->ME interface (mechanical/README.md). 2D-independent and
+# need no netlist, so --skip-pre all is safe.
+if [ -z "${KICAD10_3DMODEL_DIR:-}" ]; then
+  export KICAD10_3DMODEL_DIR="$PWD/3d/kicad-stock"
+fi
+echo "3D model path: KICAD10_3DMODEL_DIR=$KICAD10_3DMODEL_DIR"
 kibot -c "$CFG" -e "$SCH" -b "$PCB" -d "$OUT" --skip-pre all \
   step render_top render_bottom
 

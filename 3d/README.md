@@ -1,8 +1,10 @@
 # 3d — vendored component 3D models (project-local)
 
 3D models for the handful of components that have **no faithful equivalent in
-KiCad's bundled 3D libraries**. Everything else resolves against KiCad's stock
-models via `${KICAD10_3DMODEL_DIR}` and needs nothing here.
+KiCad's bundled 3D libraries** live here directly (`3d/*.step`); the standard
+KiCad models the board uses are **vendored alongside** them under
+`3d/kicad-stock/` (see below). Between the two, every model the design references
+resolves from this checkout — no CI image models and no network required.
 
 ## Why these live in the repo
 
@@ -17,13 +19,32 @@ missing*:
 
 | Tier | Variable | Resolves because | Used for |
 |---|---|---|---|
-| Stock | `${KICAD10_3DMODEL_DIR}` | KiCad defines it; the CI image ships the models | standard packages (0603 R/C/L, SOT-23/223, QFN/DFN, SO/MSOP/TSSOP, BGA, headers, diodes, U.FL …) |
+| Stock | `${KICAD10_3DMODEL_DIR}` | **vendored** in-repo at `3d/kicad-stock/` (mirroring the `.3dshapes` layout). CI points the var at that mirror; a local KiCad install resolves the same var to its standard library. | standard packages (0603 R/C/L, SOT-23/223, QFN/DFN, SO/MSOP/TSSOP, BGA, headers, diodes, U.FL …) |
 | Local | `${KIPRJMOD}/3d/…` | KiCad always sets `${KIPRJMOD}` to the project dir — it points *inside this checkout* | the custom models below |
 
-`${KIPRJMOD}` needs **zero** configuration on any machine and **zero**
-provisioning in the CI image: it is wherever the repo is checked out. That is
-the whole point — these models travel with the board and can't go missing short
-of deleting them from the repo (which a PR review catches).
+`${KIPRJMOD}` needs **zero** configuration on any machine: it is wherever the
+repo is checked out. `${KICAD10_3DMODEL_DIR}` is the one variable a build sets —
+the CI scripts point it at `3d/kicad-stock/` when it isn't already defined, so a
+local designer's real KiCad library is respected while CI (whose image ships **no**
+3D models) uses the vendored mirror. Either way the models travel with the board
+and can't go missing short of deleting them from the repo (which a PR review and
+`scripts/check_3d_models.py` both catch).
+
+### Stock models — `3d/kicad-stock/`
+
+The 22 standard KiCad models the board places are copied verbatim from the
+official **`kicad-packages3D`** library at the **`10.0.4`** tag (matching the
+project's KiCad baseline), preserving the `<Package>.3dshapes/<model>.step`
+layout so the footprints' existing `${KICAD10_3DMODEL_DIR}/…` paths resolve
+unchanged. They are the genuine standard models (CC-BY-SA 4.0, "kicad StepUp"),
+cached in-repo purely for reproducibility — **not** a re-drawn or private set.
+
+Why vendor them rather than fetch at build time: the `inti-cmnb/kicad*_auto` CI
+image deliberately omits the 3D models (~10× the image size), and KiBot's
+on-demand download **404s on KiCad 10** (URL structure changed upstream). Caching
+the exact 22 (~2.7 MB) makes the STEP/renders build identically in CI, offline,
+and years from now regardless of upstream library changes. To refresh or add one,
+copy the file from the same tag into the matching `.3dshapes/` subdir.
 
 ## Files expected here
 
@@ -102,19 +123,18 @@ Notes:
   above are custom model **on** custom footprint → **case 4** (their footprint
   transform is reset to identity; author the vendored STEP to seat there).
 
-## Re-enabling STEP + 3D renders in CI
+## STEP + 3D renders in CI
 
-`scripts/build_release.sh` intentionally does **not** build STEP/renders yet:
-KiBot aborts if any `(model …)` path is unresolvable, and the `${KIPRJMOD}/3d/…`
-files above are still pending. Once the last one lands (and
-`scripts/check_3d_models.py` reports all-present), re-enable the `step` /
-`render_top` / `render_bottom` outputs there and confirm CI resolves all models.
+Both build lanes produce the board STEP and 3D renders, and both resolve every
+model from this checkout:
 
-## Archival note (future)
+- `scripts/run_checks.sh` (dev-checks) — `kicad-cli pcb export step` with the full
+  board-feature flag set (copper/silk/mask + solid body), pointed at the vendored
+  stock mirror.
+- `scripts/build_release.sh` (release) — KiBot `export_3d` + `render_3d`, same
+  mirror.
 
-For long-term archival — capturing the design so it rebuilds identically with no
-dependency on KiCad's shipped libraries — the stock models can additionally be
-vendored here and the references repointed from `${KICAD10_3DMODEL_DIR}` to
-`${KIPRJMOD}/3d/`. Deliberately **not** done now: it duplicates ~140 stock
-0603 models the CI image already provides, for bloat the low-risk stock library
-doesn't warrant day-to-day.
+`scripts/check_3d_models.py --require-local` gates the whole thing: it fails if
+any legacy `${TIS}`/`${KISYS3DMOD}` ref survives, or if any board-used model —
+custom **or** stock — is absent from the repo. So a missing model is caught before
+the export runs, not silently dropped from the STEP.
