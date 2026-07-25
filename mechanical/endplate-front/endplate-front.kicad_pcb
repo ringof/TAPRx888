@@ -9,6 +9,7 @@
 	(paper "A4")
 	(title_block
 		(title "TAPRX-888 End Plate - Front (SMA)")
+		(date "2026-07-16")
 		(rev "DEV")
 		(company "TAPR")
 		(comment 1 "Non-functional enclosure end plate")
