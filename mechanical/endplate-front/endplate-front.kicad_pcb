@@ -1352,17 +1352,6 @@
 		(uuid "00000000-0000-0000-0000-000000000013")
 	)
 	(gr_circle
-		(center 139.5 95.39)
-		(end 143 95.39)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(fill no)
-		(layer "Edge.Cuts")
-		(uuid "00000000-0000-0000-0000-000000000015")
-	)
-	(gr_circle
 		(center 157.486 95.39)
 		(end 160.986 95.39)
 		(stroke
@@ -1452,18 +1441,6 @@
 		(at 121.5 88.89 0)
 		(layer "B.SilkS")
 		(uuid "00000000-0000-0000-0000-000000000014")
-		(effects
-			(font
-				(size 1.25 1.25)
-				(thickness 0.15)
-			)
-			(justify mirror)
-		)
-	)
-	(gr_text "SPARE"
-		(at 139.5 88.89 0)
-		(layer "B.SilkS")
-		(uuid "00000000-0000-0000-0000-000000000016")
 		(effects
 			(font
 				(size 1.25 1.25)
