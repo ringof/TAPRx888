@@ -185,6 +185,12 @@ outputs:
       output: TAPRX-888-bom.csv
       exclude_filter: only_jlc_parts
       ref_separator: ','
+      # Our columns (Value/References/Footprint/LCSC Part #) are plain fields with
+      # no ${...} tokens, so the text-variable expansion pass has nothing to do
+      # except choke on the standard F.Fab `${REFERENCE}` text (a per-footprint
+      # KiCad built-in that has no meaning at BOM scope), logging
+      # "ERROR: Unable to expand `REFERENCE`". Disable it -- output is identical.
+      expand_text_vars: false
       columns:
         - field: Value
           name: Comment
