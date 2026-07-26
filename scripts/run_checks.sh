@@ -126,6 +126,8 @@ else
 fi
 kicad-cli pcb render "$PCB" --side top -o reports/TAPRX-888-3d-top.png \
   || note "- ⚠️ 3D render (top) failed"
+kicad-cli pcb render "$PCB" --side bottom -o reports/TAPRX-888-3d-bottom.png \
+  || note "- ⚠️ 3D render (bottom) failed"
 
 # --- Report detail (echoed to the run log + job summary) ----------------------
 emit_report "ERC report (erc.rpt)" reports/erc.rpt
