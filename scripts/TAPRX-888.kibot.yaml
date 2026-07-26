@@ -87,6 +87,10 @@ outputs:
       origin: drill
       min_distance: 0.01
 
+  # transparent_background:false + solid gradient -> no checkerboard (the alpha
+  # channel is what renders as a checkerboard in viewers). show_solderpaste:false
+  # so the grey paste layer doesn't cover the ENIG gold pads -- the whole point of
+  # showing the finish. Same OpenGL engine as the PCB editor's 3D viewer.
   - name: render_top
     comment: '3D render -- top'
     type: render_3d
@@ -95,6 +99,10 @@ outputs:
       output: TAPRX-888-3d-top.png
       ray_tracing: false
       view: top
+      transparent_background: false
+      background1: '#ffffff'
+      background2: '#d0d0d0'
+      show_solderpaste: false
 
   - name: render_bottom
     comment: '3D render -- bottom'
@@ -104,6 +112,10 @@ outputs:
       output: TAPRX-888-3d-bottom.png
       ray_tracing: false
       view: bottom
+      transparent_background: false
+      background1: '#ffffff'
+      background2: '#d0d0d0'
+      show_solderpaste: false
 
   # ---- JLCPCB turnkey (release) ----
   - name: JLCPCB_gerbers
