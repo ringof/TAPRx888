@@ -42,7 +42,7 @@ OPAQUE_ALPHA = 0.5
 # Turn Island blue -- the boards' soldermask is recoloured to this so the PCBs
 # read as TIS blue in the viewer (matching the TIS product finish). Linear-ish
 # sRGB triple; tune here.
-TIS_BLUE = (0.075, 0.180, 0.380)
+TIS_BLUE = (0.050, 0.130, 0.280)
 
 
 def _is_soldermask(rgb):
