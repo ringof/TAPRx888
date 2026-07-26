@@ -28,21 +28,16 @@ note() {
 }
 
 emit_report() {
-  # Echo a report file into the run log (collapsible group) and the job summary
-  # (collapsible <details>), so the full ERC/DRC/BOM detail is visible without
-  # downloading the artifact.
+  # Echo a report file into the run log only, as a collapsed group. The full
+  # reports are uploaded as artifacts (and published to ci-docs on design
+  # pushes), so the job summary keeps just the concise pass/fail lines instead
+  # of a second full copy -- that duplication is what overflowed the 1 MB
+  # summary limit.
   local title="$1" file="$2"
   [ -f "$file" ] || return 0
   echo "::group::$title"
   cat "$file"
   echo "::endgroup::"
-  if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-    {
-      printf '\n<details><summary>%s</summary>\n\n```\n' "$title"
-      cat "$file"
-      printf '\n```\n\n</details>\n'
-    } >> "$GITHUB_STEP_SUMMARY"
-  fi
 }
 
 note "## Dev-CI checks (ENFORCE=$ENFORCE)"
@@ -113,25 +108,47 @@ note "- 3D model path: KICAD10_3DMODEL_DIR=${KICAD10_3DMODEL_DIR:-<unset>}"
 # outline. --subst-models pulls the STEP twin of any VRML-referenced model. With
 # every model vendored, an unresolved model is a real regression -> gate on it.
 if kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
-      --subst-models --include-tracks --include-silkscreen --include-soldermask \
+      --subst-models --no-dnp --include-tracks --include-silkscreen --include-soldermask \
       --cut-vias-in-body --fill-all-vias --drill-origin --min-distance=0.01mm \
       > reports/step_export.log 2>&1; then
   if grep -qE 'File not found|Could not add' reports/step_export.log; then
-    note "- ❌ STEP: some 3D models did not resolve (see reports/step_export.log)"; fail=1
+    note "- ❌ STEP: some 3D models did not resolve (see run log)"; fail=1
   else
     note "- ✅ STEP: board STEP built, all component models resolved"
   fi
 else
-  note "- ⚠️ STEP export failed (see reports/step_export.log)"
+  note "- ⚠️ STEP export failed (see run log)"
 fi
-kicad-cli pcb render "$PCB" --side top -o reports/TAPRX-888-3d-top.png \
-  || note "- ⚠️ 3D render (top) failed"
+# 3D renders via KiBot's render_3d (OpenGL, ray_tracing:false) -- the same engine
+# as the PCB editor's 3D viewer (File -> Export Image). kicad-cli's standalone
+# raytracer in 10.0.4 doesn't draw the soldermask (bare-copper "gold" render, so
+# the stackup mask colour never shows); KiBot's OpenGL path honours the stackup
+# mask/silk/finish colours. Same invocation the release build uses.
+if kibot -c scripts/TAPRX-888.kibot.yaml -e "$SCH" -b "$PCB" -d reports \
+      --skip-pre all render_top render_bottom > reports/render.log 2>&1; then
+  # The KiBot output has `dir: fab` (the release package layout), so the PNGs
+  # land in reports/fab/. In the dev-checks artifact we want them at the top
+  # level next to the STEP, so flatten fab/ here (leaving the shared release
+  # config untouched).
+  mv -f reports/fab/TAPRX-888-3d-top.png reports/fab/TAPRX-888-3d-bottom.png \
+     reports/ 2>/dev/null || true
+  rmdir reports/fab 2>/dev/null || true
+  note "- ✅ 3D renders (top+bottom) via KiBot render_3d (OpenGL, stackup colours)"
+else
+  note "- ⚠️ 3D render failed (see run log)"
+fi
 
-# --- Report detail (echoed to the run log + job summary) ----------------------
+# --- Report detail (echoed to the collapsed run log) --------------------------
 emit_report "ERC report (erc.rpt)" reports/erc.rpt
 emit_report "DRC report (drc.rpt)" reports/drc.rpt
 emit_report "BOM completeness (bom_check.txt)" reports/bom_check.txt
 emit_report "3D model check (check_3d_models.txt)" reports/check_3d_models.txt
+# The STEP/render command logs are process noise, not review outputs: echo them
+# to the collapsed run log (available if a build breaks) then drop them so the
+# uploaded artifact carries only the actual outputs, not these logs.
+emit_report "STEP export log (step_export.log)" reports/step_export.log
+emit_report "3D render log (render.log)" reports/render.log
+rm -f reports/step_export.log reports/render.log
 
 # --- Verdict ------------------------------------------------------------------
 if [ "$fail" -ne 0 ]; then
