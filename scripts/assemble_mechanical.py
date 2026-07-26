@@ -144,12 +144,16 @@ def _normalize_hw(path):
     return s, s.BoundingBox().zlen
 
 
-def _sma_hole_centers(plate, rlo=3.3, rhi=3.7):
+def _sma_hole_centers(plate, rlo=3.4, rhi=3.6, row_tol=1.0):
     """(x, y) centres of the Ø7 SMA holes in the *placed* front plate, read
-    straight from its geometry (so they're already in the enclosure frame). The
-    only ~Ø7 circles on the plate are the SMA pass-throughs -- the M3 corners are
-    Ø3.4 and the STATUS hole Ø2.0 -- so a radius gate isolates them. Top+bottom
-    edges of each bore dedupe by rounded centre."""
+    straight from its geometry (so they're already in the enclosure frame). A
+    radius gate isolates the Ø7 bores (M3 corners are Ø3.4, plate corners R4.5);
+    top+bottom edges of each bore dedupe by rounded centre.
+
+    The three real SMAs sit in a single horizontal row (one plate-Y). The STEP
+    export can also throw a stray ~Ø7 circle elsewhere on the plate, so when more
+    than three survive the gate we keep only the largest same-Y cluster (the row)
+    and drop the outlier."""
     seen = {}
     for e in plate.Edges():
         try:
@@ -161,7 +165,17 @@ def _sma_hole_centers(plate, rlo=3.3, rhi=3.7):
         if rlo <= r <= rhi:
             c = e.Center()
             seen[(round(c.x, 1), round(c.y, 1))] = (c.x, c.y)
-    return sorted(seen.values())
+    centers = sorted(seen.values())
+    print("SMA Ø7 circles:", [(round(x, 1), round(y, 1)) for x, y in centers])
+    if len(centers) > 3:
+        best = []
+        for x0, y0 in centers:
+            row = [c for c in centers if abs(c[1] - y0) <= row_tol]
+            if len(row) > len(best):
+                best = row
+        centers = best
+        print("  -> kept SMA row:", [(round(x, 1), round(y, 1)) for x, y in centers])
+    return centers
 
 
 def place_sma_hardware(washer_path, nut_path, front):
