@@ -113,7 +113,7 @@ note "- 3D model path: KICAD10_3DMODEL_DIR=${KICAD10_3DMODEL_DIR:-<unset>}"
 # outline. --subst-models pulls the STEP twin of any VRML-referenced model. With
 # every model vendored, an unresolved model is a real regression -> gate on it.
 if kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
-      --subst-models --include-tracks --include-silkscreen --include-soldermask \
+      --subst-models --no-dnp --include-tracks --include-silkscreen --include-soldermask \
       --cut-vias-in-body --fill-all-vias --drill-origin --min-distance=0.01mm \
       > reports/step_export.log 2>&1; then
   if grep -qE 'File not found|Could not add' reports/step_export.log; then
