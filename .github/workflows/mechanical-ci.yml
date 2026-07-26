@@ -15,6 +15,7 @@ on:
     branches: [design, 'dev-*']
     paths: &mech_paths
       - 'TAPRX-888.kicad_pcb'
+      - '3d/**'
       - 'mechanical/**'
       - 'scripts/assemble_mechanical.py'
       - 'scripts/assemble_glb.py'
