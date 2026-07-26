@@ -113,7 +113,10 @@ jobs:
             reason="No prior release -> seed v$revision (pre-release)"
           else
             base=$(git rev-list -1 "$latest_tag")
-            changed=$(git diff --name-only "$base"..HEAD -- "${TRIGGER[@]}" || true)
+            # Exclude markdown: a docs edit under mechanical/ or 3d/ (e.g. a
+            # README) must NOT cut a pre-release. The MECH prefixes above match
+            # those dirs broadly, so drop *.md from the change set.
+            changed=$(git diff --name-only "$base"..HEAD -- "${TRIGGER[@]}" ':(exclude)*.md' || true)
             if [ -n "$changed" ]; then
               revision=$(printf '%s' "$releases" | bash scripts/next_version.sh dev)
               publish=true

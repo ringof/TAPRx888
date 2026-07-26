@@ -25,6 +25,8 @@ on:
       - 'scripts/make_3d_viewer.py'
       - '.github/workflows/mechanical-ci.yml'
       - '.github/workflows/mechanical-build.yml'
+      # Docs under mechanical/ or 3d/ (READMEs) shouldn't rebuild the assembly.
+      - '!**/*.md'
   pull_request:
     branches: [dev, main]
     paths: *mech_paths
