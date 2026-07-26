@@ -112,12 +112,12 @@ if kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
       --cut-vias-in-body --fill-all-vias --drill-origin --min-distance=0.01mm \
       > reports/step_export.log 2>&1; then
   if grep -qE 'File not found|Could not add' reports/step_export.log; then
-    note "- ❌ STEP: some 3D models did not resolve (see reports/step_export.log)"; fail=1
+    note "- ❌ STEP: some 3D models did not resolve (see run log)"; fail=1
   else
     note "- ✅ STEP: board STEP built, all component models resolved"
   fi
 else
-  note "- ⚠️ STEP export failed (see reports/step_export.log)"
+  note "- ⚠️ STEP export failed (see run log)"
 fi
 # 3D renders via KiBot's render_3d (OpenGL, ray_tracing:false) -- the same engine
 # as the PCB editor's 3D viewer (File -> Export Image). kicad-cli's standalone
@@ -129,14 +129,20 @@ if kibot -c scripts/TAPRX-888.kibot.yaml -e "$SCH" -b "$PCB" -d reports \
       --skip-pre all render_top render_bottom > reports/render.log 2>&1; then
   note "- ✅ 3D renders (top+bottom) via KiBot render_3d (OpenGL, stackup colours)"
 else
-  note "- ⚠️ 3D render failed (see reports/render.log)"
+  note "- ⚠️ 3D render failed (see run log)"
 fi
 
-# --- Report detail (echoed to the run log + job summary) ----------------------
+# --- Report detail (echoed to the collapsed run log) --------------------------
 emit_report "ERC report (erc.rpt)" reports/erc.rpt
 emit_report "DRC report (drc.rpt)" reports/drc.rpt
 emit_report "BOM completeness (bom_check.txt)" reports/bom_check.txt
 emit_report "3D model check (check_3d_models.txt)" reports/check_3d_models.txt
+# The STEP/render command logs are process noise, not review outputs: echo them
+# to the collapsed run log (available if a build breaks) then drop them so the
+# uploaded artifact carries only the actual outputs, not these logs.
+emit_report "STEP export log (step_export.log)" reports/step_export.log
+emit_report "3D render log (render.log)" reports/render.log
+rm -f reports/step_export.log reports/render.log
 
 # --- Verdict ------------------------------------------------------------------
 if [ "$fail" -ne 0 ]; then
