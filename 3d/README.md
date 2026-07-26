@@ -87,12 +87,6 @@ The LCSC number is the fastest route to a STEP: the part's LCSC/JLCPCB page (or
 its EasyEDA model) almost always has one. Fill the **License** cell — and confirm
 redistribution — before committing each model.
 
-Library-only (not placed on the current board, present in `Library.pretty/`):
-
-| File | Footprint | Part | Status |
-|---|---|---|---|
-| `SMA-RA-Jack.step` | `SMA-RA-Jack` | Right-angle SMA jack | ⏳ optional |
-
 **Before committing any model here**, fill its *Source / license* cell and
 confirm the file is redistributable (manufacturer models usually are; a few
 carry restrictive EULAs). Provenance lives in the table above.
