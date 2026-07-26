@@ -4,11 +4,10 @@ name: dev-release
 #
 # Runs on every merge to dev. Publishes/refreshes a GitHub *pre-release* only
 # when a design file changed since the last pre-release; docs/CI/script-only
-# merges are a no-op. Mirrors main-release, with three differences:
-#   - reads/bumps the latest v0.x PRE-release (0.6 -> 0.7), first run seeds v0.6
+# merges are a no-op. Mirrors main-release, with two differences:
+#   - bumps the minor within the current major line (0.6 -> 0.7; after a main
+#     X.0, continues X.1 -> X.2 -> ...), first run seeds v0.6
 #   - publishes with --prerelease
-#   - RETIRES itself: once a stable v1.0+ release exists, the 0.x phase is over
-#     and this lane no-ops. (Revisit the post-1.0 dev pre-release scheme then.)
 #
 # The dev v0.x pre-release is a COMBINED snapshot: it folds in the board fab
 # package, BOTH end-plate fab packages, and the mechanical assembly (STEP +
