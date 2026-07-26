@@ -124,10 +124,18 @@ if kicad-cli pcb export step "$PCB" -o reports/TAPRX-888.step \
 else
   note "- ⚠️ STEP export failed (see reports/step_export.log)"
 fi
-kicad-cli pcb render "$PCB" --side top -o reports/TAPRX-888-3d-top.png \
-  || note "- ⚠️ 3D render (top) failed"
-kicad-cli pcb render "$PCB" --side bottom -o reports/TAPRX-888-3d-bottom.png \
-  || note "- ⚠️ 3D render (bottom) failed"
+# 3D renders via KiBot's render_3d (OpenGL, ray_tracing:false) -- the same engine
+# as the PCB editor's 3D viewer (File -> Export Image). kicad-cli's standalone
+# raytracer in 10.0.4 doesn't draw the soldermask (bare-copper "gold" render, so
+# the stackup mask colour never shows); KiBot's OpenGL path honours the stackup
+# mask/silk/finish colours. Same invocation the release build uses. Writes to
+# reports/fab/TAPRX-888-3d-{top,bottom}.png.
+if kibot -c scripts/TAPRX-888.kibot.yaml -e "$SCH" -b "$PCB" -d reports \
+      --skip-pre all render_top render_bottom > reports/render.log 2>&1; then
+  note "- ✅ 3D renders (top+bottom) via KiBot render_3d (OpenGL, stackup colours)"
+else
+  note "- ⚠️ 3D render failed (see reports/render.log)"
+fi
 
 # --- Report detail (echoed to the run log + job summary) ----------------------
 emit_report "ERC report (erc.rpt)" reports/erc.rpt
