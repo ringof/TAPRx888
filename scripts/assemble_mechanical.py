@@ -39,6 +39,7 @@ COL = {
     "endplate-front": Color(0.15, 0.35, 0.70, 1.00),
     "endplate-rear":  Color(0.15, 0.35, 0.70, 1.00),
     "screw":          Color(0.12, 0.12, 0.13, 1.00),  # black-oxide steel
+    "sma-hardware":   Color(0.78, 0.62, 0.19, 1.00),  # gold, a touch darker than the SMA body
 }
 
 # Enclosure corner mounting holes, in the enclosure (master) frame [mm]. The M3
@@ -124,6 +125,63 @@ def place_screws(path, eb, t_front, t_rear):
     return shapes, mats
 
 
+def _normalize_hw(path):
+    """Load a flat piece of hardware (washer / nut) and normalise it: axis on Z,
+    bore centred on the origin, base at z=0. Returns (shape, thickness). The
+    thinnest bounding-box dimension is taken as the axis (true for a washer disk
+    and a hex nut), and the part is symmetric about it, so the spin about Z is a
+    don't-care."""
+    s = load(path)
+    bb = s.BoundingBox()
+    ext = [bb.xlen, bb.ylen, bb.zlen]
+    axis = ext.index(min(ext))
+    if axis == 0:
+        s = s.rotate((0, 0, 0), (0, 1, 0), 90)   # X -> Z
+    elif axis == 1:
+        s = s.rotate((0, 0, 0), (1, 0, 0), 90)   # Y -> Z
+    bb = s.BoundingBox()
+    s = s.translate((-bb.center.x, -bb.center.y, -bb.zmin))  # bore@origin, base@z=0
+    return s, s.BoundingBox().zlen
+
+
+def _sma_hole_centers(plate, rlo=3.3, rhi=3.7):
+    """(x, y) centres of the Ø7 SMA holes in the *placed* front plate, read
+    straight from its geometry (so they're already in the enclosure frame). The
+    only ~Ø7 circles on the plate are the SMA pass-throughs -- the M3 corners are
+    Ø3.4 and the STATUS hole Ø2.0 -- so a radius gate isolates them. Top+bottom
+    edges of each bore dedupe by rounded centre."""
+    seen = {}
+    for e in plate.Edges():
+        try:
+            if e.geomType() != "CIRCLE":
+                continue
+            r = e.radius()
+        except Exception:
+            continue
+        if rlo <= r <= rhi:
+            c = e.Center()
+            seen[(round(c.x, 1), round(c.y, 1))] = (c.x, c.y)
+    return sorted(seen.values())
+
+
+def place_sma_hardware(washer_path, nut_path, front):
+    """Stack a washer then a nut on each SMA hole, flush to the front plate's
+    outer (external) face: plate face -> washer -> nut, all coaxial on Z.
+    Returns (shapes, mats)."""
+    centers = _sma_hole_centers(front)
+    z_face = front.BoundingBox().zmax                 # outer/external face of the front plate
+    washer0, t_w = _normalize_hw(washer_path)
+    nut0, t_n = _normalize_hw(nut_path)
+    shapes, mats = [], {}
+    for i, (x, y) in enumerate(centers, start=1):
+        w = washer0.translate((x, y, z_face))         # flush against the plate face
+        n = nut0.translate((x, y, z_face + t_w))       # flush against the washer
+        shapes += [(w, "washer-%d" % i), (n, "nut-%d" % i)]
+        mats["washer-%d" % i] = _mat(np.eye(3), np.array([x, y, z_face]))
+        mats["nut-%d" % i] = _mat(np.eye(3), np.array([x, y, z_face + t_w]))
+    return shapes, mats
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     for k in ("enclosure", "board", "front", "rear"):
@@ -139,6 +197,10 @@ def main():
                     help="M3 thread-forming screw STEP; if given, 8 are placed "
                          "in the enclosure corner holes (and baked into the "
                          "enclosure GLB so they appear in the viewer too)")
+    ap.add_argument("--washer", default=None, help="SMA washer STEP")
+    ap.add_argument("--nut", default=None,
+                    help="SMA nut STEP; with --washer, a washer+nut is stacked on "
+                         "each SMA hole, flush to the front plate's outer face")
     a = ap.parse_args()
 
     enc = load(a.enclosure)
@@ -196,6 +258,14 @@ def main():
         mats.update(screw_mats)
         print("placed %d screws" % len(screws))
 
+    # --- SMA panel hardware: washer + nut on each SMA hole, outer face of front --
+    sma_hw = []
+    if a.washer and a.nut:
+        sma_hw, hw_mats = place_sma_hardware(a.washer, a.nut, front)
+        mats.update(hw_mats)
+        print("placed %d SMA hardware pieces (%d washer+nut sets)"
+              % (len(sma_hw), len(sma_hw) // 2))
+
     # --- STEP (for CAD) ---------------------------------------------------------
     assy = Assembly(name="TAPRX-888-mechanical")
     for shape, name in ((enc, "enclosure"), (board, "main-board"),
@@ -203,6 +273,8 @@ def main():
         assy.add(shape, name=name, color=COL[name])
     for shape, name in screws:
         assy.add(shape, name=name, color=COL["screw"])
+    for shape, name in sma_hw:
+        assy.add(shape, name=name, color=COL["sma-hardware"])
     assy.save(a.out)
     print("wrote", a.out)
 
@@ -216,6 +288,8 @@ def main():
     enc_root = Assembly(name="enc-root").add(enc, name="enclosure", color=COL["enclosure"])
     for shape, name in screws:
         enc_root.add(shape, name=name, color=COL["screw"])
+    for shape, name in sma_hw:
+        enc_root.add(shape, name=name, color=COL["sma-hardware"])
     enc_root.save(a.enclosure_glb, exportType="GLTF")
     print("wrote", a.enclosure_glb)
 
