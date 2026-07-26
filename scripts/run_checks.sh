@@ -130,7 +130,14 @@ fi
 # the stackup mask colour never shows); KiBot's OpenGL path honours the stackup
 # mask/silk/finish colours. Same invocation the release build uses. Writes to
 # reports/fab/TAPRX-888-3d-{top,bottom}.png.
-if kibot -c scripts/TAPRX-888.kibot.yaml -e "$SCH" -b "$PCB" -d reports \
+# -vv so render.log captures the exact KiAuto command (incl. --hide_solderpaste)
+# and its GUI actions -- the artifact CDN is proxy-blocked, so render.log is
+# echoed into the job log below (emit_report) as the only way to inspect what the
+# render actually did. Version banner for the same reason (KiAuto is what toggles
+# the layers, and its KiCad-10 compatibility is what's in question).
+{ echo "== tool versions =="; kibot --version 2>&1; kicad-cli version 2>&1; \
+  echo "KiAuto:"; pcbnew_do --version 2>&1 || true; } > reports/render_env.log 2>&1
+if kibot -vv -c scripts/TAPRX-888.kibot.yaml -e "$SCH" -b "$PCB" -d reports \
       --skip-pre all render_top render_bottom > reports/render.log 2>&1; then
   note "- ✅ 3D renders (top+bottom) via KiBot render_3d (OpenGL, stackup colours)"
 else
@@ -142,6 +149,8 @@ emit_report "ERC report (erc.rpt)" reports/erc.rpt
 emit_report "DRC report (drc.rpt)" reports/drc.rpt
 emit_report "BOM completeness (bom_check.txt)" reports/bom_check.txt
 emit_report "3D model check (check_3d_models.txt)" reports/check_3d_models.txt
+emit_report "3D render env (render_env.log)" reports/render_env.log
+emit_report "3D render log (render.log)" reports/render.log
 
 # --- Verdict ------------------------------------------------------------------
 if [ "$fail" -ne 0 ]; then
