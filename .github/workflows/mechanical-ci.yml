@@ -94,6 +94,7 @@ jobs:
             --enclosure mechanical/enclosure.step \
             --board out/step/board.step --board-bare out/step/board-bare.step \
             --front out/step/front.step --rear out/step/rear.step \
+            --screw mechanical/hardware/screw-M3-threadforming.step \
             --out out/TAPRX-888-mechanical-assembly.step \
             --matrices out/placements.json \
             --enclosure-glb out/enclosure.glb
