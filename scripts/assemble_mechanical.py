@@ -38,7 +38,7 @@ COL = {
     "main-board":     Color(0.10, 0.45, 0.20, 1.00),
     "endplate-front": Color(0.15, 0.35, 0.70, 1.00),
     "endplate-rear":  Color(0.15, 0.35, 0.70, 1.00),
-    "screw":          Color(0.80, 0.80, 0.83, 1.00),  # zinc-plated steel
+    "screw":          Color(0.12, 0.12, 0.13, 1.00),  # black-oxide steel
 }
 
 # Enclosure corner mounting holes, in the enclosure (master) frame [mm]. The M3
