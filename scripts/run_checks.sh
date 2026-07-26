@@ -28,21 +28,16 @@ note() {
 }
 
 emit_report() {
-  # Echo a report file into the run log (collapsible group) and the job summary
-  # (collapsible <details>), so the full ERC/DRC/BOM detail is visible without
-  # downloading the artifact.
+  # Echo a report file into the run log only, as a collapsed group. The full
+  # reports are uploaded as artifacts (and published to ci-docs on design
+  # pushes), so the job summary keeps just the concise pass/fail lines instead
+  # of a second full copy -- that duplication is what overflowed the 1 MB
+  # summary limit.
   local title="$1" file="$2"
   [ -f "$file" ] || return 0
   echo "::group::$title"
   cat "$file"
   echo "::endgroup::"
-  if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-    {
-      printf '\n<details><summary>%s</summary>\n\n```\n' "$title"
-      cat "$file"
-      printf '\n```\n\n</details>\n'
-    } >> "$GITHUB_STEP_SUMMARY"
-  fi
 }
 
 note "## Dev-CI checks (ENFORCE=$ENFORCE)"
