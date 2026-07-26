@@ -123,10 +123,16 @@ fi
 # as the PCB editor's 3D viewer (File -> Export Image). kicad-cli's standalone
 # raytracer in 10.0.4 doesn't draw the soldermask (bare-copper "gold" render, so
 # the stackup mask colour never shows); KiBot's OpenGL path honours the stackup
-# mask/silk/finish colours. Same invocation the release build uses. Writes to
-# reports/fab/TAPRX-888-3d-{top,bottom}.png.
+# mask/silk/finish colours. Same invocation the release build uses.
 if kibot -c scripts/TAPRX-888.kibot.yaml -e "$SCH" -b "$PCB" -d reports \
       --skip-pre all render_top render_bottom > reports/render.log 2>&1; then
+  # The KiBot output has `dir: fab` (the release package layout), so the PNGs
+  # land in reports/fab/. In the dev-checks artifact we want them at the top
+  # level next to the STEP, so flatten fab/ here (leaving the shared release
+  # config untouched).
+  mv -f reports/fab/TAPRX-888-3d-top.png reports/fab/TAPRX-888-3d-bottom.png \
+     reports/ 2>/dev/null || true
+  rmdir reports/fab 2>/dev/null || true
   note "- ✅ 3D renders (top+bottom) via KiBot render_3d (OpenGL, stackup colours)"
 else
   note "- ⚠️ 3D render failed (see run log)"
