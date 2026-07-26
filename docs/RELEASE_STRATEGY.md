@@ -225,8 +225,9 @@ out of the unzipped folder is just as obvious.
 |---|---|
 | `TAPRX-888-v<REV>-schematic.pdf` | Schematic (direct download, no unzip) |
 | `TAPRX-888-v<REV>-assembly.pdf` | Assembly drawing — top + bottom placement (F/B.Fab + silk + edge), framed |
+| `TAPRX-888-v<REV>.step` | Board 3D model (STEP) — the EE↔ME interface, standalone (no unzip) |
 | `TAPRX-888-v<REV>-gerbers.zip` | Gerbers + drill (JLCPCB-ready) |
-| `TAPRX-888-v<REV>-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs, and a `VERSION.txt` stamped with the exact version + commit |
+| `TAPRX-888-v<REV>-fabrication.zip` | Full package: gerbers, drill, LCSC BOM, CPL, interactive BOM, schematic + assembly PDFs, board STEP, and a `VERSION.txt` stamped with the exact version + commit |
 
 The git hash also lives inside the files and in the release title/tag.
 
@@ -241,12 +242,10 @@ The git hash also lives inside the files and in the release title/tag.
 >   fully composited, board-normalized **assembly** and multipage
 >   **fabrication-drawing** PDFs (`scripts/gen_docs.sh` in usb3-fiber) are a
 >   planned Phase B follow-up.
-> - **STEP (3D model) and 3D renders** are not yet in the package. The
->   footprints reference custom 3D models via `${TIS}`/`${KISYS3DMOD}`, which
->   aren't in the CI image, so KiBot can't resolve them. Restoring them needs
->   that model library provisioned in the CI image (or the 3D paths
->   remapped to KiCad's standard packages). The KiBot `step`/`render_*` outputs
->   remain defined for then.
+> - The **board STEP** ships as a standalone asset (`TAPRX-888-v<REV>.step`) and
+>   3D renders are produced — models are vendored in `3d/` and resolved via
+>   `KICAD10_3DMODEL_DIR` (see `3d/README.md`). Board **connector** models are
+>   still absent (issue #45), so those parts are missing from the STEP/renders.
 
 ## Mechanical end plates (independent lane)
 

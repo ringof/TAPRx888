@@ -38,15 +38,14 @@ move and its matching cutout move land as **one atomic, reviewed commit**, and
 they version and travel together. A separate repo would split that into two
 places to keep in sync by hand — exactly the drift we're avoiding.
 
-## Versioning — deliberately separate from the board
+## Versioning — board and plates are separate lanes
 
-A change under `mechanical/` **does not cut a board release.** The
-`dev-release` / `main-release` version lanes are scoped to the **root board's**
-files only, so an end-plate silkscreen tweak never bumps the board's `vX.Y`. The
-end plates are simple; build their fab outputs **on demand** for now
-(`kicad-cli pcb export gerbers mechanical/endplate-front/…`, or the JLCPCB
-plugin). A dedicated end-plate CI lane is a possible later addition, not a
-requirement.
+On **`main`** the two ship independently: a `mechanical/` change never bumps the
+board's `vX.Y` (`main-release` is scoped to the root board), and the end plates
+have their own **`endplates-vX.Y`** release lane (`endplate-release.yml`). On
+**`dev`** the `v0.x` **pre-release is a combined snapshot** — a board, end-plate,
+or mechanical change cuts/refreshes it, bundling the board package, both plate fab
+packages, and the mechanical assembly. See `docs/RELEASE_STRATEGY.md`.
 
 ## The board STEP is the interface
 
@@ -60,44 +59,39 @@ in the `release-package` CI artifact on each PR/run.
 
 ## Mechanical fit-check CI
 
-`.github/workflows/mechanical-ci.yml` builds a **one-file mechanical fit-check**
-on board or `mechanical/**` changes (and on demand). It:
+The reusable **`.github/workflows/mechanical-build.yml`** builds a one-file
+mechanical fit-check; it's called by **`mechanical-ci.yml`** (on `design`/`dev-*`
++ PRs) and by **`dev-release.yml`** (on `dev`, folded into the `v0.x` snapshot).
+It:
 
-1. exports STEP from the **main board** and **both end plates** (`kicad-cli pcb
-   export step`),
-2. runs **`scripts/assemble_mechanical.py`** (CadQuery) to place all four parts —
-   enclosure, board, front plate, rear plate — in one shared frame, and
-3. uploads three review artifacts:
-   - **`TAPRX-888-mechanical-assembly.step`** — multi-component STEP for any CAD tool,
-   - **`…-assembly.glb`** — the same assembly as binary glTF (Windows 3D Viewer, VS Code, Blender, web),
-   - **`…-mechanical-viewer.html`** — a **self-contained web page** (model-viewer + the GLB inlined) that spins the assembly in any browser, offline, no tools.
+1. exports STEP + a KiCad-native **coloured** GLB from the main board and both end
+   plates (`kicad-cli`),
+2. runs **`assemble_mechanical.py`** (CadQuery) to place all four parts —
+   enclosure, board, front plate, rear plate — in one frame, **`assemble_glb.py`**
+   to build the coloured assembly GLB (a STEP import drops colour; KiCad's
+   per-board GLB keeps silk/mask/pad colours), then **`make_3d_viewer.py`**, and
+3. uploads three artifacts: **`…-assembly.step`** (any CAD tool), **`…-assembly.glb`**
+   (glTF), and **`…-mechanical-viewer.html`** (self-contained, offline, any browser).
 
-`scripts/assemble_mechanical.py` is the **alignment definition** — the board sits
-at the 7.9 mm rail height, width centred, length down the case; the plates seat
-at the ends and fill the opening. It's **non-gating** during bring-up.
+Alignment is defined in `assemble_mechanical.py` — board at the 7.9 mm rail
+height, width centred, length down the case; plates seat at the ends. Non-gating
+during bring-up.
 
 ### Live viewer on GitHub Pages
 
-The `pages` job publishes the viewer to **GitHub Pages** so the wiki can link a
-live URL instead of a download:
+The viewer publishes to **<https://ringof.github.io/TAPRx888/>** (the site
+`index.html`), refreshed on every mechanical build — from `mechanical-ci` on
+`design`/`dev-*`, and from `dev-release` on `dev` (the two share a `pages`
+concurrency group so they never double-deploy). Never from a PR. **One-time
+setup:** *Settings → Pages → Source: GitHub Actions*; if a deploy is rejected for a
+branch, allow it under *Settings → Environments → `github-pages` → Deployment
+branches*.
 
-> **<https://ringof.github.io/TAPRx888/>** — refreshes on every mechanical build.
+> A GitHub **Wiki page can't embed the viewer** — wiki HTML is sanitised (scripts
+> and the `<model-viewer>` component are stripped). Link to the Pages URL.
 
-The viewer HTML becomes the site `index.html`. The job runs on push / manual
-dispatch only (never from a PR — a PR must not move the live site) and is
-non-gating. **One-time setup:** *Settings → Pages → Source: **GitHub Actions*** (the
-workflow also asks the API to enable it via `configure-pages`, so the first run
-usually turns it on by itself). If the deploy is rejected for the branch, allow it
-under *Settings → Environments → `github-pages` → Deployment branches*.
-
-> A GitHub **Wiki page cannot embed the viewer directly** — wiki HTML is
-> sanitised, so `<script>` and the `<model-viewer>` web component are stripped.
-> Link to the Pages URL; don't paste the HTML into a wiki page.
-
-> Envelope-level for now: the board's connector 3D models are still missing
-> (3D-models issue), so the board STEP is substrate + whatever resolves. The
-> assembly script carries `*_FLIP_*` flags to reconcile orientation — the first
-> CI artifact is the pass that confirms them (see the script's caveats).
+> Board **connector** 3D models are still missing (issue #45), so the assembly
+> omits those parts; everything else resolves from the vendored `3d/` mirror.
 
 ## Geometry — where it comes from, and what's still a placeholder
 

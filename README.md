@@ -53,10 +53,13 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full workflow. In short:
 
 Fabrication and design packages are built by CI and published as **versioned
 GitHub Releases** — gerbers, drill, LCSC BOM, pick-and-place, interactive BOM,
-and the schematic + assembly PDFs, each stamped with its version and commit hash.
+board STEP, and the schematic + assembly PDFs, each stamped with its version and
+commit hash. The `dev` pre-releases (`v0.x`) are a combined snapshot that also
+bundles the end-plate fab packages and the coloured 3D enclosure assembly
+(STEP + GLB), with a live viewer at **<https://ringof.github.io/TAPRx888/>**.
 Grab the latest from the
-**[Releases page](https://github.com/TAPR/TAPRx888/releases)** (pre-releases are
-`v0.x`; production spins are `v1.0`, `v2.0`, …). See
+**[Releases page](https://github.com/TAPR/TAPRx888/releases)** (production spins
+are `v1.0`, `v2.0`, …). See
 [docs/RELEASE_STRATEGY.md](docs/RELEASE_STRATEGY.md) for how versioning works.
 
 ## Documentation
