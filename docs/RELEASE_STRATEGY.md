@@ -19,6 +19,9 @@ Flow: **`design` → `dev` → `main`**, with a `ci-docs` review surface.
 - **`main`** — release branch; protected, stricter gate. `dev → main` cuts a
   production revision.
 
+Merges into `dev` and `main` are **squash** merges. Which work goes on which
+branch (design/PCB/mechanical vs docs/CI) is in `CONTRIBUTING.md`.
+
 CI lanes:
 
 - **`dev-checks`** — on `design`/`dev-*` pushes and PRs into `dev`/`main`: ERC,
