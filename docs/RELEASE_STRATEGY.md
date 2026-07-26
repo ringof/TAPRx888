@@ -85,6 +85,30 @@ and called by both lanes, so `dev` and `main` can't drift apart.
 
 Both lanes accept the same manual `version` override / `dry_run` inputs.
 
+#### Combined snapshot (board + end plates + mechanical)
+
+Unlike `main` — where the board and the end plates ship on **separate**,
+independently-versioned lanes (`v<MAJOR>.<MINOR>` and `endplates-v<MAJOR>.<MINOR>`,
+see *Mechanical end plates* below) — the `dev` pre-release is a **single combined
+snapshot**. Each qualifying `dev` merge folds all of the following into the one
+`v0.x` pre-release:
+
+- the **board** fab/design package (`scripts/build_release.sh`);
+- **both end-plate** fab packages (`scripts/build_endplates.sh`), stamped with the
+  board's `v0.x` so their filenames/frames match the snapshot, and with the
+  end-plate design commit for provenance;
+- the **mechanical assembly** — multi-component STEP, coloured GLB, and the
+  self-contained 3D viewer (the reusable `mechanical-build.yml`, shared with
+  `mechanical-ci`); and it **deploys that viewer to GitHub Pages**
+  (`https://ringof.github.io/TAPRx888/`).
+
+Because the snapshot is combined, its "did the design change?" trigger spans the
+**board, the end plates, AND the mechanical inputs** (`mechanical/**`, `3d/**`,
+`TAPR.kicad_wks`, and the `assemble_*`/`make_3d_viewer`/`build_endplates`
+scripts) — a change to *any* of them cuts or refreshes the `v0.x` pre-release.
+`mechanical-ci` continues to build + deploy Pages for the `design`/`dev-*`
+lanes; `dev` merges are handled here instead, so the two never double-deploy.
+
 ## When is a new revision cut?
 
 `main-release` publishes a **new** revision **only when a design file changed
