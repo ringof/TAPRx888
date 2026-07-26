@@ -13,7 +13,7 @@
 #
 # Per plate it produces, under out/:
 #   <plate>-v<EPREVISION>-gerbers.zip   gerbers + Excellon drill (fab data)
-#   <plate>-v<EPREVISION>-fab.pdf       framed human-readable fab drawing
+#   <plate>-v<EPREVISION>-fab.pdf       framed fab drawing (top + bottom pages)
 #
 # Requires env: EPREVISION, GIT_HASH.
 set -euo pipefail
@@ -71,13 +71,29 @@ with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
 PY
   rm -rf "$gdir"
 
-  # --- Human-readable framed fab drawing --------------------------------------
-  # Outline + holes (Edge.Cuts), copper, silk and the mechanical annotation
-  # layers, with the TAPR title-block frame. GIT_HASH threaded through as the
-  # board build does.
-  kicad-cli pcb export pdf "$pcb" -o "$OUT/${stem}-fab.pdf" --mode-single \
+  # --- Human-readable framed fab drawing: top + bottom, 2 pages ---------------
+  # Mirror build_release.sh's assembly PDF -- one page per side, merged -- so
+  # BOTH silkscreens are documented. A single composited page dropped whichever
+  # side carried the plate's silk/annotations (they live on the back). Bottom
+  # view is mirrored so its text reads correctly. Each page: outline + holes
+  # (Edge.Cuts), that side's copper + silk, and the mechanical annotation
+  # layers, framed with the TAPR title block; GIT_HASH threaded through.
+  pdir="$(mktemp -d)"
+  kicad-cli pcb export pdf "$pcb" -o "$pdir/top.pdf" --mode-single \
     --include-border-title --drawing-sheet "$WKS" --define-var "GIT_HASH=$GIT_HASH" \
-    --layers "Edge.Cuts,F.Cu,B.Cu,F.Silkscreen,User.Comments,User.Drawings"
+    --layers "Edge.Cuts,F.Cu,F.Silkscreen,User.Comments,User.Drawings"
+  kicad-cli pcb export pdf "$pcb" -o "$pdir/bot.pdf" --mode-single --mirror \
+    --include-border-title --drawing-sheet "$WKS" --define-var "GIT_HASH=$GIT_HASH" \
+    --layers "Edge.Cuts,B.Cu,B.Silkscreen,User.Comments,User.Drawings"
+  if command -v pdfunite >/dev/null 2>&1; then
+    pdfunite "$pdir/top.pdf" "$pdir/bot.pdf" "$OUT/${stem}-fab.pdf"
+  elif command -v gs >/dev/null 2>&1; then
+    gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite \
+       -sOutputFile="$OUT/${stem}-fab.pdf" "$pdir/top.pdf" "$pdir/bot.pdf"
+  else
+    echo "ERROR: no PDF merge tool (pdfunite/gs) available" >&2; exit 1
+  fi
+  rm -rf "$pdir"
 done
 
 echo "Built end-plate packages for v${EPREVISION} (git ${GIT_HASH}):"
