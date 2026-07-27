@@ -188,7 +188,13 @@ def main():
   const key = new THREE.DirectionalLight(0xffffff, 1.15);
   key.position.set(1, 1.6, 1.2);
   scene.add(key);
-  scene.add(new THREE.AmbientLight(0xffffff, 0.12));  // faint fill; env does most of it
+  // Hemisphere fill instead of flat ambient. The world-fixed environment map
+  // leaves down-facing surfaces dark (its "floor" is dark), so identical blue
+  // reads much darker on a board's underside than its top. The ground colour
+  // here lights down-facing normals directly, lifting the underside so both
+  // board faces read as the same blue; the slightly brighter sky keeps a soft
+  // top/bottom cue for depth.
+  scene.add(new THREE.HemisphereLight(0xdfe6ee, 0xc2c8d0, 0.6));
 
   function resize() {{
     const w = wrap.clientWidth, h = wrap.clientHeight;
