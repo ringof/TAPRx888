@@ -43,8 +43,10 @@ and by `dev-release` on `dev`) assembles enclosure + board + both plates
 deploys the viewer to **<https://ringof.github.io/TAPRx888/>**. The viewer
 (three.js) lets you toggle the four top-level parts -- enclosure, main board,
 front / rear end plates -- on and off (turning the translucent enclosure off is
-handy for seeing the board inside). Non-gating; board **connector** 3D models are
-still missing (#45).
+handy for seeing the board inside). Board colours come straight from KiCad's GLB
+export -- i.e. each board's **soldermask colour in its physical stackup** (all
+three are set to `Blue`); `assemble_glb.py` no longer overrides them. Non-gating;
+board **connector** 3D models are still missing (#45).
 
 ## Plate geometry
 
