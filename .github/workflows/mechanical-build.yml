@@ -117,6 +117,7 @@ jobs:
             --room  /tmp/RoomEnvironment.js \
             --rev "${GITHUB_SHA::7}" \
             --branch "${GITHUB_REF_NAME}" \
+            --repo-url "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" \
             --out out/TAPRX-888-mechanical-viewer.html
           ls -la out
       - uses: actions/upload-artifact@v6

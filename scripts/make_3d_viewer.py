@@ -59,6 +59,9 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--rev", default="", help="short git sha for the header")
     ap.add_argument("--branch", default="", help="branch name for the header")
+    ap.add_argument("--repo-url", default="", dest="repo_url",
+                    help="repo base URL (e.g. https://github.com/owner/repo); if "
+                         "given, the hash and branch in the header link to it")
     a = ap.parse_args()
 
     glb_b64 = base64.b64encode(open(a.glb, "rb").read()).decode("ascii")
@@ -68,8 +71,21 @@ def main():
         _lib_block("lib-orbit", a.orbit),
         _lib_block("lib-room", a.room),
     ])
-    # Header sub-line: "<short-sha> &middot; <branch>" (omit whichever is absent).
-    meta = " &middot; ".join([b for b in (a.rev, a.branch) if b])
+    # Header sub-line: "Git Hash: <sha> &middot; Branch: <branch>" (each omitted if
+    # absent). With --repo-url, the sha links to its commit and the branch to its
+    # tree on the host.
+    def _linked(text, path):
+        if a.repo_url and text:
+            return '<a href="%s/%s" target="_blank" rel="noopener">%s</a>' % (
+                a.repo_url.rstrip("/"), path, text)
+        return text
+
+    meta_bits = []
+    if a.rev:
+        meta_bits.append("Git Hash: " + _linked(a.rev, "commit/" + a.rev))
+    if a.branch:
+        meta_bits.append("Branch: " + _linked(a.branch, "tree/" + a.branch))
+    meta = " &nbsp;&middot;&nbsp; ".join(meta_bits)
     parts_js = json.dumps([[k, l, s] for k, l, s in PARTS])
 
     # Toggle panel: one checkbox per part (checked = visible). data-part carries
@@ -93,6 +109,8 @@ def main():
   header {{ padding:14px 20px; border-bottom:1px solid #2a3037; flex:0 0 auto; }}
   h1 {{ margin:0; font-size:17px; font-weight:620; letter-spacing:-.01em; }}
   header p {{ margin:4px 0 0; font-size:12.5px; color:#98a1a7; }}
+  header p a {{ color:#6ea8fe; text-decoration:none; }}
+  header p a:hover {{ text-decoration:underline; }}
   /* the viewport fills the remaining height; min-height:0 lets the flex child
      actually shrink/grow instead of collapsing to its default size */
   .wrap {{ position:relative; flex:1 1 auto; min-height:0;
