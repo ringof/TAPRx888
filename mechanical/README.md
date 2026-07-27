@@ -40,8 +40,11 @@ The reusable `mechanical-build.yml` (called by `mechanical-ci` on `design`/`dev-
 and by `dev-release` on `dev`) assembles enclosure + board + both plates
 (`assemble_mechanical.py`, CadQuery) into a multi-component STEP, a coloured GLB
 (`assemble_glb.py`), and a self-contained viewer (`make_3d_viewer.py`), and
-deploys the viewer to **<https://ringof.github.io/TAPRx888/>**. Non-gating; board
-**connector** 3D models are still missing (#45).
+deploys the viewer to **<https://ringof.github.io/TAPRx888/>**. The viewer
+(three.js) lets you toggle the four top-level parts -- enclosure, main board,
+front / rear end plates -- on and off (turning the translucent enclosure off is
+handy for seeing the board inside). Non-gating; board **connector** 3D models are
+still missing (#45).
 
 ## Plate geometry
 
