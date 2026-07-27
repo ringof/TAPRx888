@@ -94,6 +94,37 @@ def fix_materials(path):
           % (opaque, blend))
 
 
+def dump_materials(path, label):
+    """Log KiCad's raw per-material PBR params for one per-board GLB (read-only,
+    before fix_materials touches anything). This is the ground truth for a
+    top/bottom shade question: if e.g. F.Mask and B.Mask come out with identical
+    base/metal/rough/emit, the material is uniform and any difference on screen
+    is the viewer's world-fixed environment light, not something baked upstream.
+    """
+    with open(path, "rb") as f:
+        data = f.read()
+    total, off = struct.unpack("<III", data[:12])[2], 12
+    gltf = None
+    while off < total:
+        clen, ctype = struct.unpack("<II", data[off:off + 8])
+        if ctype == 0x4E4F534A:                # JSON chunk
+            gltf = json.loads(data[off + 8:off + 8 + clen].decode("utf-8"))
+            break
+        off += 8 + clen
+    if gltf is None:
+        return
+    for i, m in enumerate(gltf.get("materials", [])):
+        pbr = m.get("pbrMetallicRoughness", {})
+        bcf = pbr.get("baseColorFactor")
+        rgb = ("[%.3f %.3f %.3f a%.2f]" % tuple(bcf)) if bcf else "(none)"
+        emf = m.get("emissiveFactor")
+        emit = ("[%.2f %.2f %.2f]" % tuple(emf)) if emf and any(emf) else "-"
+        print("[glb-mat] %-14s %-16s base=%s metal=%.2f rough=%.2f emit=%s alpha=%s"
+              % (label, (m.get("name") or "#%d" % i)[:16], rgb,
+                 pbr.get("metallicFactor", 1.0), pbr.get("roughnessFactor", 1.0),
+                 emit, m.get("alphaMode", "OPAQUE")))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--matrices", required=True)
@@ -116,6 +147,12 @@ def main():
     kicad_fix, eye = Rx(90), np.eye(4)
     CORR = {"enclosure": eye, "main-board": kicad_fix,
             "endplate-front": kicad_fix, "endplate-rear": kicad_fix}
+
+    # Diagnostic: log KiCad's raw material params per board (F.Mask vs B.Mask
+    # etc.) so CI shows whether the two board faces differ in the material or are
+    # identical and only lit differently by the viewer's world-fixed environment.
+    for name in ("main-board", "endplate-front", "endplate-rear"):
+        dump_materials(parts[name], name)
 
     scene = trimesh.Scene()
     for name, path in parts.items():
