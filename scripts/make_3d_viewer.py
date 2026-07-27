@@ -90,8 +90,11 @@ def main():
 
     # Toggle panel: one checkbox per part (checked = visible). data-part carries
     # the node-name prefix the viewer script buckets on.
+    # autocomplete="off" stops the browser from restoring a stale checked state
+    # on refresh (which would leave the box disagreeing with the part's actual
+    # visibility); the script also re-syncs visibility from the boxes on load.
     toggles = "\n".join(
-        '    <label><input type="checkbox" data-part="%s" checked>'
+        '    <label><input type="checkbox" data-part="%s" checked autocomplete="off">'
         '<b style="background:%s"></b>%s</label>' % (key, swatch, label)
         for key, label, swatch in PARTS)
 
@@ -249,9 +252,12 @@ def main():
     controls.update();
 
     document.querySelectorAll(".panel input[data-part]").forEach((cb) => {{
-      cb.addEventListener("change", () => {{
+      const apply = () => {{
         for (const o of buckets[cb.dataset.part] || []) o.visible = cb.checked;
-      }});
+      }};
+      cb.addEventListener("change", apply);
+      apply();  // sync on load: a browser may restore a stale checked state on
+                // refresh, so drive visibility from the box so they never disagree.
     }});
 
     // Click-to-set-pivot: raycast where you click and move the orbit target to the
