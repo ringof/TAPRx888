@@ -116,6 +116,7 @@ jobs:
             --orbit /tmp/OrbitControls.js \
             --room  /tmp/RoomEnvironment.js \
             --rev "${GITHUB_SHA::7}" \
+            --branch "${GITHUB_REF_NAME}" \
             --out out/TAPRX-888-mechanical-viewer.html
           ls -la out
       - uses: actions/upload-artifact@v6

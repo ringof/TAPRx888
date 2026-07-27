@@ -58,6 +58,7 @@ def main():
     ap.add_argument("--room", required=True, help="jsm/environments/RoomEnvironment.js")
     ap.add_argument("--out", required=True)
     ap.add_argument("--rev", default="", help="short git sha for the header")
+    ap.add_argument("--branch", default="", help="branch name for the header")
     a = ap.parse_args()
 
     glb_b64 = base64.b64encode(open(a.glb, "rb").read()).decode("ascii")
@@ -67,7 +68,8 @@ def main():
         _lib_block("lib-orbit", a.orbit),
         _lib_block("lib-room", a.room),
     ])
-    rev = (" &middot; " + a.rev) if a.rev else ""
+    # Header sub-line: "<short-sha> &middot; <branch>" (omit whichever is absent).
+    meta = " &middot; ".join([b for b in (a.rev, a.branch) if b])
     parts_js = json.dumps([[k, l, s] for k, l, s in PARTS])
 
     # Toggle panel: one checkbox per part (checked = visible). data-part carries
@@ -107,13 +109,14 @@ def main():
   .panel input {{ margin:0; cursor:pointer; accent-color:#3b6fd4; }}
   .panel b {{ display:inline-block; width:11px; height:11px; border-radius:3px; }}
   .hint {{ position:absolute; right:16px; bottom:14px; font-size:11.5px;
-    color:#8b939a; background:rgba(20,23,26,.72); padding:6px 10px;
-    border:1px solid #2a3037; border-radius:9px; }}
+    color:#8b939a; background:rgba(20,23,26,.72); padding:8px 12px;
+    border:1px solid #2a3037; border-radius:9px; line-height:1.55;
+    text-align:center; }}
 </style>
 </head><body>
 <header>
-  <h1>TAPRX-888 &mdash; mechanical fit-check</h1>
-  <p>Enclosure &middot; main board &middot; front / rear end plates{rev}. Drag to orbit, scroll to zoom, toggle parts at left.</p>
+  <h1>TAPRX-888: Mechanical Fit Check</h1>
+  <p>{meta}</p>
 </header>
 <div class="wrap">
   <canvas id="view"></canvas>
@@ -121,7 +124,7 @@ def main():
     <span class="head">Show parts</span>
 {toggles}
   </div>
-  <div class="hint">no CAD tool needed &middot; opens offline</div>
+  <div class="hint">Drag to orbit<br>Scroll to zoom<br>Click to set pivot</div>
 </div>
 
 {libs}
@@ -188,6 +191,12 @@ def main():
     const root = gltf.scene;
     scene.add(root);
 
+    // The assembly is authored upside down for a Y-up viewer; the old
+    // <model-viewer> corrected it with orientation="180deg 0deg 0deg" (a 180deg
+    // roll about the model's Z / length axis). Re-apply that so it sits upright
+    // with the front plate still at the front.
+    root.rotation.z = Math.PI;
+
     // Bucket every node under its part by name prefix (assemble_glb.py names them
     // "<part>_<i>"); a checkbox flips `visible` on its bucket.
     const buckets = {{}};
@@ -218,9 +227,29 @@ def main():
       }});
     }});
 
+    // Click-to-set-pivot: raycast where you click and move the orbit target to the
+    // hit point, so you orbit/zoom about that spot (like the Google viewer). A
+    // click is only a click if the pointer barely moved between down and up --
+    // otherwise it was an orbit drag. Hidden (toggled-off) parts are ignored.
+    const raycaster = new THREE.Raycaster();
+    const ndc = new THREE.Vector2();
+    const el = renderer.domElement;
+    let downX = 0, downY = 0;
+    const shown = (o) => {{ for (let p = o; p; p = p.parent) if (!p.visible) return false; return true; }};
+    el.addEventListener("pointerdown", (e) => {{ downX = e.clientX; downY = e.clientY; }});
+    el.addEventListener("pointerup", (e) => {{
+      if (Math.hypot(e.clientX - downX, e.clientY - downY) > 5) return;  // was a drag
+      const r = el.getBoundingClientRect();
+      ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+      ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+      raycaster.setFromCamera(ndc, camera);
+      const hit = raycaster.intersectObject(root, true).find((h) => shown(h.object));
+      if (hit) {{ controls.target.copy(hit.point); controls.update(); }}
+    }});
+
     resize();
     // Test/debug hook: lets a headless browser inspect the scene + toggle state.
-    window.__viewer = {{ THREE, scene, root, buckets, camera, controls }};
+    window.__viewer = {{ THREE, scene, root, buckets, camera, controls, raycaster }};
   }}, (err) => {{
     console.error("GLB parse failed", err);
     document.querySelector(".hint").textContent = "failed to load model";
