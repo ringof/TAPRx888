@@ -191,16 +191,7 @@ def main():
   const key = new THREE.DirectionalLight(0xffffff, 1.15);
   key.position.set(1, 1.6, 1.2);
   scene.add(key);
-  // Hemisphere fill instead of flat ambient. The world-fixed environment map
-  // (and the key light) load the *top* of the board, leaving down-facing
-  // surfaces dark, so the identical blue soldermask read much darker on a
-  // board's underside than its top. This hemisphere is near-black at the sky
-  // and white at the ground: it adds almost nothing to up-facing normals but
-  // pours fill onto down-facing ones, lifting the underside to match the top.
-  // Measured on a matte board-blue plane under this exact rig, it takes the
-  // bottom/top brightness ratio from ~0.73 to ~1.0 (both faces read equal)
-  // while leaving the top brightness essentially unchanged.
-  scene.add(new THREE.HemisphereLight(0x14181c, 0xffffff, 2.2));
+  scene.add(new THREE.AmbientLight(0xffffff, 0.12));  // faint fill; env does most of it
 
   function resize() {{
     const w = wrap.clientWidth, h = wrap.clientHeight;
