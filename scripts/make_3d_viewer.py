@@ -196,10 +196,10 @@ def main():
   // a soft key for form, and damp the environment's contribution (the
   // envMapIntensity pass after load). Measured on the real assembly this holds
   // the board's top-vs-bottom blue to within a few % (was ~30% lighter on top).
-  const key = new THREE.DirectionalLight(0xffffff, 0.4);
+  const key = new THREE.DirectionalLight(0xffffff, 0.35);
   key.position.set(1, 1.6, 1.2);
   scene.add(key);
-  scene.add(new THREE.AmbientLight(0xffffff, 1.3));
+  scene.add(new THREE.AmbientLight(0xffffff, 1.0));
 
   function resize() {{
     const w = wrap.clientWidth, h = wrap.clientHeight;
@@ -237,7 +237,7 @@ def main():
 
     // Damp the environment map so the orientation-independent ambient dominates
     // and every face of the matte board reads the same blue (see the light setup).
-    const ENV_INTENSITY = 0.25;
+    const ENV_INTENSITY = 0.2;
     root.traverse((o) => {{
       const ms = o.material ? (Array.isArray(o.material) ? o.material : [o.material]) : [];
       for (const m of ms) if ("envMapIntensity" in m) m.envMapIntensity = ENV_INTENSITY;
